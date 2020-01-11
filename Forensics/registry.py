@@ -1,9 +1,10 @@
 ## In the module , let's try something fun .
 ## The Windows registry is a hierarchical database that stores the configuraion setting of the operating system.
 ## We can dig into the information related to wireless connection from these "RECORDS" .
-## Once such precious record is "HKLM\Software\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged".
+## One such precious record is "HKLM\Software\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged".
 ## Let's aim and create two different functions:
-## 1st function will be aiming to convert the REG_BINARY field found in the "RECORDS" , into "MAC".
+## 1st function will be aiming to convert the REG_BINARY field found in the "RECORDS" , into "MAC" address and the second will be responsiblle 
+## for printing out the previously connected wireless networks stored in the Windows Registry.
 
 def value2addr(val):
   address = ""
