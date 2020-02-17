@@ -4,8 +4,8 @@
 # This script aims to identify the CVE-2018-11409 information disclosure vulnerability in splunk located at   path "/en-US/splunkd/_raw/services/server/info/server-info?output_mode=json".
 
 import shodan
-import sys
 import re
+import sys
 import requests
 from time import sleep
 from requests.auth import HTTPBasicAuth
@@ -16,6 +16,3 @@ API_KEY = "YOUR_API_KEY"
 SEARCH_FOR = 'splunk port:"8000"'
 FILE = "/en-US/splunkd/__raw/services/server/info/server-info?output_mode=json"
 session = requests.Session()
-
-
-
