@@ -1,0 +1,1 @@
+Mechanize ---->  A library which allows stateful web programming in Python. That it means it will store and reuse the authentication cookie for us .
