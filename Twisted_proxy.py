@@ -11,7 +11,7 @@ class proxy_ServerProtocol(protocol.Protocol):
         factory.protocol = proxy_ClientProtocol
         factory.server = self
 
-        reactor.connectTCP('ec2-54-89-126-237.compute-1.amazonaws.com',6675, factory)
+        reactor.connectTCP('ec2-3-89-245-98.compute-1.amazonaws.com',6675, factory)
 
     def dataReceived(self, data):
         if (self.client != None):
@@ -45,7 +45,7 @@ def main():
     factory = protocol.ServerFactory()
     factory.protocol = proxy_ServerProtocol
 
-    reactor.listenTCP(6666, factory)
+    reactor.listenTCP(2222, factory)
     reactor.run()
 
 if __name__ == '__main__':
