@@ -1,3 +1,20 @@
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % ual tss load-credentials --reset                  
+→ Proxy detected on 127.0.0.1:9000 — routing traffic through proxy
+Clearing saved credentials...
+Cleared saved credentials.
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % ual tss load-credentials        
+→ Proxy detected on 127.0.0.1:9000 — routing traffic through proxy
+Enter global username (like u123456): v196361
+Enter password: 
+Enter Duo one-time passcode: 040053
+TSS login succeeded.
+Retrieved credentials from TSS.
+TSS credentials saved!
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % ual aws auth --id nppid   
+Using DEV_MA-CustomerTechnology_EQA-L3 (058264356046)
+Role assumed until: 23:18:47 GMT-0400 (Eastern Daylight Time)
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % ual aws open-console
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % python index.py
 Traceback (most recent call last):
   File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py", line 31, in <module>
     from data import get_findings_data
@@ -76,3 +93,4 @@ Traceback (most recent call last):
   File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/regions.py", line 281, in _endpoint_for_partition
     raise NoRegionError()
 botocore.exceptions.NoRegionError: You must specify a region.
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % 
