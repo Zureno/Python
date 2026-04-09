@@ -1,18 +1,9 @@
-GET /.auth/logout?post_logout_redirect_uri=/Authentication/SSO HTTP/2
-Host: qa.kpmglink-workforcelab.com
-Cookie: .AspNetCore.Culture=c%3Den%7Cuic%3Den; ARRAffinity=72f0058640e8d668f1d9eccaa21b54dfe769c845c67c66321653924dd77a2205; ARRAffinitySameSite=72f0058640e8d668f1d9eccaa21b54dfe769c845c67c66321653924dd77a2205; AppServiceAuthSession=6f54xkD6F4TVVofQgZs+moR/jwLkMqH1PxUWaLLA8qB2YZtQ37wrqrtyeB69wV9BKz63wqygUZ0Zlbm2vZehycwFF1xvZnBhz9GcXnoILOIshsepzBwVntX/ce4INcxXYjLLBQqyx+oWjGLvq/xDzawPSPtuehxdV03myr2a19Xm0kspb1yCSHV5JmLd4QmBeGbDR8RvcUPg64OgBtwMzi/HpnMVNKQv7yndVKR5VZYtHP6SMqgODMZX4xd4/ztzWqyOmlyNEIrdCouaEm/mH6wyjJSdvLSL6QXXd5D500BSKgbh4ZxWh7TZMbqe3ihhXghO1WXhPqPDvHXqLW7auCmQK0JZ/nAUOXZuaRW/3GTQJ3iqRrftSebnLIkpvfGEJftCPWwU6AVsL7HwjEFDVx+BEV8nJX6z3VcdosvR2ESva647ob/1hMCBb47oFC+lnYQ2IV1VYMCPZ/xC7W4fM/Qmd0hb2xLKI9n5w3IdIXMqytobcvj7ES6/lGw8vqC94LmIL8XFrEH6OxBsg9ryNAN4FRxlpnntLmXoU8YGZN9MarChg8fZSzsauflglZMRObjcVaPRKsgsmk+q87e6vmauuTYi14wV5vQdl1anM26obFzEX55vy/E3Sjjw+dRu85q+sFP5En20jeW5h25QPb6UawsjIS+GzpX2+iZmxvE6+ifbq8lu2o4+B/JcHRpIY5ZoTQEMT18khdxNocdWNn1AF7Ea2ZWV9bvq6FA1H76hpuxPYAnkPOPOHRjcdzxoGgmGmpz/gSsgFICk0bx8sdYNKeTPBbDuSyK0S7Ky/ca1fn8msTQShGP6tlGYHRTAYkyEPH0EIAyBjEqseU9viRepQoQML8xfCSs8IlOAex4L7l6Ozexk0SyhYwkYTpW7zEsNcTov0Wf7kRBZNAL+G5G+R9y34P1dLQ+gbQi7n6LR7Fyth0ZxVsTFO0d+wfYZyluNL81E8KcBeUg55F9aax2LecY9B7IvnurxeIlMcfmVGifK6femRbgsPz0cLNq1lOqYxHPA5mxCyWKx2NoRK21FaAaZUgpQo1e9Y5UbQcZlxUcJOy13xaPArtPwN55teF0JuB6X/rlsBPJyRoLl+F1TlZ/7WQTdgIokoWPP/CJuVvuxQ7UD+NyaQjgZSreeyfnZU0CCw9/jQihg6TCR7eCwKqT6SRI5spDNz/YR5vjOCFwTbgxa+HprvUR+QvDpIhV7sxFsoagIxlvKmd+BddpZyYo41mCR8XJ+rXaw8PY=; ASP.NET_SessionId=kqquk3wovjseonq0grynwffq; __RequestVerificationToken_L0F1dGhlbnRpY2F0aW9u0=itdqLDAs38qewM48v6TBMn_npXdvFafFBPWPhxk0o6USk7OQLF7gDkTm9kuMAIV2baQGGi9t2mSkWpuWDNvl5GvAyRU1
-Cache-Control: max-age=0
+GET /8ab59120-9090-4240-97e7-2720df205913/oauth2/v2.0/logout?post_logout_redirect_uri=https%3A%2F%2Fqa.kpmglink-workforcelab.com%2Fgoogle.com HTTP/2
+Host: login.microsoftonline.com
 Accept-Language: en-US,en;q=0.9
 Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Sec-Fetch-Site: same-origin
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Dest: document
-Sec-Ch-Ua: "Not-A.Brand";v="24", "Chromium";v="146"
-Sec-Ch-Ua-Mobile: ?0
-Sec-Ch-Ua-Platform: "Windows"
-Referer: https://qa.kpmglink-workforcelab.com/Authentication/Home
+Referer: https://qa.kpmglink-workforcelab.com/
 Accept-Encoding: gzip, deflate, br
-Priority: u=0, i
 
