@@ -1,15 +1,221 @@
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % python test_suite.py EQA BFM EBP AAP ACZ
-/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/test_suite.py': [Errno 2] No such file or directory
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % cd testing 
-(venv) v196361@v196361-DHJ16N25X9 testing % python test_suite.py EQA BFM EBP AAP ACZ
+python test_suite.py EQA BFM EBP AAP ACZ
+
+ FindingsValidator Test Suite
+================================================================================
+
+ Testing specific AppCIs: EQA, BFM, EBP, AAP, ACZ
+
+================================================================================
+ Running: EQA - OWASP-V12.5.2 - invicti CWE ['434']
+================================================================================
+ Test Event:
+{
+  "identifier": "EQA",
+  "control": "OWASP-V12.5.2",
+  "validator": [
+    {
+      "type": "findings",
+      "tool": "invicti",
+      "scope": "CWE",
+      "criteria": [
+        "434"
+      ]
+    }
+  ]
+}
+
+{"level":"INFO","location":"extract_lambda_input:34","message":"Direct invocation body received","timestamp":"2026-04-10 13:12:31,539-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"extract_lambda_input:61","message":"Input extracted — identifier='EQA', control='OWASP-V12.5.2', validators count=1, skip_failure=False","timestamp":"2026-04-10 13:12:31,539-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"handler:55","message":"Querying findings data for AppCI EQA","timestamp":"2026-04-10 13:12:31,539-0400","service":"findings-validator-lambda"}
+{"level":"ERROR","location":"handler:71","message":"Findings validator failed: Athena query 71688e55-b07f-4973-8951-609100e6791e FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=3254779904, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: KMSV3JV9H4A2683D, Extended Request ID: XXzgnDwytEhjXjpjknpud4vBv4ZpXGPksy4NnY1oG81ayREFs7+4Nj5qmOMiL+wiGrN4EOWC5Ss=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","timestamp":"2026-04-10 13:12:37,112-0400","service":"findings-validator-lambda","exception":"Traceback (most recent call last):\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py\", line 56, in handler\n    findings_data = get_findings_data(identifier, validator)\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py\", line 93, in get_findings_data\n    wait_for_query(qid)\n    ~~~~~~~~~~~~~~^^^^^\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py\", line 98, in wait_for_query\n    raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")\nRuntimeError: Athena query 71688e55-b07f-4973-8951-609100e6791e FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=3254779904, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: KMSV3JV9H4A2683D, Extended Request ID: XXzgnDwytEhjXjpjknpud4vBv4ZpXGPksy4NnY1oG81ayREFs7+4Nj5qmOMiL+wiGrN4EOWC5Ss=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","exception_name":"RuntimeError","stack_trace":{"type":"RuntimeError","value":"Athena query 71688e55-b07f-4973-8951-609100e6791e FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=3254779904, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: KMSV3JV9H4A2683D, Extended Request ID: XXzgnDwytEhjXjpjknpud4vBv4ZpXGPksy4NnY1oG81ayREFs7+4Nj5qmOMiL+wiGrN4EOWC5Ss=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","module":"builtins","frames":[{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py","line":56,"function":"handler","statement":"findings_data = get_findings_data(identifier, validator)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py","line":93,"function":"get_findings_data","statement":"wait_for_query(qid)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py","line":98,"function":"wait_for_query","statement":"raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")"}]}}
+ EQA - OWASP-V12.5.2 - invicti CWE ['434'] - FAILED
+Error: Athena query 71688e55-b07f-4973-8951-609100e6791e FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=3254779904, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: KMSV3JV9H4A2683D, Extended Request ID: XXzgnDwytEhjXjpjknpud4vBv4ZpXGPksy4NnY1oG81ayREFs7+4Nj5qmOMiL+wiGrN4EOWC5Ss=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
 Traceback (most recent call last):
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/testing/test_suite.py", line 13, in <module>
-    from index import handler
-ModuleNotFoundError: No module named 'index'
-(venv) v196361@v196361-DHJ16N25X9 testing % cd ..
-(venv) v196361@v196361-DHJ16N25X9 .Trash % python test_suite.py EQA BFM EBP AAP ACZ
-(venv) v196361@v196361-DHJ16N25X9 .Trash % cd src/findingsvalidator
-cd: no such file or directory: src/findingsvalidator
-(venv) v196361@v196361-DHJ16N25X9 .Trash % pwd
-/Users/v196361/.Trash
-(venv) v196361@v196361-DHJ16N25X9 .Trash % cd  
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/test_suite.py", line 90, in run_test
+    result = handler(test_case, None)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py", line 56, in handler
+    findings_data = get_findings_data(identifier, validator)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py", line 93, in get_findings_data
+    wait_for_query(qid)
+    ~~~~~~~~~~~~~~^^^^^
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py", line 98, in wait_for_query
+    raise RuntimeError(f"Athena query {query_execution_id} {state}: {reason}")
+RuntimeError: Athena query 71688e55-b07f-4973-8951-609100e6791e FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=3254779904, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: KMSV3JV9H4A2683D, Extended Request ID: XXzgnDwytEhjXjpjknpud4vBv4ZpXGPksy4NnY1oG81ayREFs7+4Nj5qmOMiL+wiGrN4EOWC5Ss=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
+================================================================================
+ Running: BFM - OWASP-V12.5.2 - invicti CWE ['434']
+================================================================================
+ Test Event:
+{
+  "identifier": "BFM",
+  "control": "OWASP-V12.5.2",
+  "validator": [
+    {
+      "type": "findings",
+      "tool": "invicti",
+      "scope": "CWE",
+      "criteria": [
+        "434"
+      ]
+    }
+  ]
+}
+
+{"level":"INFO","location":"extract_lambda_input:34","message":"Direct invocation body received","timestamp":"2026-04-10 13:12:37,120-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"extract_lambda_input:61","message":"Input extracted — identifier='BFM', control='OWASP-V12.5.2', validators count=1, skip_failure=False","timestamp":"2026-04-10 13:12:37,120-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"handler:55","message":"Querying findings data for AppCI BFM","timestamp":"2026-04-10 13:12:37,120-0400","service":"findings-validator-lambda"}
+{"level":"ERROR","location":"handler:71","message":"Findings validator failed: Athena query c29ff870-fc93-497d-a5d9-d3fa7456127d FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=301989888, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: 4518346WA6WMXC7K, Extended Request ID: tu2KG0rSXTvgdqUTcwkEjEOyce8B9TWR/g6xJzeY2S2d8GBf8P4+iPewyf4Wg9Adt6/0jPVbwO3818zuBIZjX1oyz1XfL+ak) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","timestamp":"2026-04-10 13:12:42,502-0400","service":"findings-validator-lambda","exception":"Traceback (most recent call last):\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py\", line 56, in handler\n    findings_data = get_findings_data(identifier, validator)\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py\", line 93, in get_findings_data\n    wait_for_query(qid)\n    ~~~~~~~~~~~~~~^^^^^\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py\", line 98, in wait_for_query\n    raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")\nRuntimeError: Athena query c29ff870-fc93-497d-a5d9-d3fa7456127d FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=301989888, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: 4518346WA6WMXC7K, Extended Request ID: tu2KG0rSXTvgdqUTcwkEjEOyce8B9TWR/g6xJzeY2S2d8GBf8P4+iPewyf4Wg9Adt6/0jPVbwO3818zuBIZjX1oyz1XfL+ak) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","exception_name":"RuntimeError","stack_trace":{"type":"RuntimeError","value":"Athena query c29ff870-fc93-497d-a5d9-d3fa7456127d FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=301989888, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: 4518346WA6WMXC7K, Extended Request ID: tu2KG0rSXTvgdqUTcwkEjEOyce8B9TWR/g6xJzeY2S2d8GBf8P4+iPewyf4Wg9Adt6/0jPVbwO3818zuBIZjX1oyz1XfL+ak) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","module":"builtins","frames":[{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py","line":56,"function":"handler","statement":"findings_data = get_findings_data(identifier, validator)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py","line":93,"function":"get_findings_data","statement":"wait_for_query(qid)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py","line":98,"function":"wait_for_query","statement":"raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")"}]}}
+ BFM - OWASP-V12.5.2 - invicti CWE ['434'] - FAILED
+Error: Athena query c29ff870-fc93-497d-a5d9-d3fa7456127d FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=301989888, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: 4518346WA6WMXC7K, Extended Request ID: tu2KG0rSXTvgdqUTcwkEjEOyce8B9TWR/g6xJzeY2S2d8GBf8P4+iPewyf4Wg9Adt6/0jPVbwO3818zuBIZjX1oyz1XfL+ak) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
+Traceback (most recent call last):
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/test_suite.py", line 90, in run_test
+    result = handler(test_case, None)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py", line 56, in handler
+    findings_data = get_findings_data(identifier, validator)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py", line 93, in get_findings_data
+    wait_for_query(qid)
+    ~~~~~~~~~~~~~~^^^^^
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py", line 98, in wait_for_query
+    raise RuntimeError(f"Athena query {query_execution_id} {state}: {reason}")
+RuntimeError: Athena query c29ff870-fc93-497d-a5d9-d3fa7456127d FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=301989888, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: 4518346WA6WMXC7K, Extended Request ID: tu2KG0rSXTvgdqUTcwkEjEOyce8B9TWR/g6xJzeY2S2d8GBf8P4+iPewyf4Wg9Adt6/0jPVbwO3818zuBIZjX1oyz1XfL+ak) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
+================================================================================
+ Running: EBP - OWASP-V12.5.2 - invicti CWE ['434']
+================================================================================
+ Test Event:
+{
+  "identifier": "EBP",
+  "control": "OWASP-V12.5.2",
+  "validator": [
+    {
+      "type": "findings",
+      "tool": "invicti",
+      "scope": "CWE",
+      "criteria": [
+        "434"
+      ]
+    }
+  ]
+}
+
+{"level":"INFO","location":"extract_lambda_input:34","message":"Direct invocation body received","timestamp":"2026-04-10 13:12:42,506-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"extract_lambda_input:61","message":"Input extracted — identifier='EBP', control='OWASP-V12.5.2', validators count=1, skip_failure=False","timestamp":"2026-04-10 13:12:42,506-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"handler:55","message":"Querying findings data for AppCI EBP","timestamp":"2026-04-10 13:12:42,507-0400","service":"findings-validator-lambda"}
+{"level":"ERROR","location":"handler:71","message":"Findings validator failed: Athena query 8465cf58-8308-4a2b-86a7-1c07d4e7a1d5 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=167772160, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: CC860V2DZDBDVM45, Extended Request ID: xuB+QcGVnzMTlFvHCbI+JtwccMjqictqFErvtbaQrT1h/r+JouZ8tOJIUKjlHPRuP8wfRp4URqQ=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","timestamp":"2026-04-10 13:12:47,900-0400","service":"findings-validator-lambda","exception":"Traceback (most recent call last):\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py\", line 56, in handler\n    findings_data = get_findings_data(identifier, validator)\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py\", line 93, in get_findings_data\n    wait_for_query(qid)\n    ~~~~~~~~~~~~~~^^^^^\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py\", line 98, in wait_for_query\n    raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")\nRuntimeError: Athena query 8465cf58-8308-4a2b-86a7-1c07d4e7a1d5 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=167772160, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: CC860V2DZDBDVM45, Extended Request ID: xuB+QcGVnzMTlFvHCbI+JtwccMjqictqFErvtbaQrT1h/r+JouZ8tOJIUKjlHPRuP8wfRp4URqQ=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","exception_name":"RuntimeError","stack_trace":{"type":"RuntimeError","value":"Athena query 8465cf58-8308-4a2b-86a7-1c07d4e7a1d5 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=167772160, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: CC860V2DZDBDVM45, Extended Request ID: xuB+QcGVnzMTlFvHCbI+JtwccMjqictqFErvtbaQrT1h/r+JouZ8tOJIUKjlHPRuP8wfRp4URqQ=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","module":"builtins","frames":[{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py","line":56,"function":"handler","statement":"findings_data = get_findings_data(identifier, validator)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py","line":93,"function":"get_findings_data","statement":"wait_for_query(qid)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py","line":98,"function":"wait_for_query","statement":"raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")"}]}}
+ EBP - OWASP-V12.5.2 - invicti CWE ['434'] - FAILED
+Error: Athena query 8465cf58-8308-4a2b-86a7-1c07d4e7a1d5 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=167772160, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: CC860V2DZDBDVM45, Extended Request ID: xuB+QcGVnzMTlFvHCbI+JtwccMjqictqFErvtbaQrT1h/r+JouZ8tOJIUKjlHPRuP8wfRp4URqQ=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
+Traceback (most recent call last):
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/test_suite.py", line 90, in run_test
+    result = handler(test_case, None)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py", line 56, in handler
+    findings_data = get_findings_data(identifier, validator)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py", line 93, in get_findings_data
+    wait_for_query(qid)
+    ~~~~~~~~~~~~~~^^^^^
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py", line 98, in wait_for_query
+    raise RuntimeError(f"Athena query {query_execution_id} {state}: {reason}")
+RuntimeError: Athena query 8465cf58-8308-4a2b-86a7-1c07d4e7a1d5 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=167772160, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: CC860V2DZDBDVM45, Extended Request ID: xuB+QcGVnzMTlFvHCbI+JtwccMjqictqFErvtbaQrT1h/r+JouZ8tOJIUKjlHPRuP8wfRp4URqQ=) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
+================================================================================
+ Running: AAP - OWASP-V12.5.2 - invicti CWE ['434']
+================================================================================
+ Test Event:
+{
+  "identifier": "AAP",
+  "control": "OWASP-V12.5.2",
+  "validator": [
+    {
+      "type": "findings",
+      "tool": "invicti",
+      "scope": "CWE",
+      "criteria": [
+        "434"
+      ]
+    }
+  ]
+}
+
+{"level":"INFO","location":"extract_lambda_input:34","message":"Direct invocation body received","timestamp":"2026-04-10 13:12:47,905-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"extract_lambda_input:61","message":"Input extracted — identifier='AAP', control='OWASP-V12.5.2', validators count=1, skip_failure=False","timestamp":"2026-04-10 13:12:47,905-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"handler:55","message":"Querying findings data for AppCI AAP","timestamp":"2026-04-10 13:12:47,905-0400","service":"findings-validator-lambda"}
+{"level":"ERROR","location":"handler:71","message":"Findings validator failed: Athena query 7fd924d9-f83e-42e4-a448-f3bbb75fb661 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=436207616, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: T6ZY943HSGHSBSK4, Extended Request ID: xqlsZmMDx5ERMvlc+gvOUtwJ9rwNrSbSgChGfIRnBIt4Xl1snxY26FAeFRdUGOAUBGd8lN6gurIkka/sHw3ePwW4HNXfGjRf) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","timestamp":"2026-04-10 13:12:53,257-0400","service":"findings-validator-lambda","exception":"Traceback (most recent call last):\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py\", line 56, in handler\n    findings_data = get_findings_data(identifier, validator)\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py\", line 93, in get_findings_data\n    wait_for_query(qid)\n    ~~~~~~~~~~~~~~^^^^^\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py\", line 98, in wait_for_query\n    raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")\nRuntimeError: Athena query 7fd924d9-f83e-42e4-a448-f3bbb75fb661 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=436207616, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: T6ZY943HSGHSBSK4, Extended Request ID: xqlsZmMDx5ERMvlc+gvOUtwJ9rwNrSbSgChGfIRnBIt4Xl1snxY26FAeFRdUGOAUBGd8lN6gurIkka/sHw3ePwW4HNXfGjRf) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","exception_name":"RuntimeError","stack_trace":{"type":"RuntimeError","value":"Athena query 7fd924d9-f83e-42e4-a448-f3bbb75fb661 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=436207616, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: T6ZY943HSGHSBSK4, Extended Request ID: xqlsZmMDx5ERMvlc+gvOUtwJ9rwNrSbSgChGfIRnBIt4Xl1snxY26FAeFRdUGOAUBGd8lN6gurIkka/sHw3ePwW4HNXfGjRf) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","module":"builtins","frames":[{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py","line":56,"function":"handler","statement":"findings_data = get_findings_data(identifier, validator)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py","line":93,"function":"get_findings_data","statement":"wait_for_query(qid)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py","line":98,"function":"wait_for_query","statement":"raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")"}]}}
+ AAP - OWASP-V12.5.2 - invicti CWE ['434'] - FAILED
+Error: Athena query 7fd924d9-f83e-42e4-a448-f3bbb75fb661 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=436207616, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: T6ZY943HSGHSBSK4, Extended Request ID: xqlsZmMDx5ERMvlc+gvOUtwJ9rwNrSbSgChGfIRnBIt4Xl1snxY26FAeFRdUGOAUBGd8lN6gurIkka/sHw3ePwW4HNXfGjRf) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
+Traceback (most recent call last):
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/test_suite.py", line 90, in run_test
+    result = handler(test_case, None)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py", line 56, in handler
+    findings_data = get_findings_data(identifier, validator)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py", line 93, in get_findings_data
+    wait_for_query(qid)
+    ~~~~~~~~~~~~~~^^^^^
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py", line 98, in wait_for_query
+    raise RuntimeError(f"Athena query {query_execution_id} {state}: {reason}")
+RuntimeError: Athena query 7fd924d9-f83e-42e4-a448-f3bbb75fb661 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=436207616, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: T6ZY943HSGHSBSK4, Extended Request ID: xqlsZmMDx5ERMvlc+gvOUtwJ9rwNrSbSgChGfIRnBIt4Xl1snxY26FAeFRdUGOAUBGd8lN6gurIkka/sHw3ePwW4HNXfGjRf) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
+================================================================================
+ Running: ACZ - OWASP-V12.5.2 - invicti CWE ['434']
+================================================================================
+ Test Event:
+{
+  "identifier": "ACZ",
+  "control": "OWASP-V12.5.2",
+  "validator": [
+    {
+      "type": "findings",
+      "tool": "invicti",
+      "scope": "CWE",
+      "criteria": [
+        "434"
+      ]
+    }
+  ]
+}
+
+{"level":"INFO","location":"extract_lambda_input:34","message":"Direct invocation body received","timestamp":"2026-04-10 13:12:53,261-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"extract_lambda_input:61","message":"Input extracted — identifier='ACZ', control='OWASP-V12.5.2', validators count=1, skip_failure=False","timestamp":"2026-04-10 13:12:53,262-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"handler:55","message":"Querying findings data for AppCI ACZ","timestamp":"2026-04-10 13:12:53,262-0400","service":"findings-validator-lambda"}
+{"level":"ERROR","location":"handler:71","message":"Findings validator failed: Athena query 5c55a992-25bf-401d-80dd-8d84dc77efcf FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=369098752, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: G9QNKJQ0WFYK6WNA, Extended Request ID: 3oR8zc3d5iOT5Klcx34Xy69i9RKw2zrEnY40M9yBxKFJ3L5BNbycqOeZ2D04tPA0xcpOk2K0+jtVHaUcjzl0T7XLNazUSHsJ) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","timestamp":"2026-04-10 13:12:58,586-0400","service":"findings-validator-lambda","exception":"Traceback (most recent call last):\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py\", line 56, in handler\n    findings_data = get_findings_data(identifier, validator)\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py\", line 93, in get_findings_data\n    wait_for_query(qid)\n    ~~~~~~~~~~~~~~^^^^^\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py\", line 98, in wait_for_query\n    raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")\nRuntimeError: Athena query 5c55a992-25bf-401d-80dd-8d84dc77efcf FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=369098752, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: G9QNKJQ0WFYK6WNA, Extended Request ID: 3oR8zc3d5iOT5Klcx34Xy69i9RKw2zrEnY40M9yBxKFJ3L5BNbycqOeZ2D04tPA0xcpOk2K0+jtVHaUcjzl0T7XLNazUSHsJ) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","exception_name":"RuntimeError","stack_trace":{"type":"RuntimeError","value":"Athena query 5c55a992-25bf-401d-80dd-8d84dc77efcf FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=369098752, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: G9QNKJQ0WFYK6WNA, Extended Request ID: 3oR8zc3d5iOT5Klcx34Xy69i9RKw2zrEnY40M9yBxKFJ3L5BNbycqOeZ2D04tPA0xcpOk2K0+jtVHaUcjzl0T7XLNazUSHsJ) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","module":"builtins","frames":[{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py","line":56,"function":"handler","statement":"findings_data = get_findings_data(identifier, validator)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py","line":93,"function":"get_findings_data","statement":"wait_for_query(qid)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py","line":98,"function":"wait_for_query","statement":"raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")"}]}}
+ ACZ - OWASP-V12.5.2 - invicti CWE ['434'] - FAILED
+Error: Athena query 5c55a992-25bf-401d-80dd-8d84dc77efcf FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=369098752, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: G9QNKJQ0WFYK6WNA, Extended Request ID: 3oR8zc3d5iOT5Klcx34Xy69i9RKw2zrEnY40M9yBxKFJ3L5BNbycqOeZ2D04tPA0xcpOk2K0+jtVHaUcjzl0T7XLNazUSHsJ) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
+Traceback (most recent call last):
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/test_suite.py", line 90, in run_test
+    result = handler(test_case, None)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py", line 56, in handler
+    findings_data = get_findings_data(identifier, validator)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py", line 93, in get_findings_data
+    wait_for_query(qid)
+    ~~~~~~~~~~~~~~^^^^^
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py", line 98, in wait_for_query
+    raise RuntimeError(f"Athena query {query_execution_id} {state}: {reason}")
+RuntimeError: Athena query 5c55a992-25bf-401d-80dd-8d84dc77efcf FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=369098752, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: G9QNKJQ0WFYK6WNA, Extended Request ID: 3oR8zc3d5iOT5Klcx34Xy69i9RKw2zrEnY40M9yBxKFJ3L5BNbycqOeZ2D04tPA0xcpOk2K0+jtVHaUcjzl0T7XLNazUSHsJ) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
+
+================================================================================
+ Test Summary
+================================================================================
+ FAIL - EQA
+ FAIL - BFM
+ FAIL - EBP
+ FAIL - AAP
+ FAIL - ACZ
+
+Total: 5 | Passed: 0 | Failed: 5
+================================================================================
+
+ Available AppCIs in results.csv:
+AAP, ACZ, AJZ, AMP, ANU, AOU, AZF, AZK, BDZ, BEX, BFM, BJB, BTR, BUM, BUZ, CBU, CEA, CNT, CQC, CQD, CQO, CRH, CSP, CUZ, CZX, DHW, DTB, DVB, EAN, EBG, EBP, EDS, EHF, EHO, EKH, ELE, ELV, EMI, EQA, EQC, ESM, ETR, EUH, EWJ, EWL, EXQ, EYG, FEC, RDL, TOB
+
+ Tip: Run 'python test_suite.py EQA BFM' to test specific AppCIs
+
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % python index.py                         
+{"level":"INFO","location":"extract_lambda_input:34","message":"Direct invocation body received","timestamp":"2026-04-10 13:14:53,594-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"extract_lambda_input:61","message":"Input extracted — identifier='EQA', control='OWASP-V12.5.2', validators count=1, skip_failure=False","timestamp":"2026-04-10 13:14:53,594-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"handler:55","message":"Querying findings data for AppCI EQA","timestamp":"2026-04-10 13:14:53,594-0400","service":"findings-validator-lambda"}
+{"level":"ERROR","location":"handler:71","message":"Findings validator failed: Athena query 2c8b8949-0395-42e8-9d0e-de23e1b1dcc9 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=234881024, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: YXKMMN8Q273J9TEJ, Extended Request ID: DIY08rF3FCIPTgdF2bm6JhmWdhaPt9RSb6Xt+KrCWIn2ayH9QoKQ2qEztck/b4D55241SnwVBIHrix2AEODlf1LfCMrqiZ1f) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","timestamp":"2026-04-10 13:14:59,111-0400","service":"findings-validator-lambda","exception":"Traceback (most recent call last):\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py\", line 56, in handler\n    findings_data = get_findings_data(identifier, validator)\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py\", line 93, in get_findings_data\n    wait_for_query(qid)\n    ~~~~~~~~~~~~~~^^^^^\n  File \"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py\", line 98, in wait_for_query\n    raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")\nRuntimeError: Athena query 2c8b8949-0395-42e8-9d0e-de23e1b1dcc9 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=234881024, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: YXKMMN8Q273J9TEJ, Extended Request ID: DIY08rF3FCIPTgdF2bm6JhmWdhaPt9RSb6Xt+KrCWIn2ayH9QoKQ2qEztck/b4D55241SnwVBIHrix2AEODlf1LfCMrqiZ1f) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","exception_name":"RuntimeError","stack_trace":{"type":"RuntimeError","value":"Athena query 2c8b8949-0395-42e8-9d0e-de23e1b1dcc9 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=234881024, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: YXKMMN8Q273J9TEJ, Extended Request ID: DIY08rF3FCIPTgdF2bm6JhmWdhaPt9RSb6Xt+KrCWIn2ayH9QoKQ2qEztck/b4D55241SnwVBIHrix2AEODlf1LfCMrqiZ1f) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)","module":"builtins","frames":[{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py","line":56,"function":"handler","statement":"findings_data = get_findings_data(identifier, validator)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py","line":93,"function":"get_findings_data","statement":"wait_for_query(qid)"},{"file":"/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py","line":98,"function":"wait_for_query","statement":"raise RuntimeError(f\"Athena query {query_execution_id} {state}: {reason}\")"}]}}
+Traceback (most recent call last):
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py", line 109, in <module>
+    result = handler(test_event, None)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py", line 56, in handler
+    findings_data = get_findings_data(identifier, validator)
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py", line 93, in get_findings_data
+    wait_for_query(qid)
+    ~~~~~~~~~~~~~~^^^^^
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py", line 98, in wait_for_query
+    raise RuntimeError(f"Athena query {query_execution_id} {state}: {reason}")
+RuntimeError: Athena query 2c8b8949-0395-42e8-9d0e-de23e1b1dcc9 FAILED: HIVE_CANNOT_OPEN_SPLIT: Error opening Hive split s3://eqa-udcrm-backup-bucket-dev/vipr_data/vipr_data.csv (offset=234881024, length=33554432): com.amazonaws.trino.exceptions.UnrecoverableS3OperationException: software.amazon.awssdk.services.s3.model.S3Exception: arn:aws:kms:us-east-1:058264356046:key/69af76ef-1167-4caa-8a0d-474eab5ad0b4 is pending deletion. (Service: S3, Status Code: 400, Request ID: YXKMMN8Q273J9TEJ, Extended Request ID: DIY08rF3FCIPTgdF2bm6JhmWdhaPt9RSb6Xt+KrCWIn2ayH9QoKQ2qEztck/b4D55241SnwVBIHrix2AEODlf1LfCMrqiZ1f) (Bucket: eqa-udcrm-backup-bucket-dev, Key: vipr_data/vipr_data.csv)
