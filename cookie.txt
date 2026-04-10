@@ -1,96 +1,15 @@
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % ual tss load-credentials --reset                  
-→ Proxy detected on 127.0.0.1:9000 — routing traffic through proxy
-Clearing saved credentials...
-Cleared saved credentials.
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % ual tss load-credentials        
-→ Proxy detected on 127.0.0.1:9000 — routing traffic through proxy
-Enter global username (like u123456): v196361
-Enter password: 
-Enter Duo one-time passcode: 040053
-TSS login succeeded.
-Retrieved credentials from TSS.
-TSS credentials saved!
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % ual aws auth --id nppid   
-Using DEV_MA-CustomerTechnology_EQA-L3 (058264356046)
-Role assumed until: 23:18:47 GMT-0400 (Eastern Daylight Time)
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % ual aws open-console
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % python index.py
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % python test_suite.py EQA BFM EBP AAP ACZ
+/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/test_suite.py': [Errno 2] No such file or directory
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % cd testing 
+(venv) v196361@v196361-DHJ16N25X9 testing % python test_suite.py EQA BFM EBP AAP ACZ
 Traceback (most recent call last):
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/index.py", line 31, in <module>
-    from data import get_findings_data
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/data.py", line 7, in <module>
-    from helpers import execute_athena_query, wait_for_query, get_query_results
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/helpers.py", line 17, in <module>
-    ssm = boto3.client("ssm")
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/boto3/__init__.py", line 93, in client
-    return _get_default_session().client(*args, **kwargs)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/boto3/session.py", line 337, in client
-    return self._session.create_client(
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        service_name, **create_client_kwargs
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/context.py", line 123, in wrapper
-    return func(*args, **kwargs)
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/session.py", line 1031, in create_client
-    client = client_creator.create_client(
-        service_name=service_name,
-    ...<8 lines>...
-        auth_token=auth_token,
-    )
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/client.py", line 157, in create_client
-    client_args = self._get_client_args(
-        service_model,
-    ...<10 lines>...
-        partition_data,
-    )
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/client.py", line 557, in _get_client_args
-    return args_creator.get_client_args(
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        service_model,
-        ^^^^^^^^^^^^^^
-    ...<10 lines>...
-        partition_data,
-        ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/args.py", line 121, in get_client_args
-    final_args = self.compute_client_args(
-        service_model,
-    ...<5 lines>...
-        scoped_config,
-    )
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/args.py", line 263, in compute_client_args
-    endpoint_config = self._compute_endpoint_config(
-        service_name=service_name,
-    ...<4 lines>...
-        s3_config=s3_config,
-    )
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/args.py", line 457, in _compute_endpoint_config
-    return self._resolve_endpoint(**resolve_endpoint_kwargs)
-           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/args.py", line 575, in _resolve_endpoint
-    return endpoint_bridge.resolve(
-           ~~~~~~~~~~~~~~~~~~~~~~~^
-        service_name, region_name, endpoint_url, is_secure
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/client.py", line 671, in resolve
-    resolved = self.endpoint_resolver.construct_endpoint(
-        service_name,
-    ...<2 lines>...
-        use_fips_endpoint=use_fips_endpoint,
-    )
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/regions.py", line 233, in construct_endpoint
-    result = self._endpoint_for_partition(
-        partition,
-    ...<3 lines>...
-        use_fips_endpoint,
-    )
-  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/venv/lib/python3.14/site-packages/botocore/regions.py", line 281, in _endpoint_for_partition
-    raise NoRegionError()
-botocore.exceptions.NoRegionError: You must specify a region.
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % 
+  File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/findingsvalidator/testing/test_suite.py", line 13, in <module>
+    from index import handler
+ModuleNotFoundError: No module named 'index'
+(venv) v196361@v196361-DHJ16N25X9 testing % cd ..
+(venv) v196361@v196361-DHJ16N25X9 .Trash % python test_suite.py EQA BFM EBP AAP ACZ
+(venv) v196361@v196361-DHJ16N25X9 .Trash % cd src/findingsvalidator
+cd: no such file or directory: src/findingsvalidator
+(venv) v196361@v196361-DHJ16N25X9 .Trash % pwd
+/Users/v196361/.Trash
+(venv) v196361@v196361-DHJ16N25X9 .Trash % cd  
