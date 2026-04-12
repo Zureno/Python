@@ -1,6 +1,5 @@
-curl -X POST https://snyk-fedramp.okta.com/oauth2/default/v1/token \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "grant_type=authorization_code" \
-  -d "code=5lXejAs37Aglt4PV30SEvAbUahVR5xFyEULD3d8p4-Q" \
-  -d "redirect_uri=https://app.snykgov.io/auth/okta/callback" \
-  -d "client_id=0oa37e6s6mHoWdUo24h7"
+POST /oauth2/default/v1/token HTTP/2
+Host: snyk-fedramp.okta.com
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code&code=5lXejAs37Aglt4PV30SEvAbUahVR5xFyEULD3d8p4-Q&redirect_uri=https://app.snykgov.io/auth/okta/callback&client_id=0oa37e6s6mHoWdUo24h7
