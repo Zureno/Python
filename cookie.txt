@@ -1,17 +1,6 @@
-GET /auth/okta/callback?code=5lXejAs37Aglt4PV30SEvAbUahVR5xFyEULD3d8p4-Q&state=rM1-hcBOX_KKJv_2SY1M-4kBW2gzDUC-9BTvJUfNhG4 HTTP/2
-Host: app.snykgov.io
-Cookie: ajs_anonymous_id=d7e5aedf-881f-4258-925a-5ea99085777e; _csrf=CZCtLTkk5IJeZwTx1avrmjgO; ignoreReferrer=true; AMP_af27ef9dda=JTdCJTIyZGV2aWNlSWQlMjIlM0ElMjI0NDI3NzQxNC01ZmRlLTQyYTMtOTgxMC00MDhmZWQ2ZGY3ZDclMjIlMkMlMjJzZXNzaW9uSWQlMjIlM0ExNzc1ODY4OTc5NTMzJTJDJTIyb3B0T3V0JTIyJTNBZmFsc2UlMkMlMjJwYWdlQ291bnRlciUyMiUzQTAlN0Q=; snyk.publicId=dc1e2baa-4657-42cc-9aee-06ba830439e5; snyk.id=s%3A4rDglBfdxVq1cNvobWzMjGVkAnf7tB3Z.UGbRP1IMyR0W7FT1hsRVvOaYmnhDciFCrg%2BYarm3fCk
-Accept-Language: en-US,en;q=0.9
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Sec-Fetch-Site: cross-site
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Dest: document
-Sec-Ch-Ua: "Not-A.Brand";v="24", "Chromium";v="146"
-Sec-Ch-Ua-Mobile: ?0
-Sec-Ch-Ua-Platform: "Windows"
-Referer: https://snyk-fedramp.okta.com/
-Accept-Encoding: gzip, deflate, br
-Priority: u=0, i
-
+curl -X POST https://snyk-fedramp.okta.com/oauth2/default/v1/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=authorization_code" \
+  -d "code=5lXejAs37Aglt4PV30SEvAbUahVR5xFyEULD3d8p4-Q" \
+  -d "redirect_uri=https://app.snykgov.io/auth/okta/callback" \
+  -d "client_id=0oa37e6s6mHoWdUo24h7"
