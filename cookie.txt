@@ -1,104 +1,176 @@
-POST /sso/saml2/0oakdrgjz57kTklbU4h7 HTTP/2
-Host: snyk-fedramp.okta.com
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 6605
+<strong>TEST 3 - FAILED</strong>
 
-SAMLResponse=PHNhbWxwOlJlc3BvbnNlIElEPSJfNzFkNDI5ZTctYmM2OS00ZThmLTg2NzgtNjkzZTJlNjZlMmM4IiBWZXJzaW9uPSIyLjAiIElzc3VlSW5zdGFudD0iMjAyNi0wNC0xM1QwNjoxNzo1OC4zNDFaIiBEZXN0aW5hdGlvbj0iaHR0cHM6Ly9zbnlrLWZlZHJhbXAub2t0YS5jb20vc3NvL3NhbWwyLzBvYWtkcmdqejU3a1RrbGJVNGg3IiBJblJlc3BvbnNlVG89ImlkLTgyNTAyMTc3MTUxMTg5NDY1OTkxNDI3MTg3NDE3IiB4bWxuczpzYW1scD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOnByb3RvY29sIj48SXNzdWVyIHhtbG5zPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXNzZXJ0aW9uIj5odHRwczovL3N0cy53aW5kb3dzLm5ldC9mOTcyNGMzZi01ODc1LTQxYjMtYjk5YS1iNmVlZTM1OGVlMzIvPC9Jc3N1ZXI%2BPHNhbWxwOlN0YXR1cz48c2FtbHA6U3RhdHVzQ29kZSBWYWx1ZT0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOnN0YXR1czpTdWNjZXNzIi8%2BPC9zYW1scDpTdGF0dXM%2BPEFzc2VydGlvbiBJRD0iXzAzOThlZWJkLTM2NDItNGNkOC1iYjIzLTY2ZDgyYzg1MDcwMCIgSXNzdWVJbnN0YW50PSIyMDI2LTA0LTEzVDA2OjE3OjU4LjMzOVoiIFZlcnNpb249IjIuMCIgeG1sbnM9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDphc3NlcnRpb24iPjxJc3N1ZXI%2BaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZjk3MjRjM2YtNTg3NS00MWIzLWI5OWEtYjZlZWUzNThlZTMyLzwvSXNzdWVyPjxTaWduYXR1cmUgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyMiPjxTaWduZWRJbmZvPjxDYW5vbmljYWxpemF0aW9uTWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8%2BPFNpZ25hdHVyZU1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNpZy1tb3JlI3JzYS1zaGEyNTYiLz48UmVmZXJlbmNlIFVSST0iI18wMzk4ZWViZC0zNjQyLTRjZDgtYmIyMy02NmQ4MmM4NTA3MDAiPjxUcmFuc2Zvcm1zPjxUcmFuc2Zvcm0gQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25hdHVyZSIvPjxUcmFuc2Zvcm0gQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzEwL3htbC1leGMtYzE0biMiLz48L1RyYW5zZm9ybXM%2BPERpZ2VzdE1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZW5jI3NoYTI1NiIvPjxEaWdlc3RWYWx1ZT55ZEJPVU8xUWtWbzRab0VscGFjMy8ycEQvcHZwM0xMMDFlZWR5OGNER0RBPTwvRGlnZXN0VmFsdWU%2BPC9SZWZlcmVuY2U%2BPC9TaWduZWRJbmZvPjxTaWduYXR1cmVWYWx1ZT5xb01tN1dyVWt2YlVCVWdJMEFzR05pTXNTa0pvUzhvcVhYUFFHdVptaVoxa0p2d0xlSnJCWmJnbTMxWXV0Wmh0K1lKNFptbTIyY1FNTXpydkxoTmlzZ1VSam05b2d5ZnAyQkZxMGxDMU9sVFNUTTRzaEtPelJMbkllZ2Y5dmFqMUprOVBJN3V5QUF0L2ZhMm9LeXdlaCtvSXBhaUkyU1BJUmoxVzE5TklYNm0zM0hDaVA0MHI2a1VsNFJTQUtlZWxpbldPaTRSQjZIUW9ySVZTQS84TWVtNWZRaFduVk5wZEpLNVBiQmlBQytsSjhSTFFLa05wZUkydHRMeWtoQThKKzl4Rm5HMVVYOFQwb3g0WjdOQmpxQ2ZpNERObklpK054alFsSjRGWjl5QWxIMURZeU05MFoxQkdJeFUxUHJ2WDJGaGVObHNIM3p2UFV1V1dIVkYwTmc9PTwvU2lnbmF0dXJlVmFsdWU%2BPEtleUluZm8%2BPFg1MDlEYXRhPjxYNTA5Q2VydGlmaWNhdGU%2BTUlJQzhEQ0NBZGlnQXdJQkFnSVFKWG5MSzEzM1I1TkFNZkhDUURXQnFqQU5CZ2txaGtpRzl3MEJBUXNGQURBME1USXdNQVlEVlFRREV5bE5hV055YjNOdlpuUWdRWHAxY21VZ1JtVmtaWEpoZEdWa0lGTlRUeUJEWlhKMGFXWnBZMkYwWlRBZUZ3MHlOakF6TWpZeE5qTXpNRFJhRncweU9UQXpNall4TmpNek1EUmFNRFF4TWpBd0JnTlZCQU1US1UxcFkzSnZjMjltZENCQmVuVnlaU0JHWldSbGNtRjBaV1FnVTFOUElFTmxjblJwWm1sallYUmxNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DQVE4QU1JSUJDZ0tDQVFFQXY4aFYwL3BaeFg4UEZsVlEvZlZqTjN1ZVlyMGRpbE1VOTk3NXI5cE5XNjBVUzlFYSttSFpZNy9WVktzc0N4MzU3MWYxUHNlRlVkZ21GdXJZd01POU9UbE4wa1JpbWNKTU9EVzFGMWpCRzBIb25JeHVvbVBzTWNVWWMxSlF6bndxSERKMW1aMWtGM2NLZ3k1Tm9PT05zajZRU0RqQnVUeTAxSTluV05PRFc5WG9oWHViNXdBUWp1NWVWeDZMTXJCcEFPN0pWRDhMa0ljUnQyWnI2N3NvNVQ3dDFHR0ZTK0hrSzhsYnhWQ3I4QmZTd3Nmbmg3YTdYNVV5Z0dTWGpIdmhtRGE2SmYvVlowOWM3MURiOFBYYmcyZzN3bjVBMmkrOHVndkhBSDl1WlJ5a1lQTFVyelRnUXlmRFI1bkJ2Z09RSUt1MjQ5WGJwVVJxSjYrMFRHcTdsUUlEQVFBQk1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ2NRcXY0Y29SM25ORTg1akdyTFZ3b1FaY2xlaGpkM2lGdkxNRGpnSExKVHNqb1AzemczMmhOdWFyVllIc2dabmRsNCtrQkExZ2FhN0ljRzF6ZkdEVEZUOUJJOVdGMnNpUjRNbTVNWTFYbCt2WGc0MXZoUGN3RU9xV1lmdzlVUmp4Q2FudHBwYTNBMmVabGhMbUtWamlYTEF4Rk04ZUloZjNMeTNqQ1NCQXF6T01Dd1ZvM204TEplQSs5dDhEL1Q4YkZrSVV5RTNRaUdZdVFHYXJ6VmJqaFF5VHFNbE5KeCtRZnhJZVlhWTlVVk85WEpjdGJ3UjVEc0lOYVNxUm5NcmRta1BlQlZ6TEFXT2VicXBTbi8zTUpkN3VhL3k2V2RHMTJaWU9yaVpRdWpiWDd0c0EwUUVBOTFCeGd2bm9BYUhDZ2tadlJoYjlQZ0hCbUxFRTh5SEhoPC9YNTA5Q2VydGlmaWNhdGU%2BPC9YNTA5RGF0YT48L0tleUluZm8%2BPC9TaWduYXR1cmU%2BPFN1YmplY3Q%2BPE5hbWVJRCBGb3JtYXQ9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjEuMTpuYW1laWQtZm9ybWF0OmVtYWlsQWRkcmVzcyI%2BcHJhbnNodXJhZ2hhdkBkZXYudXNrZ2MuY29tPC9OYW1lSUQ%2BPFN1YmplY3RDb25maXJtYXRpb24gTWV0aG9kPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6Y206YmVhcmVyIj48U3ViamVjdENvbmZpcm1hdGlvbkRhdGEgSW5SZXNwb25zZVRvPSJpZC04MjUwMjE3NzE1MTE4OTQ2NTk5MTQyNzE4NzQxNyIgTm90T25PckFmdGVyPSIyMDI2LTA0LTEzVDA3OjE3OjU4LjIwMVoiIFJlY2lwaWVudD0iaHR0cHM6Ly9zbnlrLWZlZHJhbXAub2t0YS5jb20vc3NvL3NhbWwyLzBvYWtkcmdqejU3a1RrbGJVNGg3Ii8%2BPC9TdWJqZWN0Q29uZmlybWF0aW9uPjwvU3ViamVjdD48Q29uZGl0aW9ucyBOb3RCZWZvcmU9IjIwMjYtMDQtMTNUMDY6MTI6NTguMjAxWiIgTm90T25PckFmdGVyPSIyMDI2LTA0LTEzVDA3OjE3OjU4LjIwMVoiPjxBdWRpZW5jZVJlc3RyaWN0aW9uPjxBdWRpZW5jZT5odHRwczovL3d3dy5va3RhLmNvbS9zYW1sMi9zZXJ2aWNlLXByb3ZpZGVyL3NwenZrd25xZmJ6bGNtbXN5b2tuPC9BdWRpZW5jZT48L0F1ZGllbmNlUmVzdHJpY3Rpb24%2BPC9Db25kaXRpb25zPjxBdHRyaWJ1dGVTdGF0ZW1lbnQ%2BPEF0dHJpYnV0ZSBOYW1lPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL2lkZW50aXR5L2NsYWltcy90ZW5hbnRpZCI%2BPEF0dHJpYnV0ZVZhbHVlPmY5NzI0YzNmLTU4NzUtNDFiMy1iOTlhLWI2ZWVlMzU4ZWUzMjwvQXR0cmlidXRlVmFsdWU%2BPC9BdHRyaWJ1dGU%2BPEF0dHJpYnV0ZSBOYW1lPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL2lkZW50aXR5L2NsYWltcy9vYmplY3RpZGVudGlmaWVyIj48QXR0cmlidXRlVmFsdWU%2BMTY0YWNmMjQtZDk4NC00Y2NjLTg2ODgtNzU3M2VjN2ExMTYxPC9BdHRyaWJ1dGVWYWx1ZT48L0F0dHJpYnV0ZT48QXR0cmlidXRlIE5hbWU9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vaWRlbnRpdHkvY2xhaW1zL2lkZW50aXR5cHJvdmlkZXIiPjxBdHRyaWJ1dGVWYWx1ZT5odHRwczovL3N0cy53aW5kb3dzLm5ldC9mOTcyNGMzZi01ODc1LTQxYjMtYjk5YS1iNmVlZTM1OGVlMzIvPC9BdHRyaWJ1dGVWYWx1ZT48L0F0dHJpYnV0ZT48QXR0cmlidXRlIE5hbWU9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vY2xhaW1zL2F1dGhubWV0aG9kc3JlZmVyZW5jZXMiPjxBdHRyaWJ1dGVWYWx1ZT5odHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvYXV0aGVudGljYXRpb25tZXRob2QvcGFzc3dvcmQ8L0F0dHJpYnV0ZVZhbHVlPjxBdHRyaWJ1dGVWYWx1ZT5odHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL2NsYWltcy9tdWx0aXBsZWF1dGhuPC9BdHRyaWJ1dGVWYWx1ZT48L0F0dHJpYnV0ZT48QXR0cmlidXRlIE5hbWU9ImZpcnN0TmFtZSI%2BPEF0dHJpYnV0ZVZhbHVlPlByYW5zaHU8L0F0dHJpYnV0ZVZhbHVlPjwvQXR0cmlidXRlPjxBdHRyaWJ1dGUgTmFtZT0ibGFzdE5hbWUiPjxBdHRyaWJ1dGVWYWx1ZT5SYWdoYXY8L0F0dHJpYnV0ZVZhbHVlPjwvQXR0cmlidXRlPjxBdHRyaWJ1dGUgTmFtZT0iZW1haWwiPjxBdHRyaWJ1dGVWYWx1ZT5wcmFuc2h1cmFnaGF2QGRldi51c2tnYy5jb208L0F0dHJpYnV0ZVZhbHVlPjwvQXR0cmlidXRlPjwvQXR0cmlidXRlU3RhdGVtZW50PjxBdXRoblN0YXRlbWVudCBBdXRobkluc3RhbnQ9IjIwMjYtMDQtMTNUMDY6MTc6NTguMzAzWiIgU2Vzc2lvbkluZGV4PSJfMDM5OGVlYmQtMzY0Mi00Y2Q4LWJiMjMtNjZkODJjODUwNzAwIj48QXV0aG5Db250ZXh0PjxBdXRobkNvbnRleHRDbGFzc1JlZj51cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YWM6Y2xhc3NlczpQYXNzd29yZDwvQXV0aG5Db250ZXh0Q2xhc3NSZWY%2BPC9BdXRobkNvbnRleHQ%2BPC9BdXRoblN0YXRlbWVudD48L0Fzc2VydGlvbj48L3NhbWxwOlJlc3BvbnNlPg%3D%3D&RelayState=%252Foauth2%252Fv1%252Fauthorize%252Fredirect%253Fokta_key%253DKUmMFUrWBDWrfnE6-nKWqmdabhFh_6YLGH91Ga5wEuA
+<strong>Input</strong>:
 
-
-HTTP/2 400 Bad Request
-Date: Mon, 13 Apr 2026 06:21:09 GMT
-Content-Type: text/html;charset=utf-8
-Content-Length: 2372
-Server: nginx
-X-Okta-Request-Id: 56e0e1c944233c8b2962cc492c04460a
-Accept-Ch: Sec-CH-UA-Platform-Version
-X-Xss-Protection: 0
-P3p: CP="HONK"
-Set-Cookie: xids="";Version=1;Path=/;Max-Age=0
-Content-Security-Policy: default-src 'self' snyk-fedramp.okta.com *.oktacdn.com; connect-src 'self' snyk-fedramp.okta.com snyk-fedramp-admin.okta.com *.oktacdn.com *.mixpanel.com *.mapbox.com snyk-fedramp.kerberos.okta.com snyk-fedramp.mtls.okta.com *.authenticatorlocalprod.com:8769 http://localhost:8769 http://127.0.0.1:8769 *.authenticatorlocalprod.com:65111 http://localhost:65111 http://127.0.0.1:65111 *.authenticatorlocalprod.com:65121 http://localhost:65121 http://127.0.0.1:65121 *.authenticatorlocalprod.com:65131 http://localhost:65131 http://127.0.0.1:65131 *.authenticatorlocalprod.com:65141 http://localhost:65141 http://127.0.0.1:65141 *.authenticatorlocalprod.com:65151 http://localhost:65151 http://127.0.0.1:65151 https://oinmanager.okta.com data:; script-src 'unsafe-inline' 'nonce-PT57zMKoE9FfoikuGPFVFQ' 'unsafe-eval' 'self' 'report-sample' snyk-fedramp.okta.com *.oktacdn.com; style-src 'unsafe-inline' 'self' 'report-sample' snyk-fedramp.okta.com *.oktacdn.com; frame-src 'self' snyk-fedramp.okta.com snyk-fedramp-admin.okta.com login.okta.com com-okta-authenticator:; img-src 'self' snyk-fedramp.okta.com *.oktacdn.com *.tiles.mapbox.com *.mapbox.com data: blob:; font-src 'self' snyk-fedramp.okta.com data: *.oktacdn.com fonts.gstatic.com; frame-ancestors 'self'
-X-Rate-Limit-Limit: 1000
-X-Rate-Limit-Remaining: 999
-X-Rate-Limit-Reset: 1776061329
-Referrer-Policy: strict-origin-when-cross-origin
-Cache-Control: no-cache, no-store
-Pragma: no-cache
-Expires: 0
-Set-Cookie: sid="";Version=1;Path=/;Max-Age=0
-Set-Cookie: autolaunch_triggered=""; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Path=/
-Set-Cookie: activate_ca_modal_triggered=""; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Path=/
-Set-Cookie: JSESSIONID=E91DBAF2529F016C658BD6034AE0DCAF; Path=/; Secure; HttpOnly
-Set-Cookie: t=""; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Path=/
-Set-Cookie: DT=DI1u01w22iYRXyDMsOACEs48Q;Version=1;Path=/;Max-Age=63072000;Secure;Expires=Wed, 12 Apr 2028 06:21:09 GMT;HttpOnly
-X-Frame-Options: SAMEORIGIN
-X-Content-Type-Options: nosniff
-Content-Language: en
-Strict-Transport-Security: max-age=315360000; includeSubDomains
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex,nofollow" />
-
-    <title>snyk-fedramp - Login Failed</title>
-
-    <link rel="stylesheet" type="text/css" href="/assets/css/sections/errors-v2.css">
-
-    <!-- Styles generated from theme -->
-    <link href="/api/internal/brand/theme/style-sheet?touch-point=ERROR_PAGE&amp;v=1c5f33b32b86a6a64df6637d07c27a375119d7a8fe54632d87e9ed00b24d9510bd977fcafd928c2991cd5c2dae06d79c" rel="stylesheet" type="text/css">
-
-    <!-- Favicon from theme -->
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-
-    
-
-    <style nonce="PT57zMKoE9FfoikuGPFVFQ">
-        #login-bg-image-id {
-            background-image: none
-        }
-    </style>
-</head>
-<body>
-<div id="login-bg-image-id" class="login-bg-image tb--background"></div>
-<div class="widget">
-    <div class="container">
-        <div class="header">
-            <img alt="snyk-fedramp" src="https://ok10static2.oktacdn.com/assets/img/logos/okta-logo.1e146cad5713da744492be95eb0f7793.png" class="org-logo">
-        </div>
-        <div class="illustration">
-            <!-- Show HTTP error code if exists -->
-            <div class="error-code">400</div>
-            <!-- Show generic error image if not  -->
-        </div>
-        <div class="content">
-            <h2 class="o-form-title">Login Failed</h2>
-            <p class="o-form-explain">400: Bad Request Error Code: GENERAL_NONSUCCESS</p>
-            <a href="/" class="button tb--button">Go to Homepage</a>
-
-        </div>
-    </div>
-</div>
-</body>
-</html><script nonce="PT57zMKoE9FfoikuGPFVFQ">
-    window.addEventListener('load', function(event) {
-        function applyStyle(id, attr) {
-            var el = document.getElementById(id);
-            if (el) {
-                var img = el.getAttribute(attr);
-                if (img) {
-                   el.style["background-image"] = img;
-                }
+{
+        "identifier": "EHF",
+        "control": "OWASP-V5.1.3",
+        "validator": [
+            {
+                "type": "findings",
+                "tool": "veracode",
+                "scope": "CWE",
+                "criteria": ["20"]
             }
-        }
-        applyStyle("login-bg-image-id", "data-img-url");
-    });
-</script><style type="text/css" nonce="PT57zMKoE9FfoikuGPFVFQ">
-    #st-app {
-        display: none;
+        ]
     }
-</style><span id="st-app">END_USER_APP</span>
+
+
+<strong>Expected</strong> <strong>Output</strong>:
+
+{
+        "control": "OWASP-V5.1.3",
+        "passed": false,
+        "avit": [
+            "['CWE-20']"
+        ],
+        "number": 0,
+        "confidence": "medium",
+        "validations": [
+            {
+                "type": "findings",
+                "tool": "veracode",
+                "scope": "CWE",
+                "criteria": [
+                    "20"
+                ],
+                "identifier": "EHF",
+                "name": "OWASP-V5.1.3",
+                "status": "FAIL"
+            }
+        ],
+        "raw_evidence": "Validation of requirement OWASP-V5.1.3 for AppCI EHF has failed because the following criteria failed: ['20']",
+        "evidence": "This requirement has failed due to findings detected in the following CWE(s) and Finding Name(s) combinations: 20 - org.apache.tomcat, tomcat-coyote is vulnerable to Denial of Service (DoS). The vulnerability is due to improper request handling when processing an HTTP/2 request that exceeds any of the configured limits for headers, leading to the associated HTTP/2 stream not being reset until after all of the headers had been processed. This vulnerability allows an attacker to send requests with excessively large headers or too many headers which can result in Denial Of Service (DoS) attacks. found in tomcat-embed-core-10.1.8.jar version 10.1.8. Update to latest version.. To pass this requirement, please remediate the findings in the Finding IDs column.",
+        "finding_ids": "SILK-102829361",
+        "review_required": "No"
+    }
+
+<strong>Output</strong>:
+
+{
+  "control": "OWASP-V5.1.3",
+  "passed": true,
+  "avit": [],
+  "number": 1,
+  "confidence": "low",
+  "validations": [
+    {
+      "type": "findings",
+      "tool": "veracode",
+      "scope": "CWE",
+      "criteria": [
+        "20"
+      ],
+      "identifier": "EHF",
+      "name": "OWASP-V5.1.3",
+      "status": "PASS"
+    }
+  ],
+  "raw_evidence": "Validation of requirement OWASP-V5.1.3 for AppCI EHF has passed because the following criteria passed: ['20']",
+  "evidence": "This requirement has passed; no action is required.",
+  "finding_ids": "",
+  "review_required": "No"
+}
 
 
 
+
+
+for this above test case i found that we are not getting passed = false , its always giving true
+ 
+so there was a recent update in dev for removing partion_0 from sql query , i have commented that out and it has fixed that issue
+ 
+one more major missing logic is , findings ids are not refelcting in the output
+ 
+in output.py you have hardcoded the findings_id=""
+ 
+there needs to be a logic in output.py to assign the values to that variable while returning the json
+ 
+in validate.py it needs to be collected and returned to index.py and then taken in output.py
+
+
+
+
+
+
+<strong>TEST 3 - FAILED</strong>
+
+<strong>Input</strong>:
+
+{
+        "identifier": "EHF",
+        "control": "OWASP-V5.1.3",
+        "validator": [
+            {
+                "type": "findings",
+                "tool": "veracode",
+                "scope": "CWE",
+                "criteria": ["20"]
+            }
+        ]
+    }
+
+
+<strong>Expected</strong> <strong>Output</strong>:
+
+{
+        "control": "OWASP-V5.1.3",
+        "passed": false,
+        "avit": [
+            "['CWE-20']"
+        ],
+        "number": 0,
+        "confidence": "medium",
+        "validations": [
+            {
+                "type": "findings",
+                "tool": "veracode",
+                "scope": "CWE",
+                "criteria": [
+                    "20"
+                ],
+                "identifier": "EHF",
+                "name": "OWASP-V5.1.3",
+                "status": "FAIL"
+            }
+        ],
+        "raw_evidence": "Validation of requirement OWASP-V5.1.3 for AppCI EHF has failed because the following criteria failed: ['20']",
+        "evidence": "This requirement has failed due to findings detected in the following CWE(s) and Finding Name(s) combinations: 20 - org.apache.tomcat, tomcat-coyote is vulnerable to Denial of Service (DoS). The vulnerability is due to improper request handling when processing an HTTP/2 request that exceeds any of the configured limits for headers, leading to the associated HTTP/2 stream not being reset until after all of the headers had been processed. This vulnerability allows an attacker to send requests with excessively large headers or too many headers which can result in Denial Of Service (DoS) attacks. found in tomcat-embed-core-10.1.8.jar version 10.1.8. Update to latest version.. To pass this requirement, please remediate the findings in the Finding IDs column.",
+        "finding_ids": "SILK-102829361",
+        "review_required": "No"
+    }
+
+<strong>Output</strong>:
+
+{
+  "control": "OWASP-V5.1.3",
+  "passed": true,
+  "avit": [],
+  "number": 1,
+  "confidence": "low",
+  "validations": [
+    {
+      "type": "findings",
+      "tool": "veracode",
+      "scope": "CWE",
+      "criteria": [
+        "20"
+      ],
+      "identifier": "EHF",
+      "name": "OWASP-V5.1.3",
+      "status": "PASS"
+    }
+  ],
+  "raw_evidence": "Validation of requirement OWASP-V5.1.3 for AppCI EHF has passed because the following criteria passed: ['20']",
+  "evidence": "This requirement has passed; no action is required.",
+  "finding_ids": "",
+  "review_required": "No"
+}
+
+
+
+
+you can see here the difference from expected output, fidnings id needs to be displayed
+ 
+please let me know if this can be fixed and if you need help with this
+ 
