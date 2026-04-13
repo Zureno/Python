@@ -1,11 +1,108 @@
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % grep -n "partition_0" data.py 
-84:        f"  AND {_q('partition_0')} = '{yesterday_ymd}' "
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % grep -A 2 "validate_findings" index.py 
+"""
+Findings Validator Lambda — standalone microservice.
+
+Expected event (direct invocation):
+    {
+        "identifier": "EQA",
+        "control": "OWASP-V12.5.2",
+        "validator": [
+            {
+                "type": "findings",
+                "tool": "invicti",
+                "scope": "CWE",
+                "criteria": ["434"]
+            }
+        ]
+    }
+
+Or SNS-wrapped in event["Records"][0]["Sns"]["Message"].
+
+Flow:
+    1. Parse input  → identifier, control name, validator config
+    2. Collect data  → query Athena for findings/vulnerabilities
+    3. Validate      → compare criteria against collected data
+    4. Build output  → assemble standardised result dict
+    5. Write result  → persist to eqa-validation-results-table
+"""
+
+import json
+from logger import logger
+from input import extract_lambda_input
+from data import get_findings_data
 from validate import validate_findings
 from output import build_result, write_result
 
---
+
+def handler(event, context):
+    """
+    Findings Validator Lambda handler.
+    
+    Args:
+        event: Lambda event (direct or SNS-wrapped)
+        context: Lambda context
+        
+    Returns:
+        Result dict with validation outcome
+    """
+    try:
+        # 1. Parse input
+        identifier, control, validators = extract_lambda_input(event)
+        
+        # Get the first validator (findings validator only expects one)
+        validator = validators[0] if validators else {}
+        
+        # 2. Collect data from Athena
+        logger.info(f"Querying findings data for AppCI {identifier}")
+        findings_data = get_findings_data(identifier, validator)
+        
+        # 3. Validate
         passed = validate_findings(validator, findings_data)
         
         # 4. Build output
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % 
+        result = build_result(identifier, control, validator, passed)
+        logger.info(f"Validation result: {json.dumps(result)}")
+        
+        # 5. Write to DynamoDB
+        write_result(identifier, control, validator, result)
+        
+        return result
+    
+    except Exception as e:
+        logger.exception(f"Findings validator failed: {e}")
+        raise
+
+
+# ---------------------------------------------------------------------------
+# Local testing — run directly:  python index.py
+# ---------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    # Test Event 1: Basic findings validation
+    #test_event = {
+    #    "identifier": "EQA",
+    #    "control": "OWASP-V12.5.2",
+    #    "validator": [
+    #        {
+    #            "type": "findings",
+    #            "tool": "invicti",
+    #            "scope": "CWE",
+    #            "criteria": ["434"]
+    #        }
+    #    ]
+    #}
+    
+    # Test Event 2: With skip_failure
+     test_event = {
+         "identifier": "EHF",
+         "control": "OWASP-V5.1.3",
+         "validator": [
+             {
+                 "type": "findings",
+                 "tool": "veracode",
+                 "scope": "CWE",
+                 "criteria": ["20"]
+             }
+         ]
+     }
+result = handler(test_event, None)
+print(json.dumps(result, indent=2))
