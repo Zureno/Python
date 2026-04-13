@@ -1,25 +1,5 @@
-HTTP/2 401 Unauthorized
-Date: Sun, 12 Apr 2026 22:36:46 GMT
-Content-Type: application/json
-Server: nginx
-X-Okta-Request-Id: 7cf08e62f402d68f5c27d3914dde1365
-Accept-Ch: Sec-CH-UA-Platform-Version
-X-Xss-Protection: 0
-P3p: CP="HONK"
-Set-Cookie: sid="";Version=1;Path=/;Max-Age=0
-Set-Cookie: xids="";Version=1;Path=/;Max-Age=0
-Set-Cookie: autolaunch_triggered=""; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Path=/
-Set-Cookie: activate_ca_modal_triggered=""; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Path=/
-Content-Security-Policy: default-src 'self' snyk-fedramp.okta.com *.oktacdn.com; connect-src 'self' snyk-fedramp.okta.com snyk-fedramp-admin.okta.com *.oktacdn.com *.mixpanel.com *.mapbox.com snyk-fedramp.kerberos.okta.com snyk-fedramp.mtls.okta.com *.authenticatorlocalprod.com:8769 http://localhost:8769 http://127.0.0.1:8769 *.authenticatorlocalprod.com:65111 http://localhost:65111 http://127.0.0.1:65111 *.authenticatorlocalprod.com:65121 http://localhost:65121 http://127.0.0.1:65121 *.authenticatorlocalprod.com:65131 http://localhost:65131 http://127.0.0.1:65131 *.authenticatorlocalprod.com:65141 http://localhost:65141 http://127.0.0.1:65141 *.authenticatorlocalprod.com:65151 http://localhost:65151 http://127.0.0.1:65151 https://oinmanager.okta.com data:; script-src 'unsafe-inline' 'self' 'report-sample' snyk-fedramp.okta.com *.oktacdn.com; style-src 'unsafe-inline' 'self' 'report-sample' snyk-fedramp.okta.com *.oktacdn.com; frame-src 'self' snyk-fedramp.okta.com snyk-fedramp-admin.okta.com login.okta.com com-okta-authenticator:; img-src 'self' snyk-fedramp.okta.com *.oktacdn.com *.tiles.mapbox.com *.mapbox.com data: blob:; font-src 'self' snyk-fedramp.okta.com data: *.oktacdn.com fonts.gstatic.com; frame-ancestors 'self'
-X-Rate-Limit-Limit: 1200
-X-Rate-Limit-Remaining: 1199
-X-Rate-Limit-Reset: 1776033466
-Cache-Control: no-cache, no-store
-Pragma: no-cache
-Expires: 0
-Set-Cookie: JSESSIONID=03CB93F9E495AD0DA63F7672A6F79AB9; Path=/; Secure; HttpOnly
-Referrer-Policy: strict-origin-when-cross-origin
-X-Content-Type-Options: nosniff
-Strict-Transport-Security: max-age=315360000; includeSubDomains
+POST /sso/saml2/0oakdrgjz57kTklbU4h7 HTTP/2
+Host: snyk-fedramp.okta.com
+Content-Type: application/x-www-form-urlencoded
 
-{"error":"invalid_client","error_description":"Client authentication failed. Either the client or the client credentials are invalid."}
+SAMLResponse=PHNhbWxwOlJlc3BvbnNlIElE...[full captured value]&RelayState=[captured RelayState value if present]
