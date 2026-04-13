@@ -1,67 +1,11 @@
-ython index.py
-{"level":"INFO","location":"extract_lambda_input:34","message":"Direct invocation body received","timestamp":"2026-04-13 15:31:38,956-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"extract_lambda_input:61","message":"Input extracted — identifier='EHF', control='OWASP-V5.1.3', validators count=1, skip_failure=False","timestamp":"2026-04-13 15:31:38,956-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"handler:55","message":"Querying findings data for AppCI EHF","timestamp":"2026-04-13 15:31:38,956-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"get_findings_data:94","message":"Athena query for findings validator (id=e06649a3-1dd8-4f26-bb3c-075b6abda862) executed successfully","timestamp":"2026-04-13 15:31:44,425-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"get_findings_data:97","message":"Retrieved 0 findings for AppCI EHF","timestamp":"2026-04-13 15:31:44,595-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"validate_findings:109","message":"Findings validation PASSED — no matching vulnerabilities found","timestamp":"2026-04-13 15:31:44,596-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"handler:63","message":"Validation result: {\"control\": \"OWASP-V5.1.3\", \"passed\": [true, []], \"avit\": [], \"number\": 1, \"confidence\": \"low\", \"validations\": [{\"type\": \"findings\", \"tool\": \"veracode\", \"scope\": \"CWE\", \"criteria\": [\"20\"], \"identifier\": \"EHF\", \"name\": \"OWASP-V5.1.3\", \"status\": \"PASS\"}], \"raw_evidence\": \"Validation of requirement OWASP-V5.1.3 for AppCI EHF has passed because the following criteria passed: ['20']\", \"evidence\": \"This requirement has passed; no action is required.\", \"finding_ids\": \"\", \"review_required\": \"No\"}","timestamp":"2026-04-13 15:31:44,596-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"write_result:179","message":"Successfully updated results for identifier=EHF, sort_key=OWASP-V5.1.3#[{'type': 'findings', 'tool': 'veracode', 'scope': 'CWE', 'criteria': ['20']}]","timestamp":"2026-04-13 15:31:44,810-0400","service":"findings-validator-lambda"}
-{
-  "control": "OWASP-V5.1.3",
-  "passed": [
-    true,
-    []
-  ],
-  "avit": [],
-  "number": 1,
-  "confidence": "low",
-  "validations": [
-    {
-      "type": "findings",
-      "tool": "veracode",
-      "scope": "CWE",
-      "criteria": [
-        "20"
-      ],
-      "identifier": "EHF",
-      "name": "OWASP-V5.1.3",
-      "status": "PASS"
-    }
-  ],
-  "raw_evidence": "Validation of requirement OWASP-V5.1.3 for AppCI EHF has passed because the following criteria passed: ['20']",
-  "evidence": "This requirement has passed; no action is required.",
-  "finding_ids": "",
-  "review_required": "No"
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % grep -n "partition_0" data.py 
+84:        f"  AND {_q('partition_0')} = '{yesterday_ymd}' "
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % grep -A 2 "validate_findings" index.py 
+from validate import validate_findings
+from output import build_result, write_result
 
-
-
-
-Expected Output:
-
-{
-        "control": "OWASP-V5.1.3",
-        "passed": false,
-        "avit": [
-            "['CWE-20']"
-        ],
-        "number": 0,
-        "confidence": "medium",
-        "validations": [
-            {
-                "type": "findings",
-                "tool": "veracode",
-                "scope": "CWE",
-                "criteria": [
-                    "20"
-                ],
-                "identifier": "EHF",
-                "name": "OWASP-V5.1.3",
-                "status": "FAIL"
-            }
-        ],
-        "raw_evidence": "Validation of requirement OWASP-V5.1.3 for AppCI EHF has failed because the following criteria failed: ['20']",
-        "evidence": "This requirement has failed due to findings detected in the following CWE(s) and Finding Name(s) combinations: 20 - org.apache.tomcat, tomcat-coyote is vulnerable to Denial of Service (DoS). The vulnerability is due to improper request handling when processing an HTTP/2 request that exceeds any of the configured limits for headers, leading to the associated HTTP/2 stream not being reset until after all of the headers had been processed. This vulnerability allows an attacker to send requests with excessively large headers or too many headers which can result in Denial Of Service (DoS) attacks. found in tomcat-embed-core-10.1.8.jar version 10.1.8. Update to latest version.. To pass this requirement, please remediate the findings in the Finding IDs column.",
-        "finding_ids": "SILK-102829361",
-        "review_required": "No"
-    }
+--
+        passed = validate_findings(validator, findings_data)
+        
+        # 4. Build output
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % 
