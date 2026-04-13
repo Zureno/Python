@@ -1,100 +1,34 @@
-"""
-Findings Validator Lambda — standalone microservice.
-Expected event (direct invocation):
+python index.py                       
+{"level":"INFO","location":"extract_lambda_input:34","message":"Direct invocation body received","timestamp":"2026-04-13 15:39:58,878-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"extract_lambda_input:61","message":"Input extracted — identifier='EHF', control='OWASP-V5.1.3', validators count=1, skip_failure=False","timestamp":"2026-04-13 15:39:58,878-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"handler:49","message":"Querying findings data for AppCI EHF","timestamp":"2026-04-13 15:39:58,878-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"get_findings_data:94","message":"Athena query for findings validator (id=4853287a-4b33-4acc-91e8-4e03447bde34) executed successfully","timestamp":"2026-04-13 15:40:04,484-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"get_findings_data:97","message":"Retrieved 0 findings for AppCI EHF","timestamp":"2026-04-13 15:40:04,660-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"validate_findings:109","message":"Findings validation PASSED — no matching vulnerabilities found","timestamp":"2026-04-13 15:40:04,660-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"handler:57","message":"Validation result: {\"control\": \"OWASP-V5.1.3\", \"passed\": true, \"avit\": [], \"number\": 1, \"confidence\": \"low\", \"validations\": [{\"type\": \"findings\", \"tool\": \"veracode\", \"scope\": \"CWE\", \"criteria\": [\"20\"], \"identifier\": \"EHF\", \"name\": \"OWASP-V5.1.3\", \"status\": \"PASS\"}], \"raw_evidence\": \"Validation of requirement OWASP-V5.1.3 for AppCI EHF has passed because the following criteria passed: ['20']\", \"evidence\": \"This requirement has passed; no action is required.\", \"finding_ids\": \"\", \"review_required\": \"No\"}","timestamp":"2026-04-13 15:40:04,661-0400","service":"findings-validator-lambda"}
+{"level":"INFO","location":"write_result:179","message":"Successfully updated results for identifier=EHF, sort_key=OWASP-V5.1.3#[{'type': 'findings', 'tool': 'veracode', 'scope': 'CWE', 'criteria': ['20']}]","timestamp":"2026-04-13 15:40:04,934-0400","service":"findings-validator-lambda"}
+{
+  "control": "OWASP-V5.1.3",
+  "passed": true,
+  "avit": [],
+  "number": 1,
+  "confidence": "low",
+  "validations": [
     {
-        "identifier": "EQA",
-        "control": "OWASP-V12.5.2",
-        "validator": [
-            {
-                "type": "findings",
-                "tool": "invicti",
-                "scope": "CWE",
-                "criteria": ["434"]
-            }
-        ]
+      "type": "findings",
+      "tool": "veracode",
+      "scope": "CWE",
+      "criteria": [
+        "20"
+      ],
+      "identifier": "EHF",
+      "name": "OWASP-V5.1.3",
+      "status": "PASS"
     }
-Or SNS-wrapped in event["Records"][0]["Sns"]["Message"].
-Flow:
-    1. Parse input  → identifier, control name, validator config
-    2. Collect data  → query Athena for findings/vulnerabilities
-    3. Validate      → compare criteria against collected data
-    4. Build output  → assemble standardised result dict
-    5. Write result  → persist to eqa-validation-results-table
-"""
-import json
-from logger import logger
-from input import extract_lambda_input
-from data import get_findings_data
-from validate import validate_findings
-from output import build_result, write_result
-def handler(event, context):
-    """
-    Findings Validator Lambda handler.
-    
-    Args:
-        event: Lambda event (direct or SNS-wrapped)
-        context: Lambda context
-        
-    Returns:
-        Result dict with validation outcome
-    """
-    try:
-        # 1. Parse input
-        identifier, control, validators = extract_lambda_input(event)
-        
-        # Get the first validator (findings validator only expects one)
-        validator = validators[0] if validators else {}
-        
-        # 2. Collect data from Athena
-        logger.info(f"Querying findings data for AppCI {identifier}")
-        findings_data = get_findings_data(identifier, validator)
-        
-        # 3. Validate - FIXED: Unpack tuple
-        passed, finding_ids = validate_findings(validator, findings_data)
-        
-        # 4. Build output - FIXED: Pass finding_ids
-        result = build_result(identifier, control, validator, passed, finding_ids)
-        logger.info(f"Validation result: {json.dumps(result)}")
-        
-        # 5. Write to DynamoDB
-        write_result(identifier, control, validator, result)
-        
-        return result
-    
-    except Exception as e:
-        logger.exception(f"Findings validator failed: {e}")
-        raise
-# ---------------------------------------------------------------------------
-# Local testing — run directly:  python index.py
-# ---------------------------------------------------------------------------
-if __name__ == "__main__":
-    # Test Event 1: Basic findings validation
-    #test_event = {
-    #    "identifier": "EQA",
-    #    "control": "OWASP-V12.5.2",
-    #    "validator": [
-    #        {
-    #            "type": "findings",
-    #            "tool": "invicti",
-    #            "scope": "CWE",
-    #            "criteria": ["434"]
-    #        }
-    #    ]
-    #}
-    
-    # Test Event 2: With skip_failure
-    test_event = {
-        "identifier": "EHF",
-        "control": "OWASP-V5.1.3",
-        "validator": [
-            {
-                "type": "findings",
-                "tool": "veracode",
-                "scope": "CWE",
-                "criteria": ["20"]
-            }
-        ]
-    }
-    
-    result = handler(test_event, None)
-    print(json.dumps(result, indent=2))
+  ],
+  "raw_evidence": "Validation of requirement OWASP-V5.1.3 for AppCI EHF has passed because the following criteria passed: ['20']",
+  "evidence": "This requirement has passed; no action is required.",
+  "finding_ids": "",
+  "review_required": "No"
+}
+(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % 
