@@ -1,34 +1,21 @@
-python index.py                       
-{"level":"INFO","location":"extract_lambda_input:34","message":"Direct invocation body received","timestamp":"2026-04-13 15:39:58,878-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"extract_lambda_input:61","message":"Input extracted — identifier='EHF', control='OWASP-V5.1.3', validators count=1, skip_failure=False","timestamp":"2026-04-13 15:39:58,878-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"handler:49","message":"Querying findings data for AppCI EHF","timestamp":"2026-04-13 15:39:58,878-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"get_findings_data:94","message":"Athena query for findings validator (id=4853287a-4b33-4acc-91e8-4e03447bde34) executed successfully","timestamp":"2026-04-13 15:40:04,484-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"get_findings_data:97","message":"Retrieved 0 findings for AppCI EHF","timestamp":"2026-04-13 15:40:04,660-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"validate_findings:109","message":"Findings validation PASSED — no matching vulnerabilities found","timestamp":"2026-04-13 15:40:04,660-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"handler:57","message":"Validation result: {\"control\": \"OWASP-V5.1.3\", \"passed\": true, \"avit\": [], \"number\": 1, \"confidence\": \"low\", \"validations\": [{\"type\": \"findings\", \"tool\": \"veracode\", \"scope\": \"CWE\", \"criteria\": [\"20\"], \"identifier\": \"EHF\", \"name\": \"OWASP-V5.1.3\", \"status\": \"PASS\"}], \"raw_evidence\": \"Validation of requirement OWASP-V5.1.3 for AppCI EHF has passed because the following criteria passed: ['20']\", \"evidence\": \"This requirement has passed; no action is required.\", \"finding_ids\": \"\", \"review_required\": \"No\"}","timestamp":"2026-04-13 15:40:04,661-0400","service":"findings-validator-lambda"}
-{"level":"INFO","location":"write_result:179","message":"Successfully updated results for identifier=EHF, sort_key=OWASP-V5.1.3#[{'type': 'findings', 'tool': 'veracode', 'scope': 'CWE', 'criteria': ['20']}]","timestamp":"2026-04-13 15:40:04,934-0400","service":"findings-validator-lambda"}
-{
-  "control": "OWASP-V5.1.3",
-  "passed": true,
-  "avit": [],
-  "number": 1,
-  "confidence": "low",
-  "validations": [
-    {
-      "type": "findings",
-      "tool": "veracode",
-      "scope": "CWE",
-      "criteria": [
-        "20"
-      ],
-      "identifier": "EHF",
-      "name": "OWASP-V5.1.3",
-      "status": "PASS"
-    }
-  ],
-  "raw_evidence": "Validation of requirement OWASP-V5.1.3 for AppCI EHF has passed because the following criteria passed: ['20']",
-  "evidence": "This requirement has passed; no action is required.",
-  "finding_ids": "",
-  "review_required": "No"
-}
-(venv) v196361@v196361-DHJ16N25X9 findingsvalidator % 
+POST /api/rest/groups HTTP/2
+Host: app.snykgov.io
+Content-Length: 17
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Not-A.Brand";v="24", "Chromium";v="146"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en-US,en;q=0.9
+Origin: null
+Content-Type: application/x-www-form-urlencoded
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br
+Priority: u=0, i
+
+test=samesite_poc
