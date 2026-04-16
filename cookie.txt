@@ -1,3 +1,5 @@
-var s = document.createElement('script');
-s.textContent = 'console.log("POC: dynamically created inline script executed")';
-document.body.appendChild(s);
+POST /login/cert HTTP/2
+Host: snyk-fedramp.okta.com
+Content-Type: application/x-www-form-urlencoded
+
+fromURI=https://snyk-fedramp.okta.com/sso/saml2/0oakdrgjz57kTklbU4h7
