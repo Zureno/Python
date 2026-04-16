@@ -1,3 +1,1 @@
-Insufficient permissions to execute the query. Insufficient Lake Formation permission(s): Required Describe on appsec_database_for_datalake_shared_resources
-This query ran against the "appsec_database_for_datalake_shared_resources" database, unless qualified by the query. Please post the error message on our forum  or contact customer support  with Query Id: 65c0abdf-6c02-4f84-870c-341df7f2aaab
- 
+❌  eqa-udcrm-onboardedvalidator-stack failed: DeploymentError: The stack named eqa-udcrm-onboardedvalidator-stack failed to deploy: UPDATE_ROLLBACK_COMPLETE: Resource handler returned message: "Maximum policy size of 10240 bytes exceeded for role eqa-CrossAccountGlueReadRole (Service: Iam, Status Code: 409, Request ID: 968ebb12-9579-4a0f-a3b6-f5c467834481) (SDK Attempt Count: 1)" (RequestToken: 2863d4e6-a2c5-bcde-e9a3-262bf0da9438, HandlerErrorCode: ServiceLimitExceeded)
