@@ -9,9 +9,8 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.9
 Priority: u=4, i
 
++++++++++++++++++++++++++++++++
 
-
-++++++++++++++++++++++++++++++++++++++++
 
 HTTP/2 200 OK
 Content-Type: application/octet-stream
