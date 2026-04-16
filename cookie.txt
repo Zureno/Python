@@ -3,3 +3,185 @@ Host: snyk-fedramp.okta.com
 Content-Type: application/x-www-form-urlencoded
 
 fromURI=https://snyk-fedramp.okta.com/sso/saml2/0oakdrgjz57kTklbU4h7
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+HTTP/2 200 OK
+Date: Thu, 16 Apr 2026 00:07:36 GMT
+Content-Type: text/html;charset=utf-8
+Server: nginx
+Vary: Accept-Encoding
+X-Okta-Request-Id: 2ffa86427932b52aebdcae090c7968f9
+Accept-Ch: Sec-CH-UA-Platform-Version
+X-Xss-Protection: 0
+P3p: CP="HONK"
+Set-Cookie: xids="";Version=1;Path=/;Max-Age=0
+Content-Security-Policy: default-src 'self' snyk-fedramp.okta.com *.oktacdn.com; connect-src 'self' snyk-fedramp.okta.com snyk-fedramp-admin.okta.com *.oktacdn.com *.mixpanel.com *.mapbox.com snyk-fedramp.kerberos.okta.com snyk-fedramp.mtls.okta.com *.authenticatorlocalprod.com:8769 http://localhost:8769 http://127.0.0.1:8769 *.authenticatorlocalprod.com:65111 http://localhost:65111 http://127.0.0.1:65111 *.authenticatorlocalprod.com:65121 http://localhost:65121 http://127.0.0.1:65121 *.authenticatorlocalprod.com:65131 http://localhost:65131 http://127.0.0.1:65131 *.authenticatorlocalprod.com:65141 http://localhost:65141 http://127.0.0.1:65141 *.authenticatorlocalprod.com:65151 http://localhost:65151 http://127.0.0.1:65151 https://oinmanager.okta.com data:; script-src 'unsafe-inline' 'nonce-D7rcO2H_IFW2h3hAYXnfLw' 'unsafe-eval' 'self' 'report-sample' snyk-fedramp.okta.com *.oktacdn.com; style-src 'unsafe-inline' 'nonce-D7rcO2H_IFW2h3hAYXnfLw' 'self' 'report-sample' snyk-fedramp.okta.com *.oktacdn.com; frame-src 'self' snyk-fedramp.okta.com snyk-fedramp-admin.okta.com login.okta.com com-okta-authenticator:; img-src 'self' snyk-fedramp.okta.com *.oktacdn.com *.tiles.mapbox.com *.mapbox.com data: blob:; font-src 'self' snyk-fedramp.okta.com data: *.oktacdn.com fonts.gstatic.com; frame-ancestors 'self'
+X-Rate-Limit-Limit: 600
+X-Rate-Limit-Remaining: 599
+X-Rate-Limit-Reset: 1776298116
+Referrer-Policy: strict-origin-when-cross-origin
+Cache-Control: no-cache, no-store
+Pragma: no-cache
+Expires: 0
+Set-Cookie: sid="";Version=1;Path=/;Max-Age=0
+Set-Cookie: autolaunch_triggered=""; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Path=/
+Set-Cookie: activate_ca_modal_triggered=""; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Path=/
+Set-Cookie: JSESSIONID=AB6630724AA1C6A64C5BB5C416C8E161; Path=/; Secure; HttpOnly
+Set-Cookie: t=""; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Path=/
+Set-Cookie: DT=DI1egeUP4hhRNWokzbiEqknNg;Version=1;Path=/;Max-Age=63072000;Secure;Expires=Sat, 15 Apr 2028 00:07:36 GMT;HttpOnly
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Content-Language: en
+Strict-Transport-Security: max-age=315360000; includeSubDomains
+X-Robots-Tag: noindex,nofollow
+
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="robots" content="noarchive"/><meta name="googlebot" content="noarchive"/><meta name="robots" content="noindex,nofollow" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="googlebot" content="noindex"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow"/>
+
+<link href="https://ok10static2.oktacdn.com/assets/img/icons/favicons/favicon-16x16.f0b05bcfd77a98675f317ee53d12da9b.png" rel="icon" type="image/png" sizes="16x16"/><link href="https://ok10static2.oktacdn.com/assets/img/icons/favicons/favicon-32x32.62523a7499b3ab893e09a488b5a95751.png" rel="icon" type="image/png" sizes="32x32"/><link href="https://ok10static2.oktacdn.com/assets/img/icons/favicons/favicon-96x96.c93fff4cee51afa555b05957847cbfa4.png" rel="icon" type="image/png" sizes="96x96"/><meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/img/icons/favicons/ms-icon-144x144.png">
+<meta name="application-name" content="Okta"/>
+<meta name="theme-color" content="#ffffff">
+<meta name="msapplication-config" content="/img/icons/favicons/browserconfig.xml"/>
+
+<title>
+    snyk-fedramp - Certificate authentication</title>
+<style type="text/css" nonce="D7rcO2H_IFW2h3hAYXnfLw">
+            :root {
+                --okta-app-theme-background-color: #ffffff;
+            }
+        </style><link href="https://ok10static2.oktacdn.com/assets/css/saasure.5c71ee700c4cf7195a65c888f2110b62.css" rel="stylesheet" type="text/css"/><link href="https://ok10static2.oktacdn.com/assets/courage/css/courage.3c481b826f637c9d81145e7c64475277.css" rel="stylesheet" type="text/css"/><link href="https://ok10static2.oktacdn.com/assets/css/admin-overrides.7adbba019b0222bef1d724e167c6faa7.css" rel="stylesheet" type="text/css"/><link href="https://ok10static2.oktacdn.com/assets/css/sections/cert-login.0945a8b624f67847c0d4d87907e7ca6d.css" rel="stylesheet" type="text/css"/><!--[if IE]><link href="https://ok10static2.oktacdn.com/assets/css/ie/ie.65c312b656967a74238f7950ac2c2004.css" rel="stylesheet" type="text/css"/><![endif]-->
+<!--[if gte IE 9]><link href="https://ok10static2.oktacdn.com/assets/css/ie/ie9.3d7dd3baac70c85c1af52cb9a72e59c5.css" rel="stylesheet" type="text/css"/><![endif]-->
+
+<script nonce="D7rcO2H_IFW2h3hAYXnfLw">window.cspNonce = 'D7rcO2H_IFW2h3hAYXnfLw';</script><meta property="csp-nonce" content="D7rcO2H_IFW2h3hAYXnfLw"/>
+
+<script nonce="D7rcO2H_IFW2h3hAYXnfLw">if (typeof module === 'object') {window.module = module; module = undefined;}</script><script nonce="D7rcO2H_IFW2h3hAYXnfLw">
+    var okta = {
+        migrateMute: true,
+        locale: 'en',
+        
+        supportedLocales: ["cs","da","de","el","en","es","eu","fi","fr","ht","hu","id","it","ja","ko","ms","nb","nl_NL","pl","pt_BR","ro","ru","sv","th","tr","uk","vi","zh_CN","zh_TW"],
+        
+        debug: false,
+        deployEnv: '',
+        userId: '',
+        settings: {
+            orgId: '',
+            orgName: '',
+            serverStatus: 'ACTIVE',
+            persona: '',
+            isPreview: 'false' === 'true',
+            permissions: []
+        },
+        _links: {
+            oktaHelpLinkBase: '//help.okta.com/okta_help.htm?type=oie&locale=en&id=',
+            oktaPrivacyLink: 'https://okta.com/privacy-policy'
+        },
+        showPseudoLocModal: false,
+        enableIMESupport: false,
+        isEnableAdvancedSearchLuxon: true,
+        isEnableBcp47OktaUi: true,
+        theme: "",
+        dstheme_rebrand: false,
+        isLogCourageTemplateUtilUsage: false,
+        isEnabledJqueryTmplPatch: true,
+        isEnabledJqueryGlobalEvalPatch: true,
+        isAdminApp: false,
+        isAjaxFormSubmitAsyncEnabled: true,
+        isAjaxFormModernSubmitAsyncEnabled: true
+    };
+</script><script nonce="D7rcO2H_IFW2h3hAYXnfLw">window.okta || (window.okta = {}); okta.cdnUrlHostname = "//ok10static2.oktacdn.com";</script><script nonce="D7rcO2H_IFW2h3hAYXnfLw">window.okta || (window.okta = {});window.okta.mixpanel = false;</script><script nonce="D7rcO2H_IFW2h3hAYXnfLw" src="https://ok10static2.oktacdn.com/assets/js/saasure.jqueryui.min.be0495c6939befd327bfed8843f48454.js" crossorigin="anonymous" integrity="sha384-txdt3fnLiMApW5f5OJJl09/0ZkTDD8UG3oWvSIKkI85pEPwBGaOHehrvBU9QA2dd"></script><script nonce="D7rcO2H_IFW2h3hAYXnfLw" src="https://ok10static2.oktacdn.com/assets/js/sections/user/routing.aa952e4b412655284014faf6e1cef6c0.js" crossorigin="anonymous" integrity="sha384-b0p0LyojHo3/dGRiFOlSoF+NN7YJJDcY92S0WrzaSnbNT7/ZRJjyM9tcNzmEnnSn"></script><!--[if lt IE 9]><script nonce="D7rcO2H_IFW2h3hAYXnfLw" src="https://ok10static2.oktacdn.com/assets/enduser/js/vendor/css3-mediaqueries.fa295f0132f5335f352071ca3613a94a.js" crossorigin="anonymous" integrity="sha384-7pU2GSgyec3nzQMUNSuzanfJelP9UCOyHil0bOv+WnPKSS9lNA/tcxPyr7NV2w6c"></script><![endif]-->
+
+<script nonce="D7rcO2H_IFW2h3hAYXnfLw">if (window.module) module = window.module;</script><script nonce="D7rcO2H_IFW2h3hAYXnfLw" src="https://ok10static2.oktacdn.com/assets/js/properties/saasure-js-bundle.9f50e8eabc7fd1b060fb43557fb7a89b.js" crossorigin="anonymous" integrity="sha384-pTC3xgmrNW2Lea1C0zhn+/YzE62sw8JPqM1Hx7LDGzZ4qsN70WDELBmjAE2ERFDB"></script></head>
+<body id="app" class="enduser-app  okta-legacy-theme is-enduser-v2"
+>
+<noscript><div id="noscript-mask"></div><div id="noscript-msg" class="infobox infobox-warning infobox-compact"><span class="icon warning-16"></span><h3>Javascript is disabled on your browser.</h3><p>Please enable Javascript and refresh this page to use Okta.</p></div></noscript>
+
+<div id="container">
+<style type="text/css" nonce="D7rcO2H_IFW2h3hAYXnfLw">
+    #okta-cert-sign-in .smart-card-icon {
+        display: block;
+    }
+    #okta-cert-sign-in .o-form-error-container {
+        display: none;
+    }
+</style><div id="okta-cert-sign-in" class="main-container">
+        <div class="auth-header">
+            <img src="https://ok10static2.oktacdn.com/assets/img/logos/okta-logo.1e146cad5713da744492be95eb0f7793.png" width="220" height="74" alt="Okta" class="auth-org-logo"/><div class="beacon-container">
+                <div>
+                    <div class="auth-beacon auth-beacon-factor smart-card-icon">
+                        <div class="auth-beacon-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="auth-content">
+            <form method="POST" action="https&#x3a;&#x2f;&#x2f;snyk-fedramp.mtls.okta.com&#x2f;auth&#x2f;cert&#x2f;primaryAuth" class="o-form o-form-edit-mode cert-auth">
+                <span hidden="" id="_xsrfToken">null</span><div data-se="o-form-content" class="o-form-content clearfix">
+                    <h2 data-se="o-form-head" class="auth-factor-head auth-factor-text ">PIV Card</h2>
+
+                    <div class="o-form-error-container infobox infobox-error clear margin-btm-20">
+                        <span class="icon error-16"></span>
+                        </div>
+
+                    <div class="o-form-fieldset-container auth-factor-text margin-btm-20">
+                        <div>
+                            <p>Please insert your PIV card and select the user certificate.</p>
+                            <div class="okta-waiting-spinner"></div>
+                        </div>
+                    </div>
+                </div>
+
+                </form>
+            <div class="auth-footer clearfix">
+                <a href="/login/default">Back to Sign-In Page</a>
+                <a class="signout-link" href="/login/signout">Sign Out</a>
+            </div>
+        </div>
+    </div>
+
+    <script nonce="D7rcO2H_IFW2h3hAYXnfLw">
+        if (!true) {
+            $('.infobox-error').show();
+            $('.auth-button-primary').show();
+            $('.okta-waiting-spinner').hide();
+        }
+
+        
+
+        $(function(){
+
+            
+            var repostParams = {"fromURI":["https://snyk-fedramp.okta.com/sso/saml2/0oakdrgjz57kTklbU4h7\r\n"],"isMobileClientLogin":["false"],"isCustomDomain":["false"],"rememberDevice":["false"],"repost":["true"]};
+            var form = $('form.cert-auth');
+            var elementTemplate = '<input type="hidden" name="{{= name}}" value="{{= value}}">';
+            // Create a hidden element for each param in each value of the data map and add them to the form
+            for(var key in repostParams) {
+                $.tmpl(elementTemplate, {name: key, value: repostParams[key]}).appendTo(form);
+            }
+
+            $('.auth-button-primary').on('click', function () {
+                $('.infobox-error').hide();
+                $('.auth-button-primary').hide();
+                $('.okta-waiting-spinner').show();
+            });
+
+            if (true) {
+                setTimeout(function () {
+                    form.submit();
+                }, 100);
+            }
+        });
+
+    </script></div>
+    <!-- close #container -->
+
+    </body>
+</html>
