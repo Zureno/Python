@@ -1,1 +1,48 @@
-https://login.microsoftonline.us/f9724c3f-5875-41b3-b99a-b6eee358ee32/saml2 the missing headers are in this URL
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::058264356046:root"
+      },
+      "Action": "kms:*",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::058264356046:root"
+      },
+      "Action": "kms:*",
+      "Resource": "arn:aws:kms:*:*:key/*"
+    },
+    {
+      "Sid": "AllowLakeFormationServiceRole",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::058264356046:role/aws-service-role/lakeformation.amazonaws.com/AWSServiceRoleForLakeFormationDataAccess"
+      },
+      "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:GenerateDataKey*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+
+
+
+Error i am getting :- 
+
+ 
+[ERROR] Exception: Could not get findings for appci: BFM. Error=Athena query cdbe5c2b-fc7b-4c98-ba8d-913f6387a022 FAILED: PERMISSION_DENIED: User: arn:aws:sts::058264356046:assumed-role/eqa-CrossAccountGlueReadRole/eqa-findingsvalidator-lambda is not authorized to perform: kms:Decrypt on resource: arn:aws:kms:us-east-1:058264356046:key/049a732a-515b-4e20-b954-deed998e3b09 because no identity-based policy allows the kms:Decrypt action (Service: S3, Status Code: 403, Request ID: YN04749KFY97JDS1, Extended Request ID: S6d1BASKF2O7AJ15sDt8ii8w3UqP+nmg95fFO9iljEQcuC/630ygzaQsJoP/qEmwfSRj5jLoUNg=)
+Traceback (most recent call last):
+  File "/var/task/index.py", line 56, in handler
+    findings_data = get_findings_data(identifier, validator)
+  File "/var/task/data.py", line 122, in get_findings_data
+    raise Exception(
+ 
