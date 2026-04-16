@@ -1,1 +1,23 @@
-echo | openssl s_client -connect app.snykgov.io:443 -servername app.snykgov.io 2>/dev/null | openssl x509 -noout -text | grep -A2 "Validity\|Issuer\|Subject:"
+Review Notes:
+1. SAML Assertion Transmitted in Plaintext (Not Encrypted) - Remove this finding. This is not a vulnerability. As HTTPS is used, this cannot be exploited.
+
+2. 65-Minute SAML Validity Window - As per the steps looks like you replayed the request prior to the expiration time and it prevented the same. So what is the vulnerability here?
+
+3. Internal/Hidden API Endpoints Accessible Post-Authentication - Did you enumerate the endpoints or were these passed in the application?
+
+4. Sensitive informational Disclosure. - Downgrade to Informational
+
+5. Sensitive Information in GET URL - Downgrade to Informational
+
+6. HTTP Strict Transport Security (HSTS) Not Submitted to Browser Preload Lists - Downgrade to Informational as we havent exploited it
+
+7. OCSP Stapling Not Enabled - Put in the screenshot
+
+8. Check for the below issues
+
+Application does not Redirect upon Session Expiration
+Missing Content Security Policy Header
+Misconfigured/Insecure Response Header (X-XSS Header)
+Missing X-Frame-Options Header
+SAML - Weak Canonicalization Method Used 
+BREACH Vulnerability
