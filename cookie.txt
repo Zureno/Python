@@ -1,1 +1,4 @@
-❌  eqa-udcrm-onboardedvalidator-stack failed: DeploymentError: The stack named eqa-udcrm-onboardedvalidator-stack failed to deploy: UPDATE_ROLLBACK_COMPLETE: Resource handler returned message: "Maximum policy size of 10240 bytes exceeded for role eqa-CrossAccountGlueReadRole (Service: Iam, Status Code: 409, Request ID: 968ebb12-9579-4a0f-a3b6-f5c467834481) (SDK Attempt Count: 1)" (RequestToken: 2863d4e6-a2c5-bcde-e9a3-262bf0da9438, HandlerErrorCode: ServiceLimitExceeded)
+can you please focus today on validating the processing table to ensure its right
+ 
+in the main.py in the old validator you can change line 90 to the identifier you want and comment in line 138-139. you then change the config.py file in the shared folder to local and you can test locally it will print the output to a json.   you can then compare that json to the validation results column in the processing table
+ 
