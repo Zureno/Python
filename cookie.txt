@@ -1,4 +1,9 @@
-can you please focus today on validating the processing table to ensure its right
- 
-in the main.py in the old validator you can change line 90 to the identifier you want and comment in line 138-139. you then change the config.py file in the shared folder to local and you can test locally it will print the output to a json.   you can then compare that json to the validation results column in the processing table
- 
+Upon review of the report, may I ask how https://snyk-fedramp.okta[.]com/ & https://snyk-fedramp.mtls.okta[.]com/ came into scope for the test?
+
+My concern is that the firm may have tested something out of scope and what was communicated with the vendor’s CISO, which was strictly for https://app.snykgov[.]io.
+
+My understanding of the SSO configuration check is to test/review what is configured for the end users to the SaaS platform through SSO which is authenticated from our Entra IdP in MS AZ GOV; our authorized users will not be leveraging smartcard/PIV/CAC cards to auth to the cloud service offering.  It appears that the vendor has the FedRAMP OKTA auth generally available for their customer base to leverage as another mechanism for auth; this should not be within our scope.
+
+Additionally, #15 is inaccurate based upon the documentation as the target system was https://snyk-fedramp.okta[.]com/login/cert; however, the screenshot depicts authenticated cookied sessions https://app.snykgov[.]io across multiple browser windows.  
+
+My request is to have this PTI scoped and updated accordingly to remove all references to OKTA; please let me know if this is achievable.
