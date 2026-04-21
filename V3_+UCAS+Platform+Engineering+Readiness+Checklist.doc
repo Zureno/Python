@@ -1,0 +1,658 @@
+Date: Tue, 21 Apr 2026 20:50:33 +0000 (UTC)
+Message-ID: <246492514.87.1776804633871@48c1fe5b4e65>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_86_1913996496.1776804633871"
+
+------=_Part_86_1913996496.1776804633871
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>V3: UCAS Platform Engineering Readiness Checklist</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>V3: UCAS Platform Engineering Readiness Checklist</h1>
+    <div class=3D"Section1">
+        <h2 local-id=3D"6b216a0c7fea" id=3D"V3:UCASPlatformEngineeringReadi=
+nessChecklist-1.DataConnections">1. Data Connections</h2>
+<h3 local-id=3D"f62598240b91" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-DataIngestion">Data Ingestion</h3>
+<ul local-id=3D"a329a677-7394-4689-b930-08533f3beae5">
+<li local-id=3D"01e45b6a-4282-4d4e-994c-b67d5eaee94e">
+<p local-id=3D"4340854ef77c">How is data received by UCAS?</p>
+<ul local-id=3D"54c222dd891b">
+<li local-id=3D"8388906b0820">
+<p local-id=3D"3cd404366a44">Findings</p>
+<ul local-id=3D"fe4d538ec5e4">
+<li local-id=3D"18f9f35f15ea">
+<p local-id=3D"e3729df50f31">Athena</p></li>
+</ul></li>
+<li local-id=3D"0dfb30fc4162">
+<p local-id=3D"e820516075e9">Akamai</p>
+<ul local-id=3D"9a86d0d9d1d3">
+<li local-id=3D"6cfbc92553af">
+<p local-id=3D"7136e3334553">Athena</p></li>
+</ul></li>
+<li local-id=3D"7e0f3913ad0b">
+<p local-id=3D"220a8ab5d8b6">Pipeline</p>
+<ul local-id=3D"7c969b098807">
+<li local-id=3D"ae6a540cf58d">
+<p local-id=3D"58ea723c9dbc">API (GitHub Harness)</p></li>
+</ul></li>
+<li local-id=3D"75f6c72c71d2">
+<p local-id=3D"5867a34a316a">Onboarded</p>
+<ul local-id=3D"d963a0dd1013">
+<li local-id=3D"8dd502c1a798">
+<p local-id=3D"fb55aff58813">Athena</p></li>
+</ul></li>
+<li local-id=3D"399bc7a71c04">
+<p local-id=3D"4851eea90408">CodeQL</p>
+<ul local-id=3D"08fb1f59e9b8">
+<li local-id=3D"2bdfbab8f9a3">
+<p local-id=3D"061f2e337ef6">API (GitHub)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"3bf27d27-42f1-4bac-be6c-5933ff9c0067">
+<p local-id=3D"257845d158ff">What data sources are integrated (tools, APIs,=
+ event streams, etc.)?</p>
+<ul local-id=3D"ae5481689faa">
+<li local-id=3D"5a531363274b">
+<p local-id=3D"8859f6ec7b05">Answered Above</p></li>
+</ul></li>
+<li local-id=3D"d3885ddd-6d17-44d6-bfb6-6f010154410d">
+<p local-id=3D"afb0b6287b04">Does UCAS support both local and cloud access?=
+</p>
+<ul local-id=3D"aafb0debb84b">
+<li local-id=3D"44a6dc10da31">
+<p local-id=3D"5a9de6cda0ce">Tested in. local and Dev environments to ensur=
+e data is flowing to UCAS from each source as expected</p></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"88a1894d1036" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-EnvironmentValidation">Environment Validation</h3>
+<ul local-id=3D"d144a994-1055-4b38-848b-28c204fc2419">
+<li local-id=3D"2d9422ac-8087-4aa3-a247-f3529044072e">
+<p local-id=3D"4ff75364f29e">Has data connectivity been validated in:</p>
+<ul local-id=3D"c8190dfe-3ba1-470d-beb8-67ef870d5601">
+<li local-id=3D"890b17c4-a61f-4226-8fb8-13612818f1f6">
+<p local-id=3D"c09b86846ff9">Local environment</p>
+<ul local-id=3D"d8981673674a">
+<li local-id=3D"0014f6815ce3">
+<p local-id=3D"166a97dc7a2f">Tested Apr 21 2026: All Data flowing to UCAS</=
+p></li>
+</ul></li>
+<li local-id=3D"392accc2-5c34-4b9e-9caa-da391ef6947b">
+<p local-id=3D"b6d7cc6d2f66">Development environment</p>
+<ul local-id=3D"a68809fc54e1">
+<li local-id=3D"a47d29a8b12f">
+<p local-id=3D"32b56f6a354c">Tested Apr 21 2026: All Data flowing to UCAS</=
+p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"5e8222dd9499" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-Observability&amp;Reliability">Observability &amp; Reliability</h3>
+<ul local-id=3D"c901ef41-315d-4d16-a898-51409f082564">
+<li local-id=3D"721ed6ca-94fe-4995-9748-94a5edbafdd8">
+<p local-id=3D"d27e8dc117c3">Are failures in data ingestion logged and obse=
+rvable?</p>
+<ul local-id=3D"a90456dcac1a">
+<li local-id=3D"bc3eaddb20af">
+<p local-id=3D"7049401a7de6">Data failures can be found in the logs of each=
+ lambda and can also be queried in the Athena recent query engine</p></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"5b6f50fffd65" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-Handoff">Handoff</h3>
+<ul local-id=3D"7a503199-c080-439c-9582-e12d75a1b108">
+<li local-id=3D"60595ee6-d447-4e9f-a23d-4980da697526">
+<p local-id=3D"ab1da405713f">Data handoff completed</p>
+<ul local-id=3D"014db7a64672">
+<li local-id=3D"2cde920abc1c">
+<p local-id=3D"f0d7444edfc4">Data is handed off to UCAS for processing for =
+all validators</p></li>
+</ul></li>
+</ul>
+<hr local-id=3D"04d9d338-fa0b-4046-99a5-2d85ebf787ec">
+<h2 local-id=3D"35e38dd41130" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-2.InfrastructureasCode(IaC)">2. Infrastructure as Code (IaC)</h2>
+<h3 local-id=3D"6651042d723f" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-Permissions&amp;Deployment">Permissions &amp; Deployment</h3>
+<ul local-id=3D"ca411640-ef71-46e6-b439-9f6623135d8f">
+<li local-id=3D"5cf57c16-e0e0-4421-a812-099dd97e26e8">
+<p local-id=3D"6c75c2b352ad">Does the IaC have the required permissions to =
+access all necessary resources?</p>
+<ul local-id=3D"8b09aee35b31">
+<li local-id=3D"6c95f95a349c">
+<p local-id=3D"d69f3c7243a7">Each validator has been tested for permissions=
+ to ensure</p>
+<ul local-id=3D"f2ddff381b8a">
+<li local-id=3D"7b8114e5c34a">
+<p local-id=3D"4c326a7a10e1">Data can be queried</p></li>
+<li local-id=3D"66212a84c539">
+<p local-id=3D"dbf3a08e8e9f">Dispatch can talk to each SQS</p></li>
+<li local-id=3D"863d638c7a99">
+<p local-id=3D"3745c12a70de">validators can write to the new validation tab=
+le</p></li>
+<li local-id=3D"d9304a24da50">
+<p local-id=3D"41212e5899b6">resolver can write to processing table</p></li=
+>
+</ul></li>
+</ul></li>
+<li local-id=3D"be5c0238-e9c2-48cd-97f0-640f2e98ab10">
+<p local-id=3D"1a61a3c55e71">Can the infrastructure deploy and run without =
+errors?</p>
+<ul local-id=3D"818ef3a0a0ce">
+<li local-id=3D"2eed5e33011e">
+<p local-id=3D"9c7488d97d28">Yes IF</p>
+<ul local-id=3D"804334e796b0">
+<li local-id=3D"9dd4355abab0">
+<p local-id=3D"8bc1a5afae3b">Deploy <code>eqa-cross-account-role-stack eqa-=
+udcrm-datalake-buckets</code> first</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"e3bf5d3cf432" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-Logging&amp;Observability">Logging &amp; Observability</h3>
+<ul local-id=3D"26a5366c-369d-41e2-bccc-aa64d0a732d7">
+<li local-id=3D"80679828-eba0-4d47-b07d-581957208eb6">
+<p local-id=3D"4f13935a1300">Are logs available that clearly describe what =
+each Lambda/function is doing?</p>
+<ul local-id=3D"1180ebf7a7c1">
+<li local-id=3D"7d6653a5729d">
+<p local-id=3D"865316660ec4">All lambdas are logged for each step</p></li>
+</ul></li>
+<li local-id=3D"3428400b-fa32-4941-b156-2f2fdc37bfa2">
+<p local-id=3D"4e6decdff091">Are logs searchable? (TBD)</p></li>
+</ul>
+<h3 local-id=3D"420871118aaf" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-Testing&amp;Validation">Testing &amp; Validation</h3>
+<ul local-id=3D"c2c02973-4680-414b-9932-b06126790c11">
+<li local-id=3D"e1deb246-1ddf-43d6-9eab-554cee7a30fd">
+<p local-id=3D"282271293e5b">Has the IaC been fully tested after deployment=
+ to the dev environment?</p>
+<ul local-id=3D"aece4c23a1c1">
+<li local-id=3D"502288081466">
+<p local-id=3D"ea781e92f8ec">Complete Apr 21 2026</p></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"36a154757424" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-Handoff.1">Handoff</h3>
+<ul local-id=3D"e30509d9-425a-42ec-9d05-3a782194dc5e">
+<li local-id=3D"6eacd82e-cc2a-4dae-8466-74282f00c324">
+<p local-id=3D"a62dc4743b3e">IaC handoff completed</p>
+<ul local-id=3D"7539e21fd337">
+<li local-id=3D"add01d0f8690">
+<p local-id=3D"bbce5cdbdabe">Complete Apr 21 2026</p></li>
+</ul></li>
+</ul>
+<hr local-id=3D"f4a0107a-652c-4ef8-addb-11333344d5b6">
+<h2 local-id=3D"60e85b274ba2" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-3.ControlAutomationReasonableness">3. Control Automation Reasonablene=
+ss</h2>
+<h3 local-id=3D"6549de5eadc9" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-ControlCoverage&amp;Results">Control Coverage &amp; Results</h3>
+<ul local-id=3D"1da0ee57-d3f1-4fc9-9fc9-613a010e0970">
+<li local-id=3D"33b1f693-2441-4e3e-bb5c-3b6c6c2e312f">
+<p local-id=3D"f364c452c854">How many application controls (APCIs) are eval=
+uated?</p>
+<ul local-id=3D"a658aa1a9e80">
+<li local-id=3D"e73f1b0c17cb">
+<p local-id=3D"9b1ce2baac6f">All</p></li>
+</ul></li>
+<li local-id=3D"869756d7-d44b-4472-9f0d-caa31110afd8">
+<p local-id=3D"c1da83eb7f59">How many controls are passing vs. failing?</p>=
+</li>
+</ul>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"092c302f-7747-4bbb-a8fc-a42=
+ab51877f3" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"6f90964c-2ea3-4bfa-810e-3485d0d34176">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"44a443ce-1630-4965-8=
+dc1-e0f3450f0ab7" class=3D"confluenceTd">
+<p local-id=3D"a6f3adf158c0"><code>2026-04-21 05:36:10,911 - index - INFO -=
+ Control: CDR-DS3.5.2 - App02</code></p></td>
+</tr>
+<tr data-local-id=3D"8f6c59b6-800e-4365-a6de-1a15eb8b6c6a">
+<td data-local-id=3D"d08906d0-98d8-44f0-b3ae-9ac54e002969" class=3D"conflue=
+nceTd">
+<p local-id=3D"92d7e08c8543"><code>Found entries: 1505</code></p></td>
+</tr>
+<tr data-local-id=3D"e5aca2b6-d2b6-43d0-a4be-5a6b77270a14">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"c2031712-13e9-4c1f-9=
+338-edefc79a2a8f" class=3D"confluenceTd">
+<p local-id=3D"52e5985a624c"><code>Passed: 1505</code></p></td>
+</tr>
+<tr data-local-id=3D"a984b5c4-a15e-4b85-a5ae-e398166eae64">
+<td data-local-id=3D"8ae75702-4b68-44c4-82d1-a8caad1a217e" class=3D"conflue=
+nceTd">
+<p local-id=3D"b894e4b51035"><code>Failed: 0</code></p></td>
+</tr>
+<tr data-local-id=3D"877852fd-516e-4a76-82c6-6dbc655b1708">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"1a58d4d3-2e9a-4f73-b=
+6cf-d258492d7fd0" class=3D"confluenceTd">
+<p local-id=3D"68ed3bf47db9"><code>2026-04-21 05:36:10,911 - index - INFO -=
+ Control: CDR-NSS3.4.2 - App01</code></p></td>
+</tr>
+<tr data-local-id=3D"dec26158-4e55-43b0-96de-111833cb5729">
+<td data-local-id=3D"555213be-1173-43e2-9258-5422ce4a348f" class=3D"conflue=
+nceTd">
+<p local-id=3D"01887ba06622"><code>Found entries: 202</code></p></td>
+</tr>
+<tr data-local-id=3D"4c47f108-7624-457a-b01b-3f66df547374">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"9c5eb7f7-617d-4b23-8=
+342-3bac1ea9c1c5" class=3D"confluenceTd">
+<p local-id=3D"fd660a3a9a91"><code>Passed: 137</code></p></td>
+</tr>
+<tr data-local-id=3D"22b9a1da-d987-4772-88ec-3eedbba4ae09">
+<td data-local-id=3D"c9e3e70c-3ecf-414a-b15f-52563c915ee9" class=3D"conflue=
+nceTd">
+<p local-id=3D"ffddc7bd14bc"><code>Failed: 65</code></p></td>
+</tr>
+<tr data-local-id=3D"9625573a-71a2-4b3b-824d-13225739bb47">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"d7eb4b99-1fdb-4e22-9=
+c44-9fa9abf85190" class=3D"confluenceTd">
+<p local-id=3D"94fed4240218"><code>2026-04-21 05:36:10,911 - index - INFO -=
+ Control: CDR-SSDF2.4.1</code></p></td>
+</tr>
+<tr data-local-id=3D"b1725309-dfcf-48d4-9f54-eb5f68a84551">
+<td data-local-id=3D"61c21ad4-ea1f-4bf0-a3d0-b09d5a395942" class=3D"conflue=
+nceTd">
+<p local-id=3D"2c5b36490497"><code>Found entries: 1006</code></p></td>
+</tr>
+<tr data-local-id=3D"b839ff6d-4a35-471c-a2df-ab6eeaaafb27">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"dba6ac49-1b92-4360-8=
+9c2-941f23a1547b" class=3D"confluenceTd">
+<p local-id=3D"554abb11963d"><code>Passed: 412</code></p></td>
+</tr>
+<tr data-local-id=3D"1ddfee9b-f449-4d0e-90ad-f2cf36c1f673">
+<td data-local-id=3D"e610416d-33a5-4f88-b195-98b0d06a3525" class=3D"conflue=
+nceTd">
+<p local-id=3D"d5b960ef5830"><code>Failed: 594</code></p></td>
+</tr>
+<tr data-local-id=3D"5c80c305-1e8f-4d3e-8e3b-513d8045becb">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"c8f79115-fd9d-454d-a=
+5f6-bcd3d3b15a64" class=3D"confluenceTd">
+<p local-id=3D"1f7fb89566a7"><code>2026-04-21 05:36:10,911 - index - INFO -=
+ Control: CDR-SSDF2.4.3</code></p></td>
+</tr>
+<tr data-local-id=3D"ea2748f0-a76d-4eb5-9898-b523c35fd30d">
+<td data-local-id=3D"44d890aa-5a6b-4e01-9bef-6ae809c09185" class=3D"conflue=
+nceTd">
+<p local-id=3D"249e3dd8e02d"><code>Found entries: 329</code></p></td>
+</tr>
+<tr data-local-id=3D"ab8d958e-5992-469c-89bd-ef7c96fb50a1">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"6d9455d1-0ef9-4ca6-9=
+2e8-f8d35a052c20" class=3D"confluenceTd">
+<p local-id=3D"9de972835433"><code>Passed: 250</code></p></td>
+</tr>
+<tr data-local-id=3D"3dcc41d5-146d-45de-90cd-d18c7557562b">
+<td data-local-id=3D"077702c1-616b-48eb-8bed-ea9d937f0306" class=3D"conflue=
+nceTd">
+<p local-id=3D"bf4d9602aae3"><code>Failed: 79</code></p></td>
+</tr>
+<tr data-local-id=3D"9e5cbfc8-425f-4973-840c-148bceb8b37d">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"46d8c8cf-11f2-4b55-a=
+6e8-1edc1d65c8b3" class=3D"confluenceTd">
+<p local-id=3D"58cd1cd43a31"><code>2026-04-21 05:36:10,911 - index - INFO -=
+ Control: CDR-SSDF2.4.9</code></p></td>
+</tr>
+<tr data-local-id=3D"42277342-d1ed-42a8-9536-1bb21b26aa32">
+<td data-local-id=3D"9cd0fec5-7084-474b-91de-25fd927ec46c" class=3D"conflue=
+nceTd">
+<p local-id=3D"2e42f73c7d2e"><code>Found entries: 1005</code></p></td>
+</tr>
+<tr data-local-id=3D"d76fc085-f935-47cd-ba69-103e9554cf4f">
+<td data-highlight-colour=3D"#f6f6f9" data-local-id=3D"1d5793d2-e885-411a-9=
+cd7-157619d481ad" class=3D"confluenceTd">
+<p local-id=3D"5e1b420b10a0"><code>Passed: 697</code></p></td>
+</tr>
+<tr data-local-id=3D"ebb61392-e211-4832-b80b-46b581f92827">
+<td data-local-id=3D"f705fb93-549b-4c91-8ef0-9512cd83c42e" class=3D"conflue=
+nceTd">
+<p local-id=3D"08dca92f514f"><code>Failed: 308</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"9360e858597b" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-FailureAnalysis">Failure Analysis</h3>
+<ul local-id=3D"8ce70ebc-4796-422e-b338-399fb71b6ca8">
+<li local-id=3D"d8ede75a-aae7-44ed-a7bb-f752072e7b8a">
+<p local-id=3D"f3ce5ed56ec0">Are failure reasons clearly identified and tra=
+ceable to source data?</p>
+<ul local-id=3D"16e83aaec965">
+<li local-id=3D"80c613d11569">
+<p local-id=3D"f7ee625d7e3c">All failures are logged in each lambda</p></li=
+>
+</ul></li>
+<li local-id=3D"effd75c2-e592-4fbe-9ecc-898104b2e6b3">
+<p local-id=3D"fb546c921978">Have false positives or anomalies been reviewe=
+d and documented?</p>
+<ul local-id=3D"1afc2ae84c40">
+<li local-id=3D"8f69c152ad65">
+<p local-id=3D"dfd99018379d">for all released controls results are as expec=
+ted</p></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"58f4d512a826" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-StakeholderValidation">Stakeholder Validation</h3>
+<ul local-id=3D"1964f3a9-c60f-418f-a798-edb475e1c3b9">
+<li local-id=3D"c3e6bb1c-59ab-484a-8f9f-bbbc37007d92">
+<p local-id=3D"2a067f092210">Has the data owner and/or control owner been e=
+ngaged to validate results?</p>
+<ul local-id=3D"c87195974f92">
+<li local-id=3D"b4e008925f5a">
+<p local-id=3D"738c596c3276">NA</p></li>
+</ul></li>
+<li local-id=3D"5ee896c9-3dcc-4389-b5f6-952e3a0c1bbc">
+<p local-id=3D"d736ae6719d3">Is there evidence of approval or acknowledgmen=
+t from stakeholders?</p>
+<ul local-id=3D"b5436f674681">
+<li local-id=3D"c08dc7ad67dd">
+<p local-id=3D"4f79e0f8cfd8">NA</p></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"5e15e889a527" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-ImpactAssessment">Impact Assessment</h3>
+<ul local-id=3D"bef12922-cece-403a-9786-290b5cf67872">
+<li local-id=3D"88614d48-43ef-41a2-bb1f-45f87a5183b7">
+<p local-id=3D"f07a1ac904be">Have other controls been impacted?</p>
+<ul local-id=3D"4bbcc65e99b0">
+<li local-id=3D"d16aac938c81">
+<p local-id=3D"a752f47ae542">NA</p></li>
+</ul></li>
+</ul>
+<hr local-id=3D"00ad4651-549c-4d91-88c3-da1274bbb02b">
+<h2 local-id=3D"28442ef66d28" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-4.EngineeringGovernance&amp;Quality">4. Engineering Governance &amp; =
+Quality</h2>
+<h3 local-id=3D"770c67c40693" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-Ownership&amp;Review">Ownership &amp; Review</h3>
+<ul local-id=3D"46332acd-17f1-4660-a64f-a803e583a5d0">
+<li local-id=3D"3d9e0bfc-5da9-45c2-b2d6-624a35354ea5">
+<p local-id=3D"b66d05431fd0">Code ownership defined</p>
+<ul local-id=3D"a19b343fc41d">
+<li local-id=3D"7e5cbe8286a8">
+<p local-id=3D"a0bccd70c6a1">UCAS Team</p></li>
+</ul></li>
+<li local-id=3D"9c82cbdb-a27a-4217-a330-d77d1710995a">
+<p local-id=3D"e95ccf958a3b">Add another layer of PR approval (Michael)</p>
+<ul local-id=3D"95ae097c4c83">
+<li local-id=3D"0c1191066e2d">
+<p local-id=3D"7a51850c7a6e">Complete: April 21 2026</p></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"12df95c86ab8" id=3D"V3:UCASPlatformEngineeringReadinessChec=
+klist-Testing">Testing</h3>
+<ul local-id=3D"1658f5c0-af81-45a4-a992-70cddcfa371f">
+<li local-id=3D"16abb887-fe00-45c0-a166-2f330ef0851f">
+<p local-id=3D"fbb59d081f98">Regression testing completed</p>
+<ul local-id=3D"2b14763126ee">
+<li local-id=3D"33b20728-96a8-4b31-acca-cc320527c4a3">
+<p local-id=3D"178a9370cc08">Findings</p>
+<ul local-id=3D"9d86c7fb-dcb4-46e4-b01b-85dbbe7869be">
+<li local-id=3D"9a50de06cf13">
+<p local-id=3D"83c2abe58885">April 21 2026</p></li>
+</ul></li>
+<li local-id=3D"11a8e32f-037b-4c0e-9189-3764d36e69a4">
+<p local-id=3D"99eeaa59a8a4">Akamai</p>
+<ul local-id=3D"f444d0c4-aa89-4833-8c4e-caee1677026d">
+<li local-id=3D"1a5824e88071">
+<p local-id=3D"31186cabf95e">April 14 2026</p></li>
+</ul></li>
+<li local-id=3D"9eab2223-761f-4f1e-b045-8aefaf4419cd">
+<p local-id=3D"e01a9b189138">Pipeline</p>
+<ul local-id=3D"2bfc6572-35f5-4ae1-9bc3-01750d2a751f">
+<li local-id=3D"da2e3f4aa99b">
+<p local-id=3D"ae36571ae273">April 15 2026</p></li>
+</ul></li>
+<li local-id=3D"f05e6486-9a5a-4cf1-bf73-38b3ffb3cd42">
+<p local-id=3D"6d3577c13284">Onboarded</p>
+<ul local-id=3D"688b1c8f-d193-48fa-b4cc-99590c3cb155">
+<li local-id=3D"9a8d89a11e2f">
+<p local-id=3D"4ad9546b8462">April 17 2026</p></li>
+</ul></li>
+<li local-id=3D"e3a27b7e-a2e9-4683-ab37-0a89bd9c73ba">
+<p local-id=3D"a02eafeadf15">CodeQL</p>
+<ul local-id=3D"808d269d-2a81-489a-930a-12cea6de27a1">
+<li local-id=3D"04ae64dca1b6">
+<p local-id=3D"3e401fcc93c1">April 17 2026</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"b37d762e-111e-4330-9dac-dda1bfe3e8d1">
+<p local-id=3D"dba2f6cce991">Post-dev release testing completed</p>
+<ul local-id=3D"1e70ebdd47d2">
+<li local-id=3D"9b1f86330118">
+<p local-id=3D"292ac4275a11">Complete April 20-21</p></li>
+</ul></li>
+<li local-id=3D"ed065176-4e16-454f-8cd0-05e6148545c7">
+<p local-id=3D"0e588d7b2d8a">Post-release testing completed</p>
+<ul local-id=3D"c25a8603b394">
+<li local-id=3D"3a807f2576ed">
+<p local-id=3D"b17ed508ada7">Contact Redwan for Dashboard to be manually up=
+dated in prod</p></li>
+</ul></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_86_1913996496.1776804633871--
