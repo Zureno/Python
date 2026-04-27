@@ -7,3 +7,25 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/w
 Referer: https://qa.gmsgetb.kpmglinkgo.com/
 Accept-Encoding: gzip, deflate, br
 
+
+
+
+HTTP/2 302 Found
+Date: Mon, 27 Apr 2026 15:14:03 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 142
+Location: https://www.kpmglink.com/
+Cache-Control: private
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-UlT72QQRJ1/eupRaaPkV9PiRSQZgCUTs2MLqZcc+qSE=' 'strict-dynamic'; style-src 'self' 'nonce-UlT72QQRJ1/eupRaaPkV9PiRSQZgCUTs2MLqZcc+qSE='; img-src 'self'; report-uri /gettaxcalcbac/WebService/CspReport;
+X-Xss-Protection: 1; mode=block
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+X-Azure-Ref: 20260427T151403Z-169595b5c44jd7kvhC1TEBd32n0000000ccg00000000808s
+X-Cache: CONFIG_NOCACHE
+
+<html><head><title>Object moved</title></head><body>
+<h2>Object moved to <a href="https://www.kpmglink.com/">here</a>.</h2>
+</body></html>
+
+
