@@ -1,18 +1,21 @@
-HTTP/2 302 Found
-Date: Mon, 27 Apr 2026 21:07:39 GMT
-Content-Type: text/html; charset=utf-8
-Content-Length: 178
-Location: https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/SiteException
-Cache-Control: private
-Set-Cookie: TC-BAC-DEV-XSRF=c4a2b48204ab415499657bda62a31745; path=/gettaxcalcbac; secure; HttpOnly
-Strict-Transport-Security: max-age=31536000; includeSubDomains
-Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-zG0Bfrk88rWdDtRFeyEf0AMKPieMWJztJkzGH1DhSOg=' 'strict-dynamic'; style-src 'self' 'nonce-zG0Bfrk88rWdDtRFeyEf0AMKPieMWJztJkzGH1DhSOg='; img-src 'self'; report-uri /gettaxcalcbac/WebService/CspReport;
-X-Xss-Protection: 1; mode=block
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-X-Azure-Ref: 20260427T210739Z-17cb985ddd59pdqdhC1TEB4q800000000ep0000000001c4h
-X-Cache: CONFIG_NOCACHE
+POST /gettaxcalcbac/PlanSubCodes/EditPlanSubCode HTTP/2
+Host: qa.gmsgetb.kpmglinkgo.com
+Cookie: TC-BAC-DEV=rvjxo1w5gwlobyb4smf3w2ho; TC-BAC-DEV-XSRF=c4a2b48204ab415499657bda62a31745; __RequestVerificationToken_L2dldHRheGNhbGNiYWM1=Z4pc-Mj7X15uEQJH4ovEYZN_uwu-sjnI7_5EYtJY5DCweymKgIQWaW8ZqEpyvkB8wvzEIS_a43iPtgJMhNvegKRrnrFrS6gt8fOwzrMBPs41; .AspNet.Cookies=qwGLQVEYF4Jbv7QsJA_aY83KueIUr7Ajabc_UXbEN1fbokLhpXUqL7sLuOQ5gpqJXJZcvCo4GFamCxrx0-wDZlkQrY78VcAO0gmwh6Zrv6Stb5CGFUsbEI5IJr3DOFJsTbPFTcXLAXf9oFtoTUYpcp8bDGxU8jaJXK2AFcCNonkvWgL5C7-28Z_AxpWxZAyrdCBzAM1uunzeN6Awfcep_Xo924x2vW0C0zP5oyuwKtKRvqWshXMUCNgzPRcv5mS17d4pFBpknjZGXevYtBSd4QNH2UA0JWARsg9JdQ3jxItxep-KuEFT-s07szXYhKjPbpdiBc4D4eA5YAmzJ99Ss8idb_o29uDhCkIiYW8sIm5XRl8pA_PXH3BbuNyue7ZGhFMckoztKKggRXAWhtNsA1NG3tNwlWmjT_q699uxkbbaS2tFcavBj3tAszXuR2Q1UgcqpKony8SG1QYegaUUFw1WAiqcO6pMpUdH7_h4neZcZ7kpKe8yRguV8h9nr6xeaE2wkDcsvv11HqlFwRYJ5E4iwth6JAuMe4Ddz9HViB1D1DkmCbA1j5enyCiOY0E3Heparstlnn38hNZpI31M9nY9GbywuR-SdgZSXAZ7QV3EE4MpQAyaUdWLOxTWDzhlunvW6XndttYLffjKnVZe68OuCgirFQbxX4i2Y73i6fmi4ORkNRdPwpWhUZ5FVqUwwzNiHtV8jCWQ8qR35Alub5R41mkUKIshTGRBE8wQ1t6K1s-EMCCHABRHVd7VHOUZ2Ij5RjI5c8IYzctRet3dyqUjdikYjXrB6r8aDefyMI0BNsxxhiYTmlnMoavrwSJdlhcyafQs7ssqNPpahRs0mpHJ97_t9spfxo1sE8BHouSQfEljPXVUxXn64FcdVleNLsLBde6wslFoKgJfZms8wUewbVA5N0s_PRyUxih_ryq34pBidGDqUkCfvV7OmF1chOKZpCVso6Jrs_7Ggno93hEeqUMlSfGZ6JXcPCHxUDHQrHvuta1JScVxMkuKYmVFbE-CiuCtKVPDOpgYetvaFanwDgWqhpSrayRvivb8PSl-uDjHiHrjPzkwZx-0tCQ4a74naHsH3wR0aGOQahrE7rl0lFskOLoZ7spGS0kZ5O7grpIJlTyOiOn1VbH-2Z4d_El2CqZz7DHhY_FuZK2d1d5GBDXI_Ez2A6pupdgPXAPGoqf27zbn_6opKYlHLa5sa9DjkolqvUA0gZmQVxTxcJUnhgksTM5OABwOH6VXYRRiqGBouhZm5I6cGZ5qldPhsSCCaGOhs-l-x1k4dbKsBCHAhRAZi2m3MOBgSIVF30CYA-bZs9PmwQowSHqY7L3TRiWyt6bjvmelpNNwsQYuZi59rxlwBNfgEEm-TuAk0H3RjhZLr84gR24-ca0SBj2sShAr3g7mcaCM7c01Qis3ByLe0MqM6TV8cNttxxBT24-SnXF1DHTK_MZnEzldUJvYni6gGOiK0Iz5cmSgVUpwFMiE5zeVrOw08NzKkwpecoU
+Content-Length: 196
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en-US,en;q=0.9
+Sec-Ch-Ua: "Not-A.Brand";v="24", "Chromium";v="146"
+Sec-Ch-Ua-Mobile: ?0
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
+Accept: */*
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Origin: https://qa.gmsgetb.kpmglinkgo.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/PlanSubCodes
+Accept-Encoding: gzip, deflate, br
+Priority: u=1, i
 
-<html><head><title>Object moved</title></head><body>
-<h2>Object moved to <a href="https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/SiteException">here</a>.</h2>
-</body></html>
+__RequestVerificationToken=L8YCiDD5CSssmNy4rQlFiog1d8KfSkvnYLiU024Hw6z30yU1dy2yLcErMTptyrYL8WaEiYoYkLu1x0DSvdy4zAO-YNSeEV_f8HZwSs5rNBQ1&selectedId=Z4Ch0yAnmbDlDGA04ZcDopIjQ3sd0FOkMwZJ1L3n6aw%3D%3D
