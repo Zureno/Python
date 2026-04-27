@@ -1,21 +1,484 @@
-Assumption: Design Doc has been completed.
-Control/asvs.json enter controls.
-Add attributes
-Michael’s and/or Andrew feedback. UDCRM
-Add CWEs.
-Change dispatch and control config.py to “ENV”: “local”
-Dispatch / index.py
-Find an appci that has findings.?
-Change appci to identifier in handler.
-Notify UCAS teammates that you are running lambdas.
-Run and Debug Control/index.py (this puts into AWS control table)
-UDCRMRX Lambda (AWS) Run on AWS and make sure it completes before moving on to next step.
-Prescription lambda  (AWS) Run on AWS and make sure it completes before moving on to next step.
-Run Dispatch on local vs code.
- 
- 
-Pass:
-Ideally two different examples:
-Control is in eqa-validation-results-table contains ‘"passed":true’ then the control did NOT have any findings for those CWEs. Should NOT be in vipr table.
- 
-Control is in eqa-validation-results-table contains "fail" then the control DOES have findings for those CWEs. SHOULD BE in vipr table.
+GET /gettaxcalcbac/CalcTransactionHistory?calcTransactionId=4dj8L8KwiTI%2FXQsrr4K84bRDxR2YJwAgmx5sKn942cMVIQA%3D%3D HTTP/2
+Host: qa.gmsgetb.kpmglinkgo.com
+Cookie: TC-BAC-DEV=23t0osbrtdikxbkf0jjk2uye; TC-BAC-DEV-XSRF=4ec5e4277be140b1a1a95e6e1e9b21c5; __RequestVerificationToken_L2dldHRheGNhbGNiYWM1=Z4pc-Mj7X15uEQJH4ovEYZN_uwu-sjnI7_5EYtJY5DCweymKgIQWaW8ZqEpyvkB8wvzEIS_a43iPtgJMhNvegKRrnrFrS6gt8fOwzrMBPs41; .AspNet.Cookies=uXACV4phEPV0smyxYkhJECtJZqa7W9LphwbgtrabP-UPriruRzI3ZtHD0QQTWsgq0SQddqDg7rzpiHXPyuB7WL756p0Memj2BKKeSXdz238R1Q1DNETZrAuCMttMNPQWuF35wTDrSQG3RQCcgsgkSkFreoeWAGa4BDgkXpgWjXDLSJTPyd_Rg-Pb-rUymNEmeXrb7BXUBobvF8a_HEwtVph4Gwi7bAsWiSaiwbrrs7EZrt8QYX9UEMMTr42BJpFHETRAczNiQB6wktZoNIN-tETI3fydIDUSaDOi4LqNgiVQZnH_4jP11D4aZEp7gPKxXWvNsccy1soh9aBT_9ubsHUvrO-9YxwywhfIHQejL6VP7cn_b3VM6Wf08VpFqc7zq8AV5dBi0Yp40Dw6q13pvzI03BvILdBPfl8AMBBrHpfJBwG_3DWUStiFoZBpyHtYQOQ7zyqqX1VrW5Gx-n4mJHUr_sPXI3tj0_NJHSn61tsF6tXwKg3VpGbXM97f5ghGnZbS5ms6wnvQUQItv85VYL0Y1PC15Rv2kukO8esDJ2OO96PRvDyLFsxE5XlDVCS23nE0iTkS-fwUKpB8S465Rs_tUdhzsZvO748-gY5GKB3xHD-TL1-OjMPq3PHfDN0B_9uAX8_TynL4Y7EfEODVIqIsmATcZmYrz0JHaF0pyhsnLdBEBGcdlEjRNG8tsVuoYzz9ZhoYxLw13N8coXwrNfkf2XsTonKUsilEpdUc4Qye5hSHvgRMp5DbdUn9Nj2KnnMuRHDHVDldXP9nOenYhoVzSgxeifJhETyCzTg5kVmB3zLXf78NGt1ZxZscoJphu_1QQGMhHbfOkNXXXJF5zccy7oul2qSNcqYWkPMHawnQtmV24XPeIdXeLwoKgat35IW07XpnI3jPbBcgeVYL24Ob_Jp0I7A9tylBvtjWpLxuSqiBrBe6TnzLXvLbA5sZZdjTpGUZALkv85r-Xk1YG8y5FxJvKT55gfZXKGShtPshoMNrhYu9n7O8iVgd3qmFBsmQKbbrz2qfP2-UfduNimRlGNB-OuT8tQ44Cje1yhKoPdhiUXVDxVzxEHYwMjBM7Bo9_hvSJD4fUH7YHBv910zQdqBPLhwoOXU00otkVM2RegRv_umyTQjPWroHLbKG6Ml6Lbj6piWu766RV6PHavf1Isoikje7AoH2cDcZ97fQFWWMIp_WaeUz6G3mhEj3gyj_1PHSzI0YDLXrjyKxzDA6_kG4gwjZT_D2BxreuUnBeJJzs4-lgO5tt2sQAWIrQUg_3rk7ObM2Xsn8_jVEVpEgydPK8IzLWJUi5GjziVdx0WeWbFsDMkbxJmbmBYrdSrh6jL7CfzOMATNISpRxJ8pHDjED4BDHUpTlLhRjGHmNe32R7tmDZeV7rc3y17E3e2IIwlIhkRyMXLFNS2EbAK8RWUXryDIDhTlpJ8nC_NIJPfcu5uWVGybIcfJOJsNI415vc-Vw9dug3Fd_e6xgHyIDz9kUuZV4CqY-xIdiH1o
+Cache-Control: max-age=0
+Accept-Language: en-US,en;q=0.9
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Sec-Ch-Ua: "Not-A.Brand";v="24", "Chromium";v="146"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Referer: https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/CalcTransactions
+Accept-Encoding: gzip, deflate, br
+Priority: u=0, i
+
+GET /gettaxcalcbac/CalcTransactionHistory?calcTransactionId=4dj8L8KwiTI%2FXQsrr4K84bRDxR2YJwAgmx5sKn942cMVIQA%3D%3D HTTP/2
+Host: qa.gmsgetb.kpmglinkgo.com
+Cookie: TC-BAC-DEV=23t0osbrtdikxbkf0jjk2uye; TC-BAC-DEV-XSRF=4ec5e4277be140b1a1a95e6e1e9b21c5; __RequestVerificationToken_L2dldHRheGNhbGNiYWM1=Z4pc-Mj7X15uEQJH4ovEYZN_uwu-sjnI7_5EYtJY5DCweymKgIQWaW8ZqEpyvkB8wvzEIS_a43iPtgJMhNvegKRrnrFrS6gt8fOwzrMBPs41; .AspNet.Cookies=uXACV4phEPV0smyxYkhJECtJZqa7W9LphwbgtrabP-UPriruRzI3ZtHD0QQTWsgq0SQddqDg7rzpiHXPyuB7WL756p0Memj2BKKeSXdz238R1Q1DNETZrAuCMttMNPQWuF35wTDrSQG3RQCcgsgkSkFreoeWAGa4BDgkXpgWjXDLSJTPyd_Rg-Pb-rUymNEmeXrb7BXUBobvF8a_HEwtVph4Gwi7bAsWiSaiwbrrs7EZrt8QYX9UEMMTr42BJpFHETRAczNiQB6wktZoNIN-tETI3fydIDUSaDOi4LqNgiVQZnH_4jP11D4aZEp7gPKxXWvNsccy1soh9aBT_9ubsHUvrO-9YxwywhfIHQejL6VP7cn_b3VM6Wf08VpFqc7zq8AV5dBi0Yp40Dw6q13pvzI03BvILdBPfl8AMBBrHpfJBwG_3DWUStiFoZBpyHtYQOQ7zyqqX1VrW5Gx-n4mJHUr_sPXI3tj0_NJHSn61tsF6tXwKg3VpGbXM97f5ghGnZbS5ms6wnvQUQItv85VYL0Y1PC15Rv2kukO8esDJ2OO96PRvDyLFsxE5XlDVCS23nE0iTkS-fwUKpB8S465Rs_tUdhzsZvO748-gY5GKB3xHD-TL1-OjMPq3PHfDN0B_9uAX8_TynL4Y7EfEODVIqIsmATcZmYrz0JHaF0pyhsnLdBEBGcdlEjRNG8tsVuoYzz9ZhoYxLw13N8coXwrNfkf2XsTonKUsilEpdUc4Qye5hSHvgRMp5DbdUn9Nj2KnnMuRHDHVDldXP9nOenYhoVzSgxeifJhETyCzTg5kVmB3zLXf78NGt1ZxZscoJphu_1QQGMhHbfOkNXXXJF5zccy7oul2qSNcqYWkPMHawnQtmV24XPeIdXeLwoKgat35IW07XpnI3jPbBcgeVYL24Ob_Jp0I7A9tylBvtjWpLxuSqiBrBe6TnzLXvLbA5sZZdjTpGUZALkv85r-Xk1YG8y5FxJvKT55gfZXKGShtPshoMNrhYu9n7O8iVgd3qmFBsmQKbbrz2qfP2-UfduNimRlGNB-OuT8tQ44Cje1yhKoPdhiUXVDxVzxEHYwMjBM7Bo9_hvSJD4fUH7YHBv910zQdqBPLhwoOXU00otkVM2RegRv_umyTQjPWroHLbKG6Ml6Lbj6piWu766RV6PHavf1Isoikje7AoH2cDcZ97fQFWWMIp_WaeUz6G3mhEj3gyj_1PHSzI0YDLXrjyKxzDA6_kG4gwjZT_D2BxreuUnBeJJzs4-lgO5tt2sQAWIrQUg_3rk7ObM2Xsn8_jVEVpEgydPK8IzLWJUi5GjziVdx0WeWbFsDMkbxJmbmBYrdSrh6jL7CfzOMATNISpRxJ8pHDjED4BDHUpTlLhRjGHmNe32R7tmDZeV7rc3y17E3e2IIwlIhkRyMXLFNS2EbAK8RWUXryDIDhTlpJ8nC_NIJPfcu5uWVGybIcfJOJsNI415vc-Vw9dug3Fd_e6xgHyIDz9kUuZV4CqY-xIdiH1o
+Cache-Control: max-age=0
+Accept-Language: en-US,en;q=0.9
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Sec-Ch-Ua: "Not-A.Brand";v="24", "Chromium";v="146"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Referer: https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/CalcTransactions
+Accept-Encoding: gzip, deflate, br
+Priority: u=0, i
+
+
+
+HTTP/2 200 OK
+Date: Mon, 27 Apr 2026 13:19:53 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 25979
+Cache-Control: no-cache, no-store
+Expires: -1
+Pragma: no-cache
+Set-Cookie: TC-BAC-DEV-XSRF=4ec5e4277be140b1a1a95e6e1e9b21c5; path=/gettaxcalcbac; secure; HttpOnly
+Vary: Accept-Encoding
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+X-Frame-Options: SAMEORIGIN
+X-Frame-Options: DENY
+Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=' 'strict-dynamic'; style-src 'self' 'nonce-4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ='; img-src 'self'; report-uri /gettaxcalcbac/WebService/CspReport;
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Azure-Ref: 20260427T131953Z-169595b5c44rffgjhC1TEBygtg00000007ag0000000110xr
+X-Cache: CONFIG_NOCACHE
+Accept-Ranges: bytes
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9,EmulateIE10,EmulateIE11" />
+    <meta http-equiv="Page-Enter" content="RevealTrans(Duration=0, transition=0)" />
+    <meta http-equiv="Content-Type" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Pragma-directive" content="no-cache" />
+    <meta http-equiv="cache-directive" content="no-cache" />
+    <meta name="csp-nonce" content="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=">
+
+        <title>Calculation Versions</title>
+
+    <!-- Thrid Party Styles -->
+    <link type="text/css" rel="stylesheet" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" href="/gettaxcalcbac/styles/flags.css?v=1.1" />
+    <link type="text/css" rel="stylesheet" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" href="/gettaxcalcbac/styles/calendar-blue.css?v=3.355.202512191322" />
+    <link type="text/css" rel="stylesheet" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" href="/gettaxcalcbac/styles/fontawesome-pro-5.13.0-web/css/all.min.css" />
+    <link type="text/css" rel="stylesheet" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" href="/gettaxcalcbac/styles/fontawesome-pro-5.13.0-web/css/v4-shims.min.css" />
+    
+
+    <!-- Site Style -->
+    <link type="text/css" rel="stylesheet" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" href="/gettaxcalcbac/styles/site.css?v=3.355.202512191322" />
+
+    <!-- Third Party Scripts -->
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/knockout-3.5.1.js"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/knockout.validation.js?v=2.0.4"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/jquery-3.5.1.js"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/json2.js"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/calendar.js?v=3.355.202512191322"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/calendar-en.js"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/calendar-setup.js?v=3.355.202512191322"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/fingerprint2.js"></script>
+    
+
+    <!-- Site Scripts -->
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/navResizer.js?v=3.355.202512191322"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/backgroundtasks.js?v=3.355.202512191322"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/commonFunctions.js?v=3.355.202512191322"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/site.js?v=3.355.202512191322"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/popupWindow.js?v=3.355.202512191322"></script>
+    <!-- Common -->
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/views/help.js?v=3.355.202512191322"></script>
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/views/auditLog.js?v=3.355.202512191322"></script>
+
+    <!-- View Specific -->
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/views/adminVariable.js?v=3.355.202512191322"></script>
+
+    <!-- LJR what is this one? -->
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/locationUtils.js?v=3.355.202512191322"></script>
+
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=" src="/gettaxcalcbac/javascript/appMaster.js?v=3.355.202512191322"></script>
+
+    <!-- Global Variables -->
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=">
+        const rootUrl = "https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/";
+        const absolutePath = "/gettaxcalcbac/CalcTransactionHistory";
+        const clientId = "30";
+        var isOnfocus = false;
+        var allowEnter = false;
+    </script>
+</head>
+<body>
+    <div id="divMasterPopups">
+        <!-- User to view -->
+        <div class="popDivWin" id="popDivOverride">
+            <div class="popDivWinHead" id="popDivOverrideHead">
+                <div id="popDivOverrideHeadTitle"></div>
+                <div class="popDivWinHeadClose"></div>
+            </div>
+            <div class="popWinBody" id="popDivOverrideBody">
+                <div class="field">
+                    <div class="label">User Login</div>
+                    <div class="inputs">
+                        <input type="text" id="txtUserLogin" name="txtUserLogin" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="popDivWinFooter" id="popDivOverrideFooter">
+                <div class="popDivWinFooterButtons">
+                    <input class="PageButtonMedium" id="btnOverride" type="button" value="OK" name="btnOverride" />
+                    <input class="PageButtonPopDivClose" type="button" value="Cancel" />
+                </div>
+            </div>
+        </div>
+        <!--- Background Tasks -->
+        <div class="popDivWin" id="popDivTasks">
+            <div class="popDivWinHead" id="popDivTasksHead">
+                <div id="popDivTasksHeadTitle"></div>
+                <div class="popDivWinHeadClose"></div>
+            </div>
+            <div class="popWinBody" id="popDivTasksBody">
+                <img id="imgTasksWait" src="/gettaxcalcbac/images/loader.gif" />
+            </div>
+            <div class="popDivWinFooter" id="popDivTasksFooter">
+                <div class="popDivWinFooterButtons">
+                    <input class="PageButtonPopDivClose" type="button" value="Close" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="site">
+        <div class="navbar"><header class="layout-header group" role="banner"><img class='kpmgBannerLogo' title="KPMG LINK GET Tax Calculator - US QA BAC" src="https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/images/newKpmgTopBranding.png" /><div class="app-detail"><span class="app-name">KPMG LINK GET Tax Calculator</span><span class="app-environment">US QA BAC</span></div></header><nav role="navigation"><ul class="menu-main-menu"><li class="current"><a href="#" class='menuLinkPress' data-link='https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/CalcTransactions' data-menu='transactions/transactions/allAwards' data-additionalArgs=''>Transactions</a></li><li class=""><a href="#" class='menuLinkPress' data-link='https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/Home' data-menu='administration' data-additionalArgs=''>Client Admin</a></li><li class=""><a href="#" class='menuLinkPress' data-link='https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/Home' data-menu='globalSettings' data-additionalArgs=''>Global Settings</a></li><li class=""><a href="#" class='menuLinkPress' data-link='https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/Home' data-menu='system' data-additionalArgs=''>System Settings</a></li></ul></nav><div class="user-menu"><ul><li class="nav-dropdown"><a id="lblCurrentClient" href="#">Bank of America-Pen Testing<i class="whiteArrowDownIcon"></i></a><input type="text" placeholder="Start Typing..." id="clientSelectSearch" autocomplete="off" readonly class='hidden'><ul class="nav-dropdown-content client-dropdown"><li class="client-dropdown-separator">Active Clients</li><li data-client-id="FrBxD9MuA4EtNuH8ZF8HLjjjZjvaloVNRmccZc6UF" data-client-code="nc3k/RmVZvKnkpXtbngfBz6300aufAi8LsT5FptHlQ8khSP5e" class="pointer"><a>Bank of America-Pen Testing</a></li><li data-client-id="t3YpXJkuQMtZwFDsxtmXntaM+a57IAyTmIPD6Q/5+" data-client-code="91fLZXCdDg2s3iRrK9tS9jKB9GhPWYi1Rv9m+6et88a067N+E" class="pointer"><a>zE2E20260316</a></li></ul></li><li class="nav-dropdown get-id-drop-down"><a id='getIdSearchIcon' class="icon" title="GET ID quick search" href="#"><i class="fa fa-search fa-lg"></i></a><ul class="nav-dropdown-content"><li><select id="getClientIdSelect"><option value="" selected>Unknown</option><option value="ST3axZwFdVhfD2ptTSmSwHuuMmtmoBVHOk3l33l6s">Bank of America-Pen Testing</option><option value="sXcqcizRBeq6ngBDjsvdrRPPiwbj6mFDny2KvQKzl">zE2E20260316</option></select></li><li><span class="custom-textbox"><input type="text" id="getIdTextbox" class="get-id-txt" name="getIdTextbox" placeholder="GET Transaction ID"><a id='getIdSearch' href="#"><i class="arrow right"></i></a></span></li></ul></li><li><a id="backgroundTaskbtn" class="icon" href="#"><i id="tasksIcon" class="fa fa-cog fa-lg"></i></a></li><li><a class="icon" title="Home" href="https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/Home"><i class="fa fa-home fa-lg"></i></a></li><li><a class="icon" title="New Window" href="https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/Home" target="_blank"><i class="fa fa-clone fa-lg"></i></a></li><li class="nav-dropdown"><a href="#">Sudeep Dwivedi (PenTest)<i class="whiteArrowDownIcon"></i></a><ul class="nav-dropdown-content"><li><a class='logOut' href="#">Log Out</a></li></ul></li></ul></div></div>
+        <div id="body">
+
+            <div id="menu"><div id="collapsed-menu" class='hidden' title ="Show Menu"><i class="menuExpandIcon"></i></div><div id="expanded-menu"><div class="row"><div class="col-10"> <h1>Transactions</h1> </div><div class="col" id='expandedLeftMenu'><i class="menuCollapseIcon" title="Collapse Menu"></i></div></div><div class="menuHeader row" data-node='transactions'><div class="col-10">Transactions</div><div class="col"><i id="transactionsArrow" class="menuDownArrow"></i></div></div><div id="transactions" class="menu-content "><div class="menuItem openPage paddingLevelOne " data-url='https://qa.gmsgetb.kpmglinkgo.com/gettaxcalcbac/CalcTransactions/AllAwards' data-link-path='transactions/transactions/allAwards' data-arg=''>All Awards</div></div></div></div>
+            <div id="content" class="sideMenuWidthOpened">
+                <div id="content-detail">
+                    
+
+
+
+<div class="mainButtons">
+    <input class="PageButton js-refreshPage" id="btnRefresh" type="button" value="Refresh" name="btnRefresh" />
+    
+
+<input class="auditLogButton" name="auditLogButton" data-id="i4CagWGeLc4Bwe41Aij9ROk8q+3Gfl+EE/pigHnXh3HxawA==" type="button" value="Audit Log">
+    
+
+
+<i class="fa helpIcon helpButton" name="HELP-CalcTransactionHistory" data-help-key="HELP-CalcTransactionHistory" title="Help"></i>
+</div>
+
+<table id='layoutTable' class='layoutTable gutter-bot'><tr><td class='labelSmall'>GET Transaction Id:</td><td width="50px"> </td><td class='labelSmall'>355251</td></tr><tr><td class='labelSmall'>Client Transaction Code:</td><td width="50px"> </td><td class='labelSmall'>68042</td></tr><td class='labelSmall'>Employee:</td><td width="50px"> </td><td class='labelSmall'>Swamidasan, Chittaranjan (10162314)</td></tr></table>
+
+<table id="calcTranactionHistory-table" class="grdTable">
+    <thead>
+        <tr class="grdHead">
+            <th></th>
+            <th>Version Id</th>
+            <th>Time Processed</th>
+            <th>User</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Status</th>
+            <th>Transaction Note</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr class="tableRow">
+                <td class="iconCell">
+                    <a class='js-redirectToCalc' data-id="p+I3CjNy1LKI74OgsppU773BSL/7pGg/2zHmA5d/Eh7/78A==" data-target="540209">
+                        <i class='fa accessItemArrowIcon' alt='View Calc' title='View Calc'></i>
+                    </a>
+                </td>
+                <td>3</td>
+                <td>13-May-2025 09:59:05</td>
+                <td>1005</td>
+                <td>Maru (Pen Tester)</td>
+                <td>Himani</td>
+                <td>First Review</td>
+                <td>New version created from version 2 on first rerview</td>
+            </tr>
+            <tr class="tableRow">
+                <td class="iconCell">
+                    <a class='js-redirectToCalc' data-id="QFnN73semujOkZvr0Qcik0xoUC6Ku1DPbp9B5j+T+XlLL+w==" data-target="540208">
+                        <i class='fa accessItemArrowIcon' alt='View Calc' title='View Calc'></i>
+                    </a>
+                </td>
+                <td>2</td>
+                <td>13-May-2025 09:58:24</td>
+                <td>1005</td>
+                <td>Maru (Pen Tester)</td>
+                <td>Himani</td>
+                <td>Started</td>
+                <td>New version created from version 1 on first rerview</td>
+            </tr>
+            <tr class="tableRow">
+                <td class="iconCell">
+                    <a class='js-redirectToCalc' data-id="3O9dO8/VeRtOATsJt3Q23sHyIAx2Mjc9psAF8B2QuyCD+Ew==" data-target="537396">
+                        <i class='fa accessItemArrowIcon' alt='View Calc' title='View Calc'></i>
+                    </a>
+                </td>
+                <td>1</td>
+                <td>26-Jun-2015 14:16:51</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Completed and delivered</td>
+                <td></td>
+            </tr>
+    </tbody>
+</table>
+
+<form action="/gettaxcalcbac/CalcTransactionHistory/Refresh" id="frmRefresh" method="post"><input name="__RequestVerificationToken" type="hidden" value="T69lWiciO4_EAJt_eqMn4xOiL6Q9MMLWJ1yj2KyZbpXIYQPYcJ1K3Y1gdyFgCPirQRKzmWxZcnpb-GC26h3Bz2cpnZULufatMBG8ZAwTkY1cYJXgKNfF6Lz9O1YORcq8MYSOdnSWvwZ1JRzv0r9AdQ2" /><input id="CalcTransactionId" name="CalcTransactionId" type="hidden" value="4dj8L8KwiTI/XQsrr4K84bRDxR2YJwAgmx5sKn942cMVIQA==" /><input id="CalcTransactionsId" name="CalcTransactionsId" type="hidden" value="355251" /><input id="CalcTransactionHistories" name="CalcTransactionHistories" type="hidden" value="System.Collections.Generic.List`1[AetherSys.KPMG.TaxCalcModel.CalcTransactionHistory.CalcTransactionHistoryModel]" /></form>
+<form action="/gettaxcalcbac/CalcTransactionHistory" id="frmSelected" method="post" name="frmSelected"><input name="__RequestVerificationToken" type="hidden" value="ncPQE5zw0fRaeP4LdM96HD2z5qBalkuHe5WA6a9V5_P8F_h_MYt-jtpRRWNGXWLpOxv5cq_jFPOqK2AOuTM_ZV-6Ie3TpRT20uY_JYj5QfT3_wcS-QJ7lfVIoCzYlYMarLLTbda07sQEFW5tBZM-zg2" /><input id="CalcTransactionId" name="CalcTransactionId" type="hidden" value="4dj8L8KwiTI/XQsrr4K84bRDxR2YJwAgmx5sKn942cMVIQA==" /><input id="selectedId" name="selectedId" type="hidden" value="" /><input id="versionId" name="versionId" type="hidden" value="" /></form>
+<style nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=">
+    #calcTranactionHistory-table td:first-child {
+        width: 30px;
+    }
+
+    #calcTranactionHistory-table td:nth-child(2) {
+        width: 70px;
+    }
+
+    #calcTranactionHistory-table td:nth-child(3) {
+        width: 150px;
+    }
+
+    #calcTranactionHistory-table td:nth-child(4) {
+        width: 100px;
+    }
+
+    #calcTranactionHistory-table td:nth-child(5),
+    #calcTranactionHistory-table td:nth-child(6) {
+        width: 90px;
+    }
+
+    #calcTranactionHistory-table td:nth-child(7) {
+        width: 175px;
+    }
+
+    #calcTranactionHistory-table td:nth-child(8) {
+        width: 300px;
+    }
+</style>
+
+
+                    <div class="feedbackOuter">
+                        <div class="feedbackInner" id="feedbackInner">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div id="footer">
+                    <p>GET Tax Calc 3.355  (19 Dec 2025) : Page Load Time: 15.5859ms</p>
+                    <p>
+                        &copy;
+                        <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=">var theDate = new Date(); document.write(theDate.getFullYear());</script>
+                        KPMG International Cooperative ("KPMG International"), a Swiss entity. Member firms of the KPMG network of independent firms are affiliated with KPMG International.
+                        KPMG International provides no client services. No member firm has any authority to obligate or bind KPMG International or any other member firm vis-à-vis third parties,
+                        nor does KPMG International have any such authority to obligate or bind any member firm. All rights reserved.
+                        The KPMG name and logo are registered trademarks or trademarks of KPMG International.
+                    </p>
+                    <p>
+                        <a class="js-privacy-window">Privacy</a> | <a class="js-legal-window">Legal</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <form id="frmNAV" name="frmNAV" action="" method="post">
+        <input type="hidden" id="txtTreeViewSelection" name="txtTreeViewSelection" />
+        <input type="hidden" id="txtShowRSS" name="txtShowRSS" />
+        <input type="hidden" id="txtAdditionalArg" name="txtAdditionalArg" />
+        <input type="hidden" id="txtExpandedMenus" name="txtExpandedMenus" />
+        <input type="hidden" id="ctl00_txtPageKey" value="4ec5e4277be140b1a1a95e6e1e9b21c5">
+    </form>
+
+    <form id="quickSearchForm" name="quickSearchForm" action="/gettaxcalcbac/Home/QuickSearch" method="post">
+        <input type="hidden" id="quickSearchType" name="quickSearchType" />
+        <input type="hidden" id="quickSearchValue" name="quickSearchValue" />
+        <input type="hidden" id="quickSearchClientId" name="quickSearchClientId" />
+    </form>
+
+<form action="/gettaxcalcbac/ClientSelect/ViewClient" id="frmSwitchClient" method="post" name="frmSwitchClient"><input name="__RequestVerificationToken" type="hidden" value="n6btlyyDjRAjD5WsCMYBW1moGDKTubciXUlMU9R4GXiPRFvpuCI4RBf08XV1QHxs4tlw7GFKy4IzpRVJgvWX3wF0abv2dlbwABA_moNP48u7Y5IbKRVvR8gPq6pTKhxtiGZ54tM2WhZbmr3xKHgj-w2" />            <input type="hidden" class="js-switch-client-id" id="Client.id" name="Client.id" />
+            <input type="hidden" class="js-switch-client-code" id="Client.code" name="Client.code" />
+</form><form Id="logOutForm" Name="logOutForm" action="/gettaxcalcbac/LogOut" method="post"><input name="__RequestVerificationToken" type="hidden" value="14VjEz3788xw5F6SfvaLxttx5SYaPIK6bnDanivGeMIf9ndGw5PoBaXa8cXGpI43XPAGMqtxHuiSNVzJMl1344UEOL9r3OkTEQZphgO-nfoiNoF6DYEeEvSKgubuP3o5wTr3-QbukxeW9iaB-SP77Q2" /></form>
+    <form id="adminOverrideForm" name="adminOverrideForm">
+        <input type="hidden" id="userLogin" name="userLogin" />
+    </form>
+
+    <div id="timeoutMaster" class="hidden" data-id="4FON4ky2uekWkbjIV4PG1MZW91JqwZ5akME3A3NYb8tIJNDYmALytQvo9+SWlRJt3ZO3hUw==">
+        <div class="timeoutBackground"></div>
+        <div class="timeoutMessage">
+            <h1>Warning!</h1>
+            Your KPMG GET Tax Calculator session has been inactive and is about to expire.<br>
+            <br>
+            To continue working within KPMG GET Tax Calculator, please click Continue.<br>
+            <br>
+            <input type="button" value="Continue" class="PageButtonMedium js-reset-timeout">
+        </div>
+    </div>
+
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=">
+
+        $(document).ready(function () {
+            checkTimeout();
+            $(".js-reset-timeout").on('click', function () {
+                resetTimeout();
+            });
+            $(".js-privacy-window").on('click', function () {
+                window.open('https://kpmg.com/us/en/home/misc/privacy.html', '', 'toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1,width=550,height=500,screenX=0,screenY=0,left=100,top=100'); void ('');
+            });
+            $(".js-legal-window").on('click', function () {
+                window.open('http://www.us.kpmg.com/legal.html', '', 'toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1,width=550,height=500,screenX=0,screenY=0,left=100,top=100'); void ('');
+            });
+        });
+
+        function resetTimeout() {
+            $("#timeoutMaster").hide();
+            $.post(rootUrl + "session/keepalive", function (info) {
+                if (info.active == false || info.expiresIn <= 0) {
+                    logOut();
+                    return;
+                }
+                scheduleTimeout(info.expiresIn);
+            });
+        }
+
+        function checkTimeout() {
+            $.post(rootUrl + "session/info", { id: $("#timeoutMaster").attr("data-id") }, function (info) {
+                if (info.active == false || info.expiresIn <= 0) {
+                    logOut();
+                    return;
+                }
+                scheduleTimeout(info.expiresIn);
+            });
+        }
+
+        var timeoutTimer = 0;
+        function scheduleTimeout(expiresIn) {
+            clearTimeout(timeoutTimer);
+            if (expiresIn <= 120) {
+                $("#timeoutMaster").show();
+                timeoutTimer = setTimeout(checkTimeout, expiresIn * 1000);
+            } else {
+                $("#timeoutMaster").hide();
+                timeoutTimer = setTimeout(checkTimeout, (expiresIn - 120) * 1000);
+            }
+        }
+
+        function showSelectedSection(element) {
+            var sectionToShow = $(element).data("node");
+            var opening = $("#" + sectionToShow + "Arrow").hasClass("menuRightArrow") == true;
+            if (opening) {
+                $("#" + sectionToShow + "Arrow").removeClass().addClass("menuDownArrow");
+                $("#" + sectionToShow).css("display", "block");
+            }
+            else {
+                $("#" + sectionToShow + "Arrow").removeClass().addClass("menuRightArrow");
+                $("#" + sectionToShow).css("display", "none");
+
+            }
+        }
+
+    </script>
+
+    
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=">
+        const frm = document.getElementById("frmSelected");
+
+        $(document).ready(function () {
+            $('.js-redirectToCalc').on('click', function () { redirectToCalc(this); });
+            $('.js-refreshPage').on('click', function () { refreshPage(); });
+            $('.js-deleteItem').on('click', function () { deleteItem(this); });
+        });
+
+        function redirectToCalc(clickedElement) {
+            var id = $(clickedElement).data('id');
+            var target = $(clickedElement).data('target');
+            $("#selectedId").val(id);
+            frm.action = "/gettaxcalcbac/CalcTransactionHistory/GoToPage";
+            frm.target = "ViewCalc#" + target;
+            frm.submit();
+        }
+
+        function deleteItem(clickedElement) {
+            var histroyId = $(clickedElement).data('id');
+            var versionId = $(clickedElement).data('version-id');
+            if (confirm("Are you sure you want to delete this item?")) {
+                $("#selectedId").val(histroyId);
+                $("#versionId").val(versionId);
+                $("#CalcTransactionId").val(versionId);
+                frm.action = "/gettaxcalcbac/CalcTransactionHistory/Delete";
+                frm.method = "POST";
+                frm.submit();
+            }
+        }
+
+        function refreshPage() {
+            document.getElementById("frmRefresh").submit();
+        }
+
+    </script>
+
+
+    <script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=">
+        function handleSelectAll(event) {
+            var checking = event.target.checked;
+            if (checking === false) {
+                $(".selectAllCheckBox").prop("checked", false);
+                $(".selectAllCheckBox").prop("title", "Select all");
+            }
+            else if ($('.selectCheckBox:checked').length == $('.selectCheckBox').length) {
+                $(".selectAllCheckBox").prop("checked", true);
+                $(".selectAllCheckBox").prop("title", "Unselect all");
+            }
+        }
+
+        function genericSelectAll() {
+            var checked = $(".selectAllCheckBox").prop("checked");
+            $(".selectCheckBox").prop("checked", checked);
+            if (checked === true) {
+                $(".selectAllCheckBox").prop("title", "Unselect all");
+            }
+            else {
+                $(".selectAllCheckBox").prop("title", "Select all");
+            }
+            return checked;
+        }
+    </script>
+
+    
+<script type="text/javascript" nonce="4GHRLrG6u/zIkw7/uSP2F8k9gd3kpwACe3Xh5ch0pLQ=">
+    function showLoader() {
+        $("#pageLoader").show();
+    }
+    function hideLoader() {
+        $("#pageLoader").fadeOut();
+    }
+</script>
+<div id="pageLoader" class="hidden">
+    <div><img alt="Please Wait..." id="imgLoader" src="/gettaxcalcbac/images/loader.gif" /></div>
+</div>
+</body>
+</html>
