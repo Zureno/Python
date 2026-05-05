@@ -1,209 +1,156 @@
+"""
+akamaivalidator Lambda Handler
+
+Validates Akamai onboarding and coverage compliance using UCAS Debugger
+for method-level instrumentation and performance tracking.
+"""
+
 import json
-import boto3
+import os
+import time
 from datetime import datetime
-from botocore.exceptions import ClientError
 from logger import logger
-from ucas_debugger import UCASDebugger
+from ucas_debugger import UCASDebugger, Colors
+from input import extract_lambda_input
+from data import get_akamai_onboarding_compliance
+from validate import validate_akamai
+from output import build_result, write_result
 
-# Initialize UCAS Debugger
-ucas = UCASDebugger(logger)
-
-# ---------------------------------------------------------------------------
-# DynamoDB table for validation results
-# ---------------------------------------------------------------------------
-
-TABLE_NAME = "eqa-validation-results-table"
-dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
-table = dynamodb.Table(TABLE_NAME)
+# Initialize UCAS Debugger with auto-environment detection
+is_local = os.getenv('AWS_EXECUTION_ENV') is None
+ucas = UCASDebugger(logger, colored_output=is_local)
 
 
-# ---------------------------------------------------------------------------
-# Build the sort key:  control#[validator]
-# ---------------------------------------------------------------------------
-
-
-def build_sort_key(control: str, validator: dict) -> str:
-    return f"{control}#[{validator}]"
-
-
-
-# ---------------------------------------------------------------------------
-# Evidence message builders (akamai-specific)
-# ---------------------------------------------------------------------------
-
-
-def _build_evidence_message(identifier: str, criteria: list, passed: bool) -> str:
+def handler(event, context):
     """
-    Return a human-readable evidence string for the akamai validator.
-    Criteria determines the message variant: ["waf"], ["bot_manager"], or generic ["akamai"].
-    """
-    if criteria == ["waf"]:
-        if passed:
-            return f"This requirement has passed because AppCI {identifier} has been onboarded to Akamai."
-        return (
-            f"This requirement has failed because AppCI {identifier} has not been onboarded to Akamai. "
-            "To pass this requirement, please complete the HelpHub Akamai Support Request form for "
-            "onboarding support: https://united.service-now.com/hrportal?id=sc_cat_item_guide"
-            "&table=sc_cat_item&sys_id=2e3d3cf487893ad4a912eacd8bbb3528&searchTerm=akamai"
-        )
-
-    if criteria == ["bot_manager"]:
-        if passed:
-            return f"This requirement has passed because AppCI {identifier} is covered by Akamai Bot Manager."
-        return f"This requirement has failed because AppCI {identifier} is not covered by Akamai Bot Manager."
-
-    # Generic akamai criteria (e.g. ["akamai"])
-    if passed:
-        return "This requirement has passed; no action is required."
-    return (
-        f"This requirement has failed because AppCI {identifier} has not been onboarded to Akamai. "
-        "To pass this requirement, please complete the HelpHub Akamai Support Request form for "
-        "onboarding support: https://united.service-now.com/hrportal?id=sc_cat_item_guide"
-        "&table=sc_cat_item&sys_id=2e3d3cf487893ad4a912eacd8bbb3528&searchTerm=akamai"
-    )
-
-
-# ---------------------------------------------------------------------------
-# Build the standardised result dict
-# ---------------------------------------------------------------------------
-
-
-def build_result(identifier: str,control: str,validator: dict,result_data: bool,) -> dict:
-    """
-    Assemble the validation result dict matching the expected output schema:
-
-        {
-          "control":         str,
-          "passed":          bool,
-          "avit":            [],
-          "number":          int,    # count of passing validators (0 or 1)
-          "confidence":      str,
-          "validations":     [...],
-          "raw_evidence":    str,
-          "evidence":        str,
-          "finding_ids":     str,
-          "review_required": str
-        }
-    """
-    ucas.method_start(
-        "build_result",
-        identifier=identifier,
-        control=control,
-        validator_type=validator.get("type"),
-        passed=passed
-    )
+    Lambda handler for akamaivalidator.
     
-    criteria = validator.get("criteria", [])
-    status = "PASS" if passed else "FAIL"
-
-    # Single-validator validation entry
-    validation_entry = {
-        "type": validator.get("type", "akamai"),
-        "criteria": criteria,
-        "identifier": identifier,
-        "name": control,
-        "status": status,
-    }
-
-    # Raw evidence — matches monolith pattern
-    if passed:
-        raw_evidence = (
-            f"Validation of requirement {control} for AppCI {identifier} "
-            f"has passed because the following criteria passed: {criteria}"
-        )
-    else:
-        raw_evidence = (
-            f"Validation of requirement {control} for AppCI {identifier} "
-            f"has failed because the following criteria failed: {criteria}"
-        )
-
-    # Human-readable evidence
-    evidence = _build_evidence_message(identifier, criteria, passed)
-
-    # Truncate if exceeding ServiceNow 4000-char limit
-    if len(evidence) > 4000:
-        evidence = evidence[:3997] + "..."
-        ucas.log_metrics(evidence_truncated=True, original_length=len(evidence))
-
-    result = {
-        "control": control,
-        "passed": passed,
-        "avit": [],
-        "number": 1 if passed else 0,
-        "confidence": "",  # single validator type → "low"
-        "validations": [validation_entry],
-        "raw_evidence": raw_evidence,
-        "evidence": evidence,
-        "finding_ids": "",
-        "review_required": "No",
-    }
-    
-    ucas.method_stop(
-        "build_result",
-        result_size=len(json.dumps(result)),
-        evidence_length=len(evidence)
-    )
-
-    return result
-
-
-# ---------------------------------------------------------------------------
-# Write result to DynamoDB
-# ---------------------------------------------------------------------------
-
-
-def write_result(identifier: str, control: str, validator: dict, result: dict) -> str:
+    Args:
+        event: Lambda event containing identifier, control, and validator config
+            Example:
+            {
+                "identifier": "BFM",
+                "control": "CDR-NSS3.4.2 - App01",
+                "validator": {
+                    "type": "akamai",
+                    "criteria": ["akamai"]
+                }
+            }
+        context: Lambda context object
+        
+    Returns:
+        dict: Validation result with status, evidence, and metadata
     """
-    Persist the validation result to eqa-validation-results-table.
-
-    Key schema:
-        PK  = identifier  (AppCI)
-        SK  = control#[validator]
-    """
-    ucas.method_start(
-        "write_result",
-        identifier=identifier,
-        control=control,
-        table_name=TABLE_NAME
-    )
+    # Start tracking handler execution
+    request_id = context.request_id if context else "local"
+    function_name = context.function_name if context else "local"
+    ucas.method_start("handler", request_id=request_id, function_name=function_name)
     
-    sort_key = build_sort_key(control, validator)
-    current_date = datetime.now().strftime("%m/%d/%Y")
-
     try:
-        table.update_item(
-            Key={
-                "identifier": identifier,
-                "control#validator": sort_key,
-            },
-            UpdateExpression="SET #res = :res, last_processed = :date",
-            ExpressionAttributeNames={"#res": "result"},
-            ExpressionAttributeValues={
-                ":res": json.dumps(result),
-                ":date": current_date,
-            },
-            ReturnValues="UPDATED_NEW",
-        )
-        msg = f"Successfully updated results for identifier={identifier}, sort_key={sort_key}"
-        logger.info(msg)
+        # Extract input parameters directly from event to avoid unpacking issues
+        identifier = event.get('identifier')
+        control = event.get('control')
+        validator = event.get('validator', {})
         
+        # Extract validator components for logging
+        validator_type = validator.get('type')
+        criteria = validator.get('criteria', [])
+        
+        # Log key parameters
+        ucas.log_metrics(
+            identifier=identifier,
+            control=control,
+            validator_type=validator_type,
+            criteria=criteria
+        )
+        
+        # Step 1: Get Akamai compliance data from Athena
+        result_data = get_akamai_onboarding_compliance(identifier)
+        
+        # Step 2: Validate against criteria
+        # Passes: validator dict, result_data list
+        # Returns: True/False
+        validation_passed = validate_akamai(validator, result_data)
+        
+        # Step 3: Build result object
+        # Passes: identifier, control, validator dict, passed boolean
+        # Returns: complete result dict
+        result = build_result(identifier, control, validator, validation_passed)
+        
+        # Step 4: Write result to DynamoDB
+        # Passes: identifier, control, validator dict, result dict
+        # Returns: success message
+        write_result(identifier, control, validator, result)
+        
+        # Log final status
         ucas.method_stop(
-            "write_result",
-            write_status="SUCCESS",
-            sort_key=sort_key
+            "handler",
+            final_status="PASS" if validation_passed else "FAIL",
+            result_size=len(json.dumps(result))
         )
         
-        return msg
+        return result
+        
+    except Exception as e:
+        # Print red error message (local only)
+        ucas.print_error(e)
+        
+        # Log error to CloudWatch
+        logger.error(f"Error in handler: {str(e)}", exc_info=True)
+        
+        # Stop method tracking with error info
+        ucas.method_stop(
+            "handler",
+            final_status="ERROR",
+            error_type=type(e).__name__,
+            error_message=str(e)
+        )
+        
+        # Re-raise to Lambda runtime
+        raise
 
-    except ClientError as e:
-        error_msg = f"Error updating validator result: {e.response['Error']['Message']}"
-        logger.error(error_msg)
-        
-        ucas.method_stop(
-            "write_result",
-            write_status="FAILED",
-            error_type="ClientError",
-            error_message=error_msg
-        )
-        
-        raise ValueError(error_msg) from e
+
+if __name__ == "__main__":
+    """
+    Local testing with dynamic performance analysis.
+    Demonstrates UCAS Debugger with colored output and performance breakdown.
+    """
+    # Test event matching Lambda input format
+    test_event = {
+        "identifier": "BFM",
+        "control": "CDR-NSS3.4.2 - App01",
+        "validator": {
+            "type": "akamai",
+            "criteria": ["akamai"]
+        }
+    }
+
+    # Print demo header
+    print(f"\n{Colors.HEADER}{Colors.BOLD}{'='*70}{Colors.END}")
+    print(f"{Colors.HEADER}{Colors.BOLD}  🔍 UCAS Debugger - akamaivalidator Demo{Colors.END}")
+    print(f"{Colors.HEADER}{Colors.BOLD}  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}{Colors.END}")
+    print(f"{Colors.HEADER}{Colors.BOLD}{'='*70}{Colors.END}\n")
+    
+    # Execute validation with timing
+    start_time = time.time()
+    result = handler(test_event, None)
+    total_duration = (time.time() - start_time) * 1000
+    
+    # Print validation summary
+    status = "✓ PASS" if result['passed'] else "✗ FAIL"
+    status_color = Colors.PASS if result['passed'] else Colors.ERROR
+    
+    print(f"\n{Colors.HEADER}{Colors.BOLD}{'='*70}{Colors.END}")
+    print(f"{status_color}{Colors.BOLD}{status}{Colors.END} | {test_event['identifier']} | {result['control']}")
+    print(f"{Colors.HEADER}{Colors.BOLD}{'='*70}{Colors.END}\n")
+    
+    # Print dynamic performance breakdown with visual bars
+    ucas.print_performance_summary(total_duration)
+    
+    # Print bottleneck alert if detected
+    ucas.print_bottleneck_alert()
+    
+    # Print full result JSON (optional - comment out if too verbose)
+    print(f"{Colors.CYAN}Full Validation Result:{Colors.END}")
+    print(json.dumps(result, indent=2))
+    print()
