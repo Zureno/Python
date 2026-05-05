@@ -1,3 +1,7 @@
+import json
+import boto3
+from datetime import datetime
+from botocore.exceptions import ClientError
 from logger import logger
 from ucas_debugger import UCASDebugger
 
@@ -5,47 +9,201 @@ from ucas_debugger import UCASDebugger
 ucas = UCASDebugger(logger)
 
 # ---------------------------------------------------------------------------
-# Akamai validation — compare collected data against validator criteria
+# DynamoDB table for validation results
+# ---------------------------------------------------------------------------
+
+TABLE_NAME = "eqa-validation-results-table"
+dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
+table = dynamodb.Table(TABLE_NAME)
+
+
+# ---------------------------------------------------------------------------
+# Build the sort key:  control#[validator]
 # ---------------------------------------------------------------------------
 
 
-def validate_akamai(validator: dict, akamai_data: list[str]) -> bool:
+def build_sort_key(control: str, validator: dict) -> str:
+    return f"{control}#[{validator}]"
+
+
+
+# ---------------------------------------------------------------------------
+# Evidence message builders (akamai-specific)
+# ---------------------------------------------------------------------------
+
+
+def _build_evidence_message(identifier: str, criteria: list, passed: bool) -> str:
     """
-    Determine whether the Akamai validator passes or fails.
+    Return a human-readable evidence string for the akamai validator.
+    Criteria determines the message variant: ["waf"], ["bot_manager"], or generic ["akamai"].
+    """
+    if criteria == ["waf"]:
+        if passed:
+            return f"This requirement has passed because AppCI {identifier} has been onboarded to Akamai."
+        return (
+            f"This requirement has failed because AppCI {identifier} has not been onboarded to Akamai. "
+            "To pass this requirement, please complete the HelpHub Akamai Support Request form for "
+            "onboarding support: https://united.service-now.com/hrportal?id=sc_cat_item_guide"
+            "&table=sc_cat_item&sys_id=2e3d3cf487893ad4a912eacd8bbb3528&searchTerm=akamai"
+        )
 
-    Args:
-        validator:   The validator definition dict, e.g.
-                     {"type": "akamai", "criteria": ["akamai"]}
-        akamai_data: List returned by data.get_akamai_onboarding_compliance(),
-                     e.g. ["akamai"] on compliance or [] on non-compliance.
+    if criteria == ["bot_manager"]:
+        if passed:
+            return f"This requirement has passed because AppCI {identifier} is covered by Akamai Bot Manager."
+        return f"This requirement has failed because AppCI {identifier} is not covered by Akamai Bot Manager."
 
-    Returns:
-        True  → PASS
-        False → FAIL
+    # Generic akamai criteria (e.g. ["akamai"])
+    if passed:
+        return "This requirement has passed; no action is required."
+    return (
+        f"This requirement has failed because AppCI {identifier} has not been onboarded to Akamai. "
+        "To pass this requirement, please complete the HelpHub Akamai Support Request form for "
+        "onboarding support: https://united.service-now.com/hrportal?id=sc_cat_item_guide"
+        "&table=sc_cat_item&sys_id=2e3d3cf487893ad4a912eacd8bbb3528&searchTerm=akamai"
+    )
+
+
+# ---------------------------------------------------------------------------
+# Build the standardised result dict
+# ---------------------------------------------------------------------------
+
+
+def build_result(identifier: str,control: str,validator: dict,result_data: bool,) -> dict:
+    """
+    Assemble the validation result dict matching the expected output schema:
+
+        {
+          "control":         str,
+          "passed":          bool,
+          "avit":            [],
+          "number":          int,    # count of passing validators (0 or 1)
+          "confidence":      str,
+          "validations":     [...],
+          "raw_evidence":    str,
+          "evidence":        str,
+          "finding_ids":     str,
+          "review_required": str
+        }
     """
     ucas.method_start(
-        "validate_akamai",
+        "build_result",
+        identifier=identifier,
+        control=control,
         validator_type=validator.get("type"),
-        criteria=validator.get("criteria"),
-        data_received=akamai_data
+        passed=passed
     )
     
     criteria = validator.get("criteria", [])
+    status = "PASS" if passed else "FAIL"
 
-    for result in akamai_data:
-        if result == "akamai" and criteria == ["akamai"]:
-            logger.info("Akamai validation PASSED — criteria matched")
-            ucas.method_stop(
-                "validate_akamai",
-                validation_result="PASS",
-                criteria_matched=True
-            )
-            return True
+    # Single-validator validation entry
+    validation_entry = {
+        "type": validator.get("type", "akamai"),
+        "criteria": criteria,
+        "identifier": identifier,
+        "name": control,
+        "status": status,
+    }
 
-    logger.info("Akamai validation FAILED — criteria not met")
+    # Raw evidence — matches monolith pattern
+    if passed:
+        raw_evidence = (
+            f"Validation of requirement {control} for AppCI {identifier} "
+            f"has passed because the following criteria passed: {criteria}"
+        )
+    else:
+        raw_evidence = (
+            f"Validation of requirement {control} for AppCI {identifier} "
+            f"has failed because the following criteria failed: {criteria}"
+        )
+
+    # Human-readable evidence
+    evidence = _build_evidence_message(identifier, criteria, passed)
+
+    # Truncate if exceeding ServiceNow 4000-char limit
+    if len(evidence) > 4000:
+        evidence = evidence[:3997] + "..."
+        ucas.log_metrics(evidence_truncated=True, original_length=len(evidence))
+
+    result = {
+        "control": control,
+        "passed": passed,
+        "avit": [],
+        "number": 1 if passed else 0,
+        "confidence": "",  # single validator type → "low"
+        "validations": [validation_entry],
+        "raw_evidence": raw_evidence,
+        "evidence": evidence,
+        "finding_ids": "",
+        "review_required": "No",
+    }
+    
     ucas.method_stop(
-        "validate_akamai",
-        validation_result="FAIL",
-        criteria_matched=False
+        "build_result",
+        result_size=len(json.dumps(result)),
+        evidence_length=len(evidence)
     )
-    return False
+
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Write result to DynamoDB
+# ---------------------------------------------------------------------------
+
+
+def write_result(identifier: str, control: str, validator: dict, result: dict) -> str:
+    """
+    Persist the validation result to eqa-validation-results-table.
+
+    Key schema:
+        PK  = identifier  (AppCI)
+        SK  = control#[validator]
+    """
+    ucas.method_start(
+        "write_result",
+        identifier=identifier,
+        control=control,
+        table_name=TABLE_NAME
+    )
+    
+    sort_key = build_sort_key(control, validator)
+    current_date = datetime.now().strftime("%m/%d/%Y")
+
+    try:
+        table.update_item(
+            Key={
+                "identifier": identifier,
+                "control#validator": sort_key,
+            },
+            UpdateExpression="SET #res = :res, last_processed = :date",
+            ExpressionAttributeNames={"#res": "result"},
+            ExpressionAttributeValues={
+                ":res": json.dumps(result),
+                ":date": current_date,
+            },
+            ReturnValues="UPDATED_NEW",
+        )
+        msg = f"Successfully updated results for identifier={identifier}, sort_key={sort_key}"
+        logger.info(msg)
+        
+        ucas.method_stop(
+            "write_result",
+            write_status="SUCCESS",
+            sort_key=sort_key
+        )
+        
+        return msg
+
+    except ClientError as e:
+        error_msg = f"Error updating validator result: {e.response['Error']['Message']}"
+        logger.error(error_msg)
+        
+        ucas.method_stop(
+            "write_result",
+            write_status="FAILED",
+            error_type="ClientError",
+            error_message=error_msg
+        )
+        
+        raise ValueError(error_msg) from e
