@@ -1,3 +1,51 @@
-File "/Users/v196361/Documents/GitHub/eqa.udcrm-control-automation/src/ucas_akamai/production/akamaivalidator/index.py", line 17, in <module>
-    ucas = UCASDebugger(logger, colored_output=True)
-TypeError: UCASDebugger.__init__() got an unexpected keyword argument 'colored_output'
+from logger import logger
+from ucas_debugger import UCASDebugger
+
+# Initialize UCAS Debugger
+ucas = UCASDebugger(logger)
+
+# ---------------------------------------------------------------------------
+# Akamai validation — compare collected data against validator criteria
+# ---------------------------------------------------------------------------
+
+
+def validate_akamai(validator: dict, akamai_data: list[str]) -> bool:
+    """
+    Determine whether the Akamai validator passes or fails.
+
+    Args:
+        validator:   The validator definition dict, e.g.
+                     {"type": "akamai", "criteria": ["akamai"]}
+        akamai_data: List returned by data.get_akamai_onboarding_compliance(),
+                     e.g. ["akamai"] on compliance or [] on non-compliance.
+
+    Returns:
+        True  → PASS
+        False → FAIL
+    """
+    ucas.method_start(
+        "validate_akamai",
+        validator_type=validator.get("type"),
+        criteria=validator.get("criteria"),
+        data_received=akamai_data
+    )
+    
+    criteria = validator.get("criteria", [])
+
+    for result in akamai_data:
+        if result == "akamai" and criteria == ["akamai"]:
+            logger.info("Akamai validation PASSED — criteria matched")
+            ucas.method_stop(
+                "validate_akamai",
+                validation_result="PASS",
+                criteria_matched=True
+            )
+            return True
+
+    logger.info("Akamai validation FAILED — criteria not met")
+    ucas.method_stop(
+        "validate_akamai",
+        validation_result="FAIL",
+        criteria_matched=False
+    )
+    return False
