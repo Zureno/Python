@@ -1,19 +1,26 @@
 from aws_lambda_powertools import Logger
 import os
 import logging
+import sys
 
 # Detect environment
 is_local = os.getenv('AWS_EXECUTION_ENV') is None
 
 if is_local:
-    # Completely suppress logger output locally
-    # Only UCAS colored output will show
-    logger = Logger(service="akamaivalidator-lambda", level="CRITICAL")
+    # Create a null handler that discards everything
+    class NullHandler(logging.Handler):
+        def emit(self, record):
+            pass
     
-    # Also suppress boto3/botocore logs
-    logging.getLogger('boto3').setLevel(logging.CRITICAL)
-    logging.getLogger('botocore').setLevel(logging.CRITICAL)
-    logging.getLogger('urllib3').setLevel(logging.CRITICAL)
+    # Configure logger to discard all output
+    logger = Logger(service="akamaivalidator-lambda", level="CRITICAL")
+    logger.addHandler(NullHandler())
+    logger.propagate = False
+    
+    # Suppress all AWS SDK logs
+    for name in ['boto3', 'botocore', 'urllib3', 's3transfer']:
+        logging.getLogger(name).setLevel(logging.CRITICAL)
+        logging.getLogger(name).addHandler(NullHandler())
 else:
     # In Lambda: full logging
     logger = Logger(service="akamaivalidator-lambda", level="INFO")
