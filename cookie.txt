@@ -1,5 +1,429 @@
-Does the application have Remote Connectivity?
-Can the software send and receive messages of any kind?
-Can File Transfers of any kind take place within the application?
-Is there any Cloud Storage feature?
-Can the software send data to any third parties?
+"""
+ucas_debugger.py - Universal UCAS Debugger with Execution Modes
+
+Features:
+- Multiple execution modes: PRODUCTION, DEBUG, VERBOSE
+- DynamoDB configuration (no code changes to toggle)
+- Verbose logging (queries, responses, raw data)
+- Mode-aware output (prevents S3 bloat)
+- Environment detection (local vs Lambda)
+- Universal/reusable across all validators
+
+Version: 2.0 (Enhanced with team feedback)
+"""
+
+import time
+import os
+import json
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, Any, Optional
+from enum import Enum
+import boto3
+from botocore.exceptions import ClientError
+
+
+class ExecutionMode(Enum):
+    """Execution modes for UCAS debugger."""
+    PRODUCTION = "PRODUCTION"  # Minimal logging
+    DEBUG = "DEBUG"            # Standard UCAS output (current)
+    VERBOSE = "VERBOSE"        # Super detailed (queries, responses, raw data)
+    
+    @classmethod
+    def from_string(cls, mode_str: str):
+        """Convert string to ExecutionMode enum."""
+        try:
+            return cls[mode_str.upper()]
+        except KeyError:
+            return cls.DEBUG  # Default to DEBUG
+
+
+class Colors:
+    """ANSI color codes for terminal output."""
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    ERROR = '\033[91m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    END = '\033[0m'
+    PASS = '\033[92m'
+    
+    @staticmethod
+    def get_method_color(method_name: str) -> str:
+        """Get color based on method name."""
+        if method_name == "handler":
+            return Colors.HEADER
+        return Colors.OKCYAN
+
+
+class UCASConfig:
+    """Configuration manager for UCAS - reads from DynamoDB."""
+    
+    def __init__(self, validator_name: str, logger):
+        self.validator_name = validator_name
+        self.logger = logger
+        self.dynamodb = boto3.client('dynamodb', region_name='us-east-1')
+        self.config_table = os.getenv('UCAS_CONFIG_TABLE', 'eqa-ucas-config')
+        self.cache_ttl = 300  # 5 minutes cache
+        self.last_fetch = None
+        self.cached_config = None
+        
+    def get_config(self) -> Dict[str, Any]:
+        """Get UCAS configuration from DynamoDB with caching."""
+        # Check cache first
+        if self.cached_config and self.last_fetch:
+            if (time.time() - self.last_fetch) < self.cache_ttl:
+                return self.cached_config
+        
+        # Fetch from DynamoDB
+        try:
+            response = self.dynamodb.get_item(
+                TableName=self.config_table,
+                Key={'validator': {'S': self.validator_name}}
+            )
+            
+            if 'Item' in response:
+                config = {
+                    'execution_mode': response['Item'].get('execution_mode', {}).get('S', 'DEBUG'),
+                    'enable_query_logging': response['Item'].get('enable_query_logging', {}).get('BOOL', False),
+                    'enable_response_logging': response['Item'].get('enable_response_logging', {}).get('BOOL', False),
+                    'enable_raw_data_logging': response['Item'].get('enable_raw_data_logging', {}).get('BOOL', False),
+                    'max_response_size': int(response['Item'].get('max_response_size', {}).get('N', '5000')),
+                }
+                
+                self.cached_config = config
+                self.last_fetch = time.time()
+                return config
+            else:
+                # No config found, use defaults
+                return self._get_default_config()
+                
+        except ClientError as e:
+            self.logger.warning(f"Failed to fetch UCAS config from DynamoDB: {e}")
+            return self._get_default_config()
+        except Exception as e:
+            self.logger.warning(f"Unexpected error fetching UCAS config: {e}")
+            return self._get_default_config()
+    
+    def _get_default_config(self) -> Dict[str, Any]:
+        """Get default configuration."""
+        # Check environment variables first
+        env_mode = os.getenv('UCAS_EXECUTION_MODE', 'DEBUG')
+        
+        return {
+            'execution_mode': env_mode,
+            'enable_query_logging': os.getenv('UCAS_ENABLE_QUERY_LOGGING', 'false').lower() == 'true',
+            'enable_response_logging': os.getenv('UCAS_ENABLE_RESPONSE_LOGGING', 'false').lower() == 'true',
+            'enable_raw_data_logging': os.getenv('UCAS_ENABLE_RAW_DATA_LOGGING', 'false').lower() == 'true',
+            'max_response_size': int(os.getenv('UCAS_MAX_RESPONSE_SIZE', '5000')),
+        }
+
+
+class UCASDebugger:
+    """
+    Universal Control Automation System (UCAS) Debugger - Enhanced Version
+    
+    Provides method-level execution tracking with multiple execution modes:
+    - PRODUCTION: Minimal logging (errors only)
+    - DEBUG: Standard output with timing (current behavior)
+    - VERBOSE: Super detailed with queries, responses, raw data
+    """
+    
+    def __init__(self, logger_instance, colored_output: bool = False, validator_name: str = None):
+        """
+        Initialize UCAS Debugger.
+        
+        Args:
+            logger_instance: AWS Lambda Powertools logger
+            colored_output: True for local (colored), False for Lambda (plain text)
+            validator_name: Name of validator for config lookup (e.g., 'akamaivalidator')
+        """
+        self.logger = logger_instance
+        self.colored_output = colored_output
+        self.validator_name = validator_name or 'unknown'
+        
+        # Load configuration
+        self.config_manager = UCASConfig(self.validator_name, logger_instance)
+        self.config = self.config_manager.get_config()
+        self.execution_mode = ExecutionMode.from_string(self.config['execution_mode'])
+        
+        # Tracking variables
+        self.start_times = {}  # Per-method start times
+        self.method_name = None
+        self.durations = {}
+        self.method_calls = {}
+        self.alerts = []
+        
+        # Verbose data storage
+        self.method_data = {}  # Store queries, responses, etc.
+        
+        # Log configuration on startup (DEBUG or VERBOSE only)
+        if self.execution_mode != ExecutionMode.PRODUCTION:
+            self._log_config()
+    
+    def _log_config(self):
+        """Log UCAS configuration (DEBUG/VERBOSE modes only)."""
+        config_msg = f"UCAS Configuration: mode={self.execution_mode.value}, validator={self.validator_name}"
+        if self.colored_output:
+            print(f"{Colors.HEADER}{config_msg}{Colors.END}")
+        else:
+            self.logger.info(config_msg)
+    
+    def _should_log(self, level: str = "DEBUG") -> bool:
+        """Check if we should log based on execution mode."""
+        if level == "ERROR":
+            return True  # Always log errors
+        if self.execution_mode == ExecutionMode.PRODUCTION:
+            return False  # Production: errors only
+        if self.execution_mode == ExecutionMode.DEBUG:
+            return level != "VERBOSE"  # DEBUG: skip verbose
+        return True  # VERBOSE: log everything
+    
+    def _format_data(self, data: Any, max_length: int = None) -> str:
+        """Format data for logging (truncate if needed)."""
+        if max_length is None:
+            max_length = self.config.get('max_response_size', 5000)
+        
+        if isinstance(data, (dict, list)):
+            json_str = json.dumps(data, indent=2)
+            if len(json_str) > max_length:
+                return json_str[:max_length] + f"... [truncated, total: {len(json_str)} chars]"
+            return json_str
+        else:
+            str_data = str(data)
+            if len(str_data) > max_length:
+                return str_data[:max_length] + f"... [truncated, total: {len(str_data)} chars]"
+            return str_data
+    
+    def _color_print(self, color: str, message: str):
+        """Print with color (terminal only)."""
+        print(f"{color}{message}{Colors.END}")
+    
+    def method_start(self, method_name: str, **parameters):
+        """
+        Log the start of a method execution.
+        
+        Args:
+            method_name: Name of the method
+            **parameters: Key-value pairs to log (e.g., identifier="BFM")
+        """
+        if not self._should_log():
+            return
+        
+        self.start_times[method_name] = time.time()
+        self.method_name = method_name
+        self.method_calls[method_name] = self.method_calls.get(method_name, 0) + 1
+        
+        # Initialize storage for this method
+        self.method_data[method_name] = {'parameters': parameters}
+        
+        # Format parameters
+        params_str = ", ".join(f"{k}={v}" for k, v in parameters.items())
+        
+        # Determine symbol and color
+        if method_name == "handler":
+            symbol = "►"
+            color = Colors.HEADER + Colors.BOLD
+        else:
+            symbol = "  ►"
+            color = Colors.OKCYAN
+        
+        # Log
+        if self.colored_output:
+            if params_str:
+                self._color_print(color, f"{symbol} START: {method_name} ({params_str})")
+            else:
+                self._color_print(color, f"{symbol} START: {method_name}")
+        else:
+            if params_str:
+                self.logger.info(f"{symbol} START: {method_name} ({params_str})")
+            else:
+                self.logger.info(f"{symbol} START: {method_name}")
+    
+    def log_query(self, method_name: str, query: str, query_type: str = "SQL"):
+        """
+        Log a query (SQL, API call, etc.) in VERBOSE mode.
+        
+        Args:
+            method_name: Name of the method executing the query
+            query: The actual query/request
+            query_type: Type of query (SQL, API, HTTP, etc.)
+        """
+        if not self._should_log("VERBOSE"):
+            return
+        
+        if not self.config.get('enable_query_logging', False):
+            return
+        
+        # Store query
+        if method_name not in self.method_data:
+            self.method_data[method_name] = {}
+        self.method_data[method_name]['query'] = query
+        self.method_data[method_name]['query_type'] = query_type
+        
+        # Log query
+        formatted_query = self._format_data(query, max_length=2000)
+        
+        if self.colored_output:
+            self._color_print(Colors.WARNING, f"  📝 {query_type} Query:")
+            print(f"  {formatted_query}")
+        else:
+            self.logger.info(f"  📝 {query_type} Query: {formatted_query}")
+    
+    def log_response(self, method_name: str, response: Any, response_type: str = "Data"):
+        """
+        Log a response/result in VERBOSE mode.
+        
+        Args:
+            method_name: Name of the method that got the response
+            response: The actual response data
+            response_type: Type of response (Data, API Response, etc.)
+        """
+        if not self._should_log("VERBOSE"):
+            return
+        
+        if not self.config.get('enable_response_logging', False):
+            return
+        
+        # Store response
+        if method_name not in self.method_data:
+            self.method_data[method_name] = {}
+        self.method_data[method_name]['response'] = response
+        self.method_data[method_name]['response_type'] = response_type
+        
+        # Log response
+        formatted_response = self._format_data(response)
+        
+        if self.colored_output:
+            self._color_print(Colors.OKGREEN, f"  📦 {response_type} Response:")
+            print(f"  {formatted_response}")
+        else:
+            self.logger.info(f"  📦 {response_type} Response: {formatted_response}")
+    
+    def log_raw_data(self, method_name: str, data: Any, label: str = "Raw Data"):
+        """
+        Log raw data in VERBOSE mode.
+        
+        Args:
+            method_name: Name of the method
+            data: The raw data
+            label: Label for the data
+        """
+        if not self._should_log("VERBOSE"):
+            return
+        
+        if not self.config.get('enable_raw_data_logging', False):
+            return
+        
+        formatted_data = self._format_data(data)
+        
+        if self.colored_output:
+            self._color_print(Colors.OKCYAN, f"  🔍 {label}:")
+            print(f"  {formatted_data}")
+        else:
+            self.logger.info(f"  🔍 {label}: {formatted_data}")
+    
+    def method_stop(self, method_name: str, **metrics):
+        """
+        Log the completion of a method execution.
+        
+        Args:
+            method_name: Name of the method
+            **metrics: Key-value pairs to log (e.g., record_count=1, validation_result="PASS")
+        """
+        if not self._should_log():
+            # In PRODUCTION mode, only log if there's an error
+            if 'error_type' not in metrics:
+                return
+        
+        # Calculate duration
+        duration_ms = None
+        if method_name in self.start_times:
+            duration_ms = round((time.time() - self.start_times[method_name]) * 1000, 2)
+            self.durations[method_name] = duration_ms
+            del self.start_times[method_name]
+        
+        duration_display = f"{duration_ms}" if duration_ms is not None else "N/A"
+        
+        # Check if this is an error
+        is_error = any(key in metrics for key in ['error', 'error_type', 'error_message']) or \
+                   metrics.get('final_status') == 'ERROR'
+        
+        # In VERBOSE mode, log stored queries/responses
+        if self.execution_mode == ExecutionMode.VERBOSE and method_name in self.method_data:
+            method_info = self.method_data[method_name]
+            
+            # Log query if present
+            if 'query' in method_info:
+                query_type = method_info.get('query_type', 'Query')
+                formatted_query = self._format_data(method_info['query'], max_length=2000)
+                if self.colored_output:
+                    self._color_print(Colors.WARNING, f"  📝 {query_type}:")
+                    print(f"  {formatted_query}")
+                else:
+                    self.logger.info(f"  📝 {query_type}: {formatted_query}")
+            
+            # Log response if present
+            if 'response' in method_info:
+                response_type = method_info.get('response_type', 'Response')
+                formatted_response = self._format_data(method_info['response'])
+                if self.colored_output:
+                    self._color_print(Colors.OKGREEN, f"  📦 {response_type}:")
+                    print(f"  {formatted_response}")
+                else:
+                    self.logger.info(f"  📦 {response_type}: {formatted_response}")
+        
+        # Format metrics
+        metrics_str = ", ".join(f"{k}={v}" for k, v in metrics.items())
+        
+        # Determine symbol and color
+        if is_error:
+            symbol = "✖" if method_name == "handler" else "  ✖"
+            color = Colors.ERROR + Colors.BOLD
+        elif method_name == "handler":
+            symbol = "■"
+            color = Colors.HEADER + Colors.BOLD
+        else:
+            symbol = "  ■"
+            color = Colors.OKCYAN
+        
+        # Log
+        if self.colored_output:
+            if metrics_str:
+                self._color_print(color, f"{symbol} STOP: {method_name} [{duration_display}ms] ({metrics_str})")
+            else:
+                self._color_print(color, f"{symbol} STOP: {method_name} [{duration_display}ms]")
+        else:
+            if metrics_str:
+                self.logger.info(f"{symbol} STOP: {method_name} [{duration_display}ms] ({metrics_str})")
+            else:
+                self.logger.info(f"{symbol} STOP: {method_name} [{duration_display}ms]")
+    
+    def print_error(self, error: Exception):
+        """Print a formatted error message."""
+        error_type = type(error).__name__
+        error_message = str(error)
+        
+        # Clean up error message
+        if len(error_message) > 200:
+            lines = error_message.split('\n')
+            if lines:
+                error_message = lines[0]
+        
+        if self.colored_output:
+            # Terminal: Colored error box
+            print(f"\n{Colors.ERROR}{Colors.BOLD}{'='*70}{Colors.END}")
+            print(f"{Colors.ERROR}{Colors.BOLD}ERROR: {error_type}{Colors.END}")
+            print(f"{Colors.ERROR}{Colors.BOLD}{'='*70}{Colors.END}")
+            print(f"{Colors.ERROR}{error_message}{Colors.END}")
+            print(f"{Colors.ERROR}{Colors.BOLD}{'='*70}{Colors.END}\n")
+        else:
+            # CloudWatch: Plain text error format with visual symbols
+            self.logger.error(f"{'='*70}")
+            self.logger.error(f"✖ ERROR: {error_type}")
+            self.logger.error(f"{'='*70}")
+            self.logger.error(f"Message: {error_message}")
+            self.logger.error(f"{'='*70}")
