@@ -1,228 +1,51 @@
-"""
-index.py - akamaivalidator with Enhanced UCAS (Verbose Logging)
-
-Version: 2.0
-Features:
-- Execution modes (PRODUCTION, DEBUG, VERBOSE)
-- Query logging (actual Athena queries)
-- Response logging (full results)
-- DynamoDB configuration
-"""
-
-import json
-import os
-import sys
-from datetime import datetime
-from logger import logger
-from input import extract_lambda_input
-from data import get_akamai_onboarding_compliance
-from validate import validate_akamai
-from output import build_result, write_result
-
-# Import UCAS Debugger
-from ucas_debugger import UCASDebugger
-
-# Initialize UCAS with environment detection and validator name
-is_local = os.getenv('AWS_EXECUTION_ENV') is None
-ucas = UCASDebugger(
-    logger, 
-    colored_output=is_local,
-    validator_name='akamaivalidator'  # For DynamoDB config lookup
-)
+GET /login HTTP/1.1
+Host: eval.sand.uskgc.com
+Cache-Control: max-age=0
+Accept-Language: en-US,en;q=0.9
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Sec-Ch-Ua: "Not-A.Brand";v="24", "Chromium";v="146"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Referer: https://login.microsoftonline.us/
+Accept-Encoding: gzip, deflate, br
+Priority: u=0, i
+Connection: keep-alive
 
 
-def handler(event, context):
-    """
-    Akamai Validator Lambda with Enhanced UCAS debugging.
+HTTP/1.1 200 OK
+Date: Tue, 07 Jul 2026 04:44:56 GMT
+Content-Type: text/html
+Content-Length: 604
+Connection: keep-alive
+server: istio-envoy
+last-modified: Thu, 02 Apr 2026 21:03:54 GMT
+etag: "69ced9ba-25c"
+accept-ranges: bytes
+x-envoy-upstream-service-time: 1
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eval</title>
+    <script type="module" crossorigin src="/assets/index.b4eca4d4.js"></script>
+    <link rel="stylesheet" href="/assets/index.3c9bf4fd.css">
+  </head>
+  <body>
+    <div id="app"></div>
     
-    Supports execution modes:
-    - PRODUCTION: Minimal logging
-    - DEBUG: Standard UCAS output
-    - VERBOSE: Super detailed (queries, responses, raw data)
-    
-    Toggle mode via DynamoDB (no code changes needed!)
-    """
-    # Get actual Lambda request ID
-    request_id = getattr(context, 'aws_request_id', 'local') if context else 'local'
-    ucas.method_start("handler", request_id=request_id)
-    
-    try:
-        # 1. Parse input
-        ucas.method_start("extract_lambda_input")
-        try:
-            identifier, control, validator = extract_lambda_input(event)
-            
-            # VERBOSE: Log raw event data
-            ucas.log_raw_data("extract_lambda_input", event, "Raw Event")
-            
-            ucas.method_stop("extract_lambda_input", 
-                           identifier=identifier, 
-                           control=control[:30] if len(control) > 30 else control)
-        except ValueError as exc:
-            ucas.method_stop("extract_lambda_input", 
-                           error_type=type(exc).__name__, 
-                           error_message=str(exc))
-            logger.error(f"Input parsing failed: {exc}")
-            ucas.method_stop("handler", final_status="ERROR", error_type="ValueError")
-            return {"error": str(exc), "status": "FAILED"}
-
-        # 2. Collect data from Athena
-        logger.info(f"Querying Akamai onboarding data for AppCI {identifier}")
-        
-        ucas.method_start("get_akamai_onboarding_compliance", appci=identifier)
-        try:
-            # VERBOSE: Log the actual Athena query
-            # Note: You'll need to modify data.py to return both query and results
-            # For now, we'll construct the approximate query for logging
-            athena_query = f"""
-            SELECT *
-            FROM akamai_onboarding_shared_resources
-            WHERE appci = '{identifier}'
-            ORDER BY ingestion_date DESC
-            LIMIT 1
-            """
-            ucas.log_query("get_akamai_onboarding_compliance", athena_query, "Athena SQL")
-            
-            # Execute query
-            akamai_data = get_akamai_onboarding_compliance(identifier)
-            
-            # VERBOSE: Log the actual response
-            ucas.log_response("get_akamai_onboarding_compliance", akamai_data, "Athena Results")
-            
-            # VERBOSE: Log raw data structure
-            if akamai_data:
-                ucas.log_raw_data("get_akamai_onboarding_compliance", akamai_data[0], "First Record")
-            
-            ucas.method_stop("get_akamai_onboarding_compliance", 
-                           record_count=len(akamai_data) if akamai_data else 0)
-        except Exception as e:
-            ucas.method_stop("get_akamai_onboarding_compliance", 
-                           error_type=type(e).__name__, 
-                           error_message=str(e))
-            raise
-
-        # 3. Validate
-        ucas.method_start("validate_akamai", validator_type=validator.get('type'))
-        try:
-            # VERBOSE: Log validation criteria
-            ucas.log_raw_data("validate_akamai", validator, "Validator Config")
-            
-            passed = validate_akamai(validator, akamai_data)
-            
-            # VERBOSE: Log validation details
-            validation_details = {
-                'criteria': validator.get('criteria', []),
-                'data_present': bool(akamai_data),
-                'result': 'PASS' if passed else 'FAIL'
-            }
-            ucas.log_raw_data("validate_akamai", validation_details, "Validation Details")
-            
-            ucas.method_stop("validate_akamai", validation_result="PASS" if passed else "FAIL")
-        except Exception as e:
-            ucas.method_stop("validate_akamai", 
-                           error_type=type(e).__name__, 
-                           error_message=str(e))
-            raise
-
-        # 4. Build output
-        ucas.method_start("build_result", identifier=identifier)
-        try:
-            result = build_result(identifier, control, validator, passed)
-            
-            # VERBOSE: Log result structure
-            ucas.log_raw_data("build_result", result, "Built Result")
-            
-            ucas.method_stop("build_result", result_size=len(str(result)))
-        except Exception as e:
-            ucas.method_stop("build_result", 
-                           error_type=type(e).__name__, 
-                           error_message=str(e))
-            raise
-
-        # 5. Write to DynamoDB
-        ucas.method_start("write_result", identifier=identifier)
-        try:
-            write_result(identifier, control, validator, result)
-            
-            # VERBOSE: Log DynamoDB write confirmation
-            ucas.log_raw_data("write_result", 
-                            {'table': 'eqa-validation-results-table', 'identifier': identifier},
-                            "DynamoDB Write")
-            
-            ucas.method_stop("write_result", status="success")
-        except Exception as e:
-            ucas.method_stop("write_result", 
-                           error_type=type(e).__name__, 
-                           error_message=str(e))
-            raise
-
-        # Success
-        logger.info(f"Validation complete — control: {control}, passed: {passed}")
-        
-        ucas.method_stop("handler", 
-                        final_status="PASS" if passed else "FAIL",
-                        validation_passed=passed,
-                        result_size=len(str(result)))
-        return result
-
-    except Exception as e:
-        # Error handling
-        error_type = type(e).__name__
-        error_message = str(e)
-        
-        # Log error with UCAS
-        ucas.print_error(e)
-        ucas.method_stop("handler", 
-                        final_status="ERROR",
-                        error_type=error_type,
-                        error_message=error_message)
-        
-        # In Lambda: raise the error
-        # Locally: exit cleanly
-        if is_local:
-            sys.exit(1)
-        else:
-            raise
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+  </body>
+</html>
 
 
-# ---------------------------------------------------------------------------
-# Local testing — run directly:  python index.py
-# ---------------------------------------------------------------------------
-if __name__ == "__main__":
-    # Mock context for local testing
-    class MockContext:
-        aws_request_id = "local"
-        function_name = "local"
-    
-    test_event = {
-        "identifier": "BFM",
-        "control": "CDR-NSS3.4.2 - App01",
-        "validator": {
-            "type": "akamai",
-            "criteria": ["akamai"]
-        }
-    }
-    
-    # Print header (only locally)
-    if is_local:
-        from ucas_debugger import Colors
-        print(f"\n{Colors.HEADER}{Colors.BOLD}{'='*70}{Colors.END}")
-        print(f"{Colors.HEADER}{Colors.BOLD}  UCAS Debugger - akamaivalidator (Enhanced V2){Colors.END}")
-        print(f"{Colors.HEADER}{Colors.BOLD}  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}{Colors.END}")
-        print(f"{Colors.HEADER}{Colors.BOLD}{'='*70}{Colors.END}\n")
-    
-    # Run handler
-    try:
-        result = handler(test_event, MockContext())
-        
-        # Print summary (only locally)
-        if is_local:
-            status = "PASS" if result.get('passed') else "FAIL"
-            status_color = Colors.PASS if result.get('passed') else Colors.ERROR
-            
-            print(f"\n{Colors.HEADER}{Colors.BOLD}{'='*70}{Colors.END}")
-            print(f"{status_color}{Colors.BOLD}{status}{Colors.END} | {test_event['identifier']} | {result['control']}")
-            print(f"{Colors.HEADER}{Colors.BOLD}{'='*70}{Colors.END}\n")
-    
-    except SystemExit:
-        pass  # Clean exit on error
+
